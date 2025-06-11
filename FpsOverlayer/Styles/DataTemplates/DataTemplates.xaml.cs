@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static FpsOverlayer.AppVariables;
-using static LibraryShared.Classes;
 
 namespace ArnoldVinkCode.Styles
 {

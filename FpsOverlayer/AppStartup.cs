@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVInteropDll;
 using static ArnoldVinkCode.AVSettings;
+using static ArnoldVinkCode.AVUpdate;
 using static ArnoldVinkCode.Styles.MainColors;
 using static FpsOverlayer.AppBackup;
 using static FpsOverlayer.AppHotkeys;
 using static FpsOverlayer.AppVariables;
 using static FpsOverlayer.SocketHandlers;
-using static LibraryShared.AppUpdate;
 
 namespace FpsOverlayer
 {
@@ -24,8 +24,8 @@ namespace FpsOverlayer
                 //Setup application defaults
                 AVStartup.SetupDefaults(ProcessPriority.High, true);
 
-                //Application update checks
-                await UpdateCheck();
+                //Application update cleanup
+                await UpdateCleanup();
 
                 //Check application settings
                 vWindowSettings.Settings_Check();

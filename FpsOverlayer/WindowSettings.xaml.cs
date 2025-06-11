@@ -8,11 +8,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVFunctions;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
-using static LibraryShared.Classes;
 
 namespace FpsOverlayer
 {

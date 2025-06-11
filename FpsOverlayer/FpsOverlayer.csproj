@@ -26,16 +26,14 @@
 		<DebugType>none</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Compile Include="..\..\DirectXInput\DirectXInput\Library\Classes\KeypadSize.cs" Link="Library\Classes\KeypadSize.cs" />
+	</ItemGroup>
+	<ItemGroup>
 		<Reference Include="LibreHardwareMonitorLib, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL">
 			<SpecificVersion>False</SpecificVersion>
 			<HintPath>Resources\LibreHardwareMonitorLib.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="..\CtrlUI\Properties\AssemblyVersion.cs">
-			<Link>Properties\AssemblyVersion.cs</Link>
-		</Compile>
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="Notes\Default.txt">
@@ -65,10 +63,10 @@
 		<EmbeddedResource Include="Assets\AppIcon.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\LibraryShared\LibraryShared.csproj" />
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.1.21" />
 		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
 	</ItemGroup>
 </Project>
