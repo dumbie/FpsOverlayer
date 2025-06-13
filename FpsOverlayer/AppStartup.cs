@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using static ArnoldVinkCode.AVInteropDll;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVUpdate;
-using static ArnoldVinkCode.Styles.MainColors;
 using static FpsOverlayer.AppBackup;
 using static FpsOverlayer.AppHotkeys;
 using static FpsOverlayer.AppVariables;
@@ -33,10 +32,6 @@ namespace FpsOverlayer
                 //Check application shortcuts
                 vWindowSettings.Shortcuts_Check();
 
-                //Change application accent color
-                string colorLightHex = SettingLoad(vConfigurationCtrlUI, "ColorAccentLight", typeof(string));
-                ChangeApplicationAccentColor(colorLightHex);
-
                 //Backup Notes
                 BackupNotes();
 
@@ -60,8 +55,7 @@ namespace FpsOverlayer
         {
             try
             {
-                int socketServerPort = SettingLoad(vConfigurationCtrlUI, "ServerPort", typeof(int)) + 2;
-
+                int socketServerPort = SettingLoad(vConfigurationFpsOverlayer, "ServerPort", typeof(int));
                 vArnoldVinkSockets = new ArnoldVinkSockets("127.0.0.1", socketServerPort, false, true);
                 vArnoldVinkSockets.vSocketTimeout = 250;
                 vArnoldVinkSockets.EventBytesReceived += ReceivedSocketHandler;

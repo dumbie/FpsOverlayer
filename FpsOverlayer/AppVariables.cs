@@ -12,14 +12,12 @@ using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVTaskbarInformation;
-using static LibraryShared.Classes;
 
 namespace FpsOverlayer
 {
     public class AppVariables
     {
         //Application Variables
-        public static Configuration vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
         public static Configuration vConfigurationFpsOverlayer = SettingLoadConfig("FpsOverlayer.exe.csettings");
         public static bool vManualHiddenFpsOverlay = false;
         public const int vTotalStatsCount = 11;

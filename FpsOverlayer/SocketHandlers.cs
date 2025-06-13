@@ -1,11 +1,10 @@
 ﻿using ArnoldVinkCode;
+using System;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.ArnoldVinkSockets;
 using static ArnoldVinkCode.AVClassConverters;
-using static ArnoldVinkCode.AVSettings;
-using static ArnoldVinkCode.Styles.MainColors;
 using static FpsOverlayer.AppVariables;
 using static LibraryShared.Classes;
 
@@ -43,14 +42,25 @@ namespace FpsOverlayer
             try
             {
                 //Get the source server ip and port
-                //Debug.WriteLine("Received udp socket from: " + endPoint.IPEndPoint.Address.ToString() + ":" + endPoint.IPEndPoint.Port);
+                //Debug.WriteLine("Received udp socket from: " + endPoint.IPEndPoint.Address.ToString() + ":" + endPoint.IPEndPoint.Port + "/" + receivedBytes.Length + "bytes");
 
                 //Deserialize the received bytes
                 if (DeserializeBytesToObject(receivedBytes, out SocketSendContainer deserializedBytes))
                 {
-                    if (deserializedBytes.Object is string)
+                    Type objectType = Type.GetType(deserializedBytes.SendType);
+                    if (objectType == typeof(KeypadSize))
                     {
-                        string receivedString = (string)deserializedBytes.Object;
+                        KeypadSize receivedKeypadSize = deserializedBytes.GetObjectAsType<KeypadSize>();
+
+                        //Set the window keypad margin
+                        vKeypadAdjustMargin = receivedKeypadSize.Height;
+
+                        //Update fps overlay position and visibility
+                        vWindowStats.UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
+                    }
+                    else if (objectType == typeof(string))
+                    {
+                        string receivedString = (string)deserializedBytes.SendObject;
                         Debug.WriteLine("Received socket string: " + receivedString);
                         if (receivedString == "ApplicationExit")
                         {
@@ -72,27 +82,6 @@ namespace FpsOverlayer
                         {
                             vWindowStats.ChangeFpsOverlayPosition();
                         }
-                        else if (receivedString == "SettingChangedColorAccentLight")
-                        {
-                            vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
-                            string colorLightHex = SettingLoad(vConfigurationCtrlUI, "ColorAccentLight", typeof(string));
-                            ChangeApplicationAccentColor(colorLightHex);
-                        }
-                        else if (receivedString == "SettingChangedDisplayMonitor")
-                        {
-                            vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
-                            vWindowStats.UpdateWindowPosition();
-                        }
-                    }
-                    else if (deserializedBytes.Object is KeypadSize)
-                    {
-                        KeypadSize receivedKeypadSize = (KeypadSize)deserializedBytes.Object;
-
-                        //Set the window keypad margin
-                        vKeypadAdjustMargin = receivedKeypadSize.Height;
-
-                        //Update fps overlay position and visibility
-                        vWindowStats.UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
                     }
                 }
             }

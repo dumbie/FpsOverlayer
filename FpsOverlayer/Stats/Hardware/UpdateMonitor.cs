@@ -29,7 +29,7 @@ namespace FpsOverlayer
                 }
 
                 //Get current active screen
-                int monitorNumber = SettingLoad(vConfigurationCtrlUI, "DisplayMonitor", typeof(int));
+                int monitorNumber = SettingLoad(vConfigurationFpsOverlayer, "DisplayMonitor", typeof(int));
                 DisplayMonitor displayMonitorSettings = GetSingleMonitorDisplayConfig(monitorNumber - 1);
 
                 //Get screen resolution

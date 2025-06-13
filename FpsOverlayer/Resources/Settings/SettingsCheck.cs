@@ -14,6 +14,12 @@ namespace FpsOverlayer
         {
             try
             {
+                //Server settings
+                if (!SettingCheck(vConfigurationFpsOverlayer, "ServerPort")) { SettingSave(vConfigurationFpsOverlayer, "ServerPort", "26761"); }
+
+                //Display settings
+                if (!SettingCheck(vConfigurationFpsOverlayer, "DisplayMonitor")) { SettingSave(vConfigurationFpsOverlayer, "DisplayMonitor", "1"); }
+
                 if (!SettingCheck(vConfigurationFpsOverlayer, "DisplayBackground")) { SettingSave(vConfigurationFpsOverlayer, "DisplayBackground", "False"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "DisplayOpacity")) { SettingSave(vConfigurationFpsOverlayer, "DisplayOpacity", "0,90"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MarginHorizontal")) { SettingSave(vConfigurationFpsOverlayer, "MarginHorizontal", "5"); }
@@ -22,7 +28,7 @@ namespace FpsOverlayer
                 if (!SettingCheck(vConfigurationFpsOverlayer, "StatsFlipBottom")) { SettingSave(vConfigurationFpsOverlayer, "StatsFlipBottom", "False"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "HideScreenCapture")) { SettingSave(vConfigurationFpsOverlayer, "HideScreenCapture", "True"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "InterfaceFontStyleName")) { SettingSave(vConfigurationFpsOverlayer, "InterfaceFontStyleName", "Segoe UI"); }
-                if (!SettingCheck(vConfigurationFpsOverlayer, "TextPosition")) { SettingSave(vConfigurationFpsOverlayer, "TextPosition", "0"); } //Shared
+                if (!SettingCheck(vConfigurationFpsOverlayer, "TextPosition")) { SettingSave(vConfigurationFpsOverlayer, "TextPosition", "0"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "TextDirection")) { SettingSave(vConfigurationFpsOverlayer, "TextDirection", "1"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "TextSize")) { SettingSave(vConfigurationFpsOverlayer, "TextSize", "18"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "HardwareUpdateRateMs")) { SettingSave(vConfigurationFpsOverlayer, "HardwareUpdateRateMs", "1000"); }
