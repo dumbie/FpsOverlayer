@@ -23,8 +23,11 @@ namespace FpsOverlayer
                 //Setup application defaults
                 AVStartup.SetupDefaults(ProcessPriority.High, true);
 
-                //Application update cleanup
+                //Clean application update files
                 await UpdateCleanup();
+
+                //Check for available application update
+                await UpdateCheck("dumbie", "FpsOverlayer", true);
 
                 //Check application settings
                 vWindowSettings.Settings_Check();
