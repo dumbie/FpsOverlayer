@@ -159,6 +159,9 @@
 		<Content Include="Assets\Default\Icons\Videocard.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\User\Assets in this folder will not get overwritten when updating">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Notes\Default.txt">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -196,6 +199,7 @@
 		<ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<Folder Include="Assets\User\Fonts\" />
 		<Folder Include="Library\Classes\" />
 	</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
