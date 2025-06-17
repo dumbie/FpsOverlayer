@@ -2,7 +2,7 @@
   "UserName": "Dumbie",
   "RepoName": "FpsOverlayer",
   "FileName": "FpsOverlayer.zip",
-  "ExtractName": "FpsOverlayer",
+  "ExtractPathRemove": [ "FpsOverlayer" ],
   "ProcessLaunch": [
     "Launcher.exe"
   ],
@@ -11,11 +11,11 @@
     "Launcher"
   ],
   "FilesIgnore": [
-    ".csettings",
-    "Notes/Default.txt"
+    ".csettings"
   ],
   "FoldersIgnore": [
-    "Profiles/User"
+    "Profiles/User",
+    "Notes"
   ],
   "FoldersDelete": [
     "Resources"
