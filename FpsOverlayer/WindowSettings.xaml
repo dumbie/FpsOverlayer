@@ -81,7 +81,7 @@
                     <TextBlock Text="Monitor" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Name="menuButtonBattery" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage battery settings">
-                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Battery/BatteryVerDis100.png" Margin="0,5,0,0" Height="50" HorizontalAlignment="Center"/>
+                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Battery.png" Margin="0,5,0,0" Height="50" HorizontalAlignment="Center"/>
                     <TextBlock Text="Battery" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Name="menuButtonApplications" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage application settings">
