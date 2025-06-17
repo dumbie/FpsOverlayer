@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static ArnoldVinkCode.AVUpdate;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -64,8 +65,13 @@ namespace FpsOverlayer
                     else if (SelStackPanel.Name == "menuButtonApplications") { ShowGridPage(stackpanel_Applications); }
                     else if (SelStackPanel.Name == "menuButtonOrder") { ShowGridPage(stackpanel_Order); }
                     else if (SelStackPanel.Name == "menuButtonSettings") { ShowGridPage(stackpanel_Settings); }
+                    else if (SelStackPanel.Name == "menuButtonUpdate")
+                    {
+                        //Check for available application update
+                        await UpdateCheck("dumbie", "FpsOverlayer", false);
+                    }
                     else if (SelStackPanel.Name == "menuButtonClose") { this.Close(); }
-                    else if (SelStackPanel.Name == "menuButtonExit") { await AppExit.Exit(); }
+                    else if (SelStackPanel.Name == "menuButtonExit") { await AppExit.Exit_Prompt(); }
                 }
             }
             catch { }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArnoldVinkCode;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static FpsOverlayer.AppTasks;
@@ -8,6 +10,23 @@ namespace FpsOverlayer
 {
     public class AppExit
     {
+        public static async Task Exit_Prompt()
+        {
+            try
+            {
+                List<string> messageAnswers = new List<string>();
+                messageAnswers.Add("Exit application");
+                messageAnswers.Add("Cancel");
+
+                string messageResult = await new AVMessageBox().Popup(vWindowSettings, "Do you really want to exit Fps Overlayer?", "This will hide the stats, tools and crosshair overlays.", messageAnswers);
+                if (messageResult == "Exit application")
+                {
+                    await Exit();
+                }
+            }
+            catch { }
+        }
+
         public async static Task Exit()
         {
             try

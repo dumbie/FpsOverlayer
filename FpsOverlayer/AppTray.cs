@@ -79,6 +79,6 @@ namespace FpsOverlayer
         void NotifyIcon_Position_Stats(object sender, EventArgs args) { vWindowStats.ChangeFpsOverlayPosition(); }
         void NotifyIcon_Settings(object sender, EventArgs args) { Application_ShowHideSettings(); }
         void NotifyIcon_Website(object sender, EventArgs args) { OpenWebsiteBrowser("https://projects.arnoldvink.com"); }
-        async void NotifyIcon_Exit(object sender, EventArgs args) { await AppExit.Exit(); }
+        async void NotifyIcon_Exit(object sender, EventArgs args) { await AppExit.Exit_Prompt(); }
     }
 }

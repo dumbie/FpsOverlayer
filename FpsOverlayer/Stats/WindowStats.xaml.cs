@@ -219,16 +219,5 @@ namespace FpsOverlayer
                 Debug.WriteLine("Failed setting window font: " + ex.Message);
             }
         }
-
-        //Application Close Handler
-        protected override async void OnClosing(CancelEventArgs e)
-        {
-            try
-            {
-                e.Cancel = true;
-                await AppExit.Exit();
-            }
-            catch { }
-        }
     }
 }
