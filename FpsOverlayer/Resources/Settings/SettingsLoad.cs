@@ -1,7 +1,6 @@
 ﻿using ArnoldVinkCode;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVSettings;
@@ -216,6 +215,11 @@ namespace FpsOverlayer
 
                 //Check if application is set to launch on Windows startup
                 cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck();
+
+                //Display settings
+                int monitorNumber = SettingLoad(vConfigurationFpsOverlayer, "DisplayMonitor", typeof(int));
+                textblock_SettingsDisplayMonitor.Text = textblock_SettingsDisplayMonitor.Tag + ": " + monitorNumber;
+                slider_SettingsDisplayMonitor.Value = monitorNumber;
 
                 //Wait for settings to have loaded
                 await Task.Delay(1500);

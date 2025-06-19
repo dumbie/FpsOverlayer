@@ -542,6 +542,16 @@ namespace FpsOverlayer
                     SettingSave(vConfigurationFpsOverlayer, "BrowserOpacity", slider_BrowserOpacity.Value);
                     await vWindowTools.Browser_Update_Opacity();
                 };
+
+                //Display settings
+                slider_SettingsDisplayMonitor.ValueChanged += (sender, e) =>
+                {
+                    textblock_SettingsDisplayMonitor.Text = textblock_SettingsDisplayMonitor.Tag + ": " + Convert.ToInt32(slider_SettingsDisplayMonitor.Value);
+                    SettingSave(vConfigurationFpsOverlayer, "DisplayMonitor", slider_SettingsDisplayMonitor.Value);
+                    vWindowStats.UpdateWindowPosition();
+                    vWindowCrosshair.UpdateWindowPosition();
+                    vWindowTools.UpdateWindowPosition();
+                };
             }
             catch (Exception ex)
             {

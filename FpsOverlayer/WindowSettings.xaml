@@ -708,6 +708,11 @@
                         <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Launch Settings"/>
                         <CheckBox Name="cb_SettingsWindowsStartup" Content="Launch application on Windows startup" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will launch Fps Overlayer when Windows starts automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+
+                        <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Monitor Settings" Margin="0,10,0,0"/>
+                        <TextBlock Name="textblock_SettingsDisplayMonitor" Text="Monitor to display overlays on" Tag="Monitor to display overlays on" Style="{StaticResource TextBlockBlack}"/>
+                        <TextBlock Text="Monitor that the stats, tools and crosshair appear on." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <Slider Name="slider_SettingsDisplayMonitor" Width="400" Minimum="1" Maximum="20" HorizontalAlignment="Left" Style="{StaticResource SliderBlockBlack}"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
