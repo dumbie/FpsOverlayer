@@ -174,9 +174,6 @@
 		<Content Include="Profiles\User\FpsPositionProcessName.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Resources\LibreHardwareMonitorLib.deps.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 		<Content Include="Resources\LibreHardwareMonitorLib.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>

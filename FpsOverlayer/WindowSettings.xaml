@@ -707,7 +707,7 @@
                     <StackPanel Name="stackpanel_Settings" Visibility="Collapsed">
                         <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Launch Settings"/>
                         <CheckBox Name="cb_SettingsWindowsStartup" Content="Launch application on Windows startup" Style="{StaticResource CheckBoxBlack}"/>
-                        <TextBlock Text="Enabling this will launch Fps Overlayer when you start Windows automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <TextBlock Text="Enabling this will launch Fps Overlayer when Windows starts automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

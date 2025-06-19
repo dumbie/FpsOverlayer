@@ -8,8 +8,8 @@ namespace FpsOverlayer
 {
     public partial class AppBackup
     {
-        //Backup Notes
-        public static void BackupNotes()
+        //Backup Profiles and Notes
+        public static void BackupJsonProfiles()
         {
             try
             {
@@ -33,13 +33,14 @@ namespace FpsOverlayer
                     catch { }
                 }
 
-                //Create backup
-                string backupTime = DateTime.Now.ToString("yyyyMMddHHmmss") + "-Notes.zip";
-                ZipFile.CreateFromDirectory("Notes", "Backups\\" + backupTime);
+                //Create backups
+                string backupTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+                ZipFile.CreateFromDirectory("Notes", "Backups\\" + backupTime + "-Notes.zip");
+                ZipFile.CreateFromDirectory("Profiles\\User", "Backups\\" + backupTime + "-Profiles.zip");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed making notes backup: " + ex.Message);
+                Debug.WriteLine("Failed making backup: " + ex.Message);
             }
         }
     }

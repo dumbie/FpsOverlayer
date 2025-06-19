@@ -39,7 +39,7 @@ namespace FpsOverlayer
                 vWindowSettings.Shortcuts_Check();
 
                 //Backup Notes
-                BackupNotes();
+                BackupJsonProfiles();
 
                 //Show windows
                 vWindowStats.Show();

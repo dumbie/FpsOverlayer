@@ -214,15 +214,8 @@ namespace FpsOverlayer
                 //Update stats position text
                 UpdateStatsPositionText();
 
-                //Set the application name to string to check shortcuts
-                string targetName = AVFunctions.ApplicationName();
-
                 //Check if application is set to launch on Windows startup
-                string targetFileStartup = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), targetName + ".url");
-                if (File.Exists(targetFileStartup))
-                {
-                    cb_SettingsWindowsStartup.IsChecked = true;
-                }
+                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck();
 
                 //Wait for settings to have loaded
                 await Task.Delay(1500);
