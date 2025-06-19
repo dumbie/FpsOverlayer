@@ -8,7 +8,6 @@ using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVFunctions;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static FpsOverlayer.AppVariables;
-using static FpsOverlayer.NotificationFunctions;
 
 namespace FpsOverlayer
 {
@@ -170,26 +169,17 @@ namespace FpsOverlayer
                 {
                     TextBox textboxSender = (TextBox)sender;
                     Browser_Open_Link(textboxSender.Text, true);
-                    Debug.WriteLine("Entered link: " + textboxSender.Text);
                 }
             }
             catch { }
         }
 
         //Open link from textbox icon
-        private async void button_Browser_LinkOpen_Click(object sender, RoutedEventArgs e)
+        private void button_Browser_LinkOpen_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //Check if string is empty
-                if (string.IsNullOrWhiteSpace(textbox_Browser_Link.Text))
-                {
-                    await Notification_Send_Status("Browser", "Please enter a link");
-                    return;
-                }
-
                 Browser_Open_Link(textbox_Browser_Link.Text, true);
-                Debug.WriteLine("Entered link: " + textbox_Browser_Link.Text);
             }
             catch { }
         }
@@ -205,37 +195,38 @@ namespace FpsOverlayer
         }
 
         //Copy current link to clipboard
-        private async void button_Browser_CopyLink_Click(object sender, RoutedEventArgs e)
+        private void button_Browser_CopyLink_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 //Check if string is empty
                 if (string.IsNullOrWhiteSpace(textbox_Browser_Link.Text))
                 {
-                    await Notification_Send_Status("Browser", "Website link is empty");
+                    Notification_Show_Status("Browser", "Website link is empty");
                     return;
                 }
 
                 //Set clipboard text
                 Clipboard.SetText(textbox_Browser_Link.Text);
 
-                await Notification_Send_Status("Paste", "Link copied to clipboard");
+                Notification_Show_Status("Paste", "Link copied to clipboard");
                 Debug.WriteLine("Link copied to clipboard: " + textbox_Browser_Link.Text);
             }
             catch { }
         }
 
         //Add current link to link menu
-        private async void button_Browser_AddLink_Click(object sender, RoutedEventArgs e)
+        private void button_Browser_AddLink_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                //Get website link
                 string websiteLink = textbox_Browser_Link.Text;
 
                 //Check if string is empty
                 if (string.IsNullOrWhiteSpace(websiteLink))
                 {
-                    await Notification_Send_Status("Browser", "Please enter a link");
+                    Notification_Show_Status("Browser", "Please enter a link to add");
                     return;
                 }
 
@@ -245,14 +236,14 @@ namespace FpsOverlayer
                 //Check if string is valid link
                 if (!StringLinkValidate(websiteLink))
                 {
-                    await Notification_Send_Status("Browser", "Invalid link entered");
+                    Notification_Show_Status("Browser", "Invalid link entered");
                     return;
                 }
 
                 //Check if link already exists
                 if (vFpsBrowserLinks.Any(x => x.String1.ToLower().Replace("/", "") == websiteLink.ToLower().Replace("/", "")))
                 {
-                    await Notification_Send_Status("Browser", "Link already exists");
+                    Notification_Show_Status("Browser", "Link already exists");
                     return;
                 }
 

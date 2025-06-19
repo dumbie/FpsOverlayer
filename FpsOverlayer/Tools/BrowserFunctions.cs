@@ -72,6 +72,13 @@ namespace FpsOverlayer
         {
             try
             {
+                //Check if link is empty
+                if (string.IsNullOrWhiteSpace(linkString))
+                {
+                    Notification_Show_Status("Browser", "Please enter a link to open");
+                    return;
+                }
+
                 //Add browser to grid
                 await Browser_Add_Grid();
 
@@ -92,6 +99,8 @@ namespace FpsOverlayer
                 {
                     grid_Browser_Manage.Visibility = Visibility.Collapsed;
                 }
+
+                Debug.WriteLine("Opened link: " + linkString);
             }
             catch { }
         }

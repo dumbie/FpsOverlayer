@@ -21,7 +21,7 @@
 
     <Grid Name="grid_ToolsOverlayer" Visibility="Collapsed">
         <!-- Border Notes -->
-        <Border Name="border_Notes" Margin="450,150,0,0" Height="500" MinHeight="200" MinWidth="360" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Border Name="border_Notes" Margin="450,165,0,0" Height="500" MinHeight="200" MinWidth="360" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Border.Background>
                 <SolidColorBrush Color="{DynamicResource ApplicationBlackColor}" Opacity="0.90"/>
             </Border.Background>
@@ -77,7 +77,7 @@
         </Border>
 
         <!-- Border Browser -->
-        <Border Name="border_Browser" Margin="50,150,0,0" Height="500" MinHeight="200" MinWidth="360" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Border Name="border_Browser" Margin="50,165,0,0" Height="500" MinHeight="200" MinWidth="360" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Border.Background>
                 <SolidColorBrush Color="{DynamicResource ApplicationBlackColor}" Opacity="0.90"/>
             </Border.Background>
@@ -176,24 +176,35 @@
         <!-- Border Image -->
 
         <!-- Border Menu -->
-        <Border Name="border_Menu" CornerRadius="5" Margin="50" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Border Name="border_Menu" CornerRadius="5" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Border.Background>
                 <SolidColorBrush Color="{DynamicResource ApplicationBlackColor}" Opacity="0.90"/>
             </Border.Background>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="5">
                 <Button Name="button_ShowHide_Browser" Style="{StaticResource ButtonImageTransparentWhiteBorder}" Click="button_ShowHide_Browser_Click" ToolTip="Show or hide browser">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Browser.png" Height="35"/>
                 </Button>
                 <Button Name="button_ShowHide_Notes" Style="{StaticResource ButtonImageTransparentWhiteBorder}" Click="button_ShowHide_Notes_Click" ToolTip="Show or hide notes">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Note.png" Height="35"/>
                 </Button>
-                <Button Name="button_Pin" Style="{StaticResource ButtonImageTransparentWhiteBorder}" Click="button_Pin_Click" ToolTip="Click through mode">
+                <Button Name="button_Pin" Style="{StaticResource ButtonImageTransparentWhiteBorder}" Click="button_Pin_Click" ToolTip="Enable click through mode">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Pin.png" Height="35"/>
                 </Button>
                 <Button Name="button_Close" Style="{StaticResource ButtonImageTransparentWhiteBorder}" Click="button_Close_Click" ToolTip="Close tools overlay">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Close.png" Height="35"/>
                 </Button>
                 <TextBlock x:Name="textblock_Time" Margin="5,0,5,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockWhite}" FontSize="{DynamicResource TextSizeLarge}" Text="T:ME"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Border Notification -->
+        <Border Name="border_Notification" CornerRadius="5" Margin="0,110,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed">
+            <Border.Background>
+                <SolidColorBrush Color="{DynamicResource ApplicationBlackColor}" Opacity="0.90"/>
+            </Border.Background>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Image x:Name="image_Notification_Icon" Height="35"/>
+                <TextBlock x:Name="textblock_Notification_Status" Margin="5,0,5,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockWhite}" FontSize="{DynamicResource TextSizeLarge}" Text="..."/>
             </StackPanel>
         </Border>
     </Grid>

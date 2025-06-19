@@ -26,7 +26,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Include="..\..\DirectXInput\DirectXInput\Library\Classes\KeypadSize.cs" Link="Library\Classes\KeypadSize.cs" />
-		<Compile Include="..\..\DirectXInput\DirectXInput\Library\Classes\NotificationDetails.cs" Link="Library\Classes\NotificationDetails.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="LibreHardwareMonitorLib, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -151,6 +150,9 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Default\Icons\Tools.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Unknown.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Assets\Default\Icons\Update.png">
