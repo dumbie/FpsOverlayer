@@ -1,89 +1,42 @@
-![CtrlUI](Screenshots/CtrlUI-screenshot1.jpg)
-![Keyboard](Screenshots/Keyboard-screenshot1.jpg)
-![Keypad](Screenshots/Keypad-screenshot1.jpg)
-![FpsOverlayer](Screenshots/FpsOverlayer-screenshot1.jpg)
-![DirectXInput](Screenshots/DirectXInput-screenshot1.jpg)
+![Stats](Screenshots/FpsOverlayer-screenshot1.jpg)
+![Crosshair](Screenshots/Crosshair-screenshot1.jpg)
+![Tools](Screenshots/Tools-screenshot1.jpg)
 
 ## Application Description
-CtrlUI (Controller User Interface) is a Windows application, game and emulator launcher for your game controller,
-this application allow you to run all your favorite applications from one location with lots of useful features.
+Fps Overlayer is an application that shows the current frames per second and hardware information,
+it also features an separate overlay with a web browser, notepad, adjustable crosshair and more.
 
-DirectXInput converts your connected game controller to a Xbox (XInput) controller,
-so that it can be used with every game and application released with XInput support.
-
-Fps Overlayer is a tool that shows the frames per second and hardware information.
-
-Screen Capture Tool allows you to capture your screen to an image or video.
-
-## CtrlUI Application Features
-- Add Windows UWP applications so you can easily launch them.
-- Launch emulators with a rom selected from a rom directory.
-- Switch to other running processes with your controller.
-
-## DirectXInput Application Features
-- Easily customize the controller button layout.
-- Make and save a screenshot directly with your controller.
-- Control your system volume and media with your controller.
-- On screen keyboard and keypad for your controller.
-
-## Fps Overlayer Application Features
+## Application Features
 - Show current frame rate of a running application.
 - Show processor, videocard and other hardware stats.
 - Show a crosshair overlay to help you aim while gaming.
 - Tool overlay with web browser, notes and more features.
-
-## Screen Capture Tool Application Features
-- Capture your screen to an image or video.
-- HDR to SDR tonemapping when needed.
-
-## Supported controllers 
-- Sony PlayStation 1 (Wired)
-- Sony PlayStation 2 (Wired)
-- Sony PlayStation 3 (Wired)
-- Sony PlayStation 4 DualShock
-- Sony PlayStation 5 DualSense
-- Nintendo Switch Pro
-- 8BitDo Pro 2
-
-## Unsupported controllers
-- Microsoft Xbox controllers.
-- XInput controllers.
+- Move the overlay based on what application is running.
+- Keyboard shortcuts to show and hide overlays on demand.
+- Overlay does not show up in screen captures you take.
+- Does not use dll injection or game hooks of any kind.
 
 ## Installation Instructions
-1) Extract the CtrlUI folder to any directory you want on your device.
+1) Extract the FpsOverlayer folder to any directory you want on your device.
 2) Make sure that you have installed all the requirements listed below.
-3) Launch CtrlUI executable and setup a few basic apps in the welcome screen.
-4) Enjoy using your new controller friendly based user interface.
+3) Run the Launcher executable and enjoy your new overlay.
 
 ## Uninstallation Instructions
-1) Run the Driver Installer and click on "Uninstall drivers" and "Cleanup"
-2) Remove the extracted CtrlUI directory.
+1) Remove the extracted FpsOverlayer directory.
 
 ## Tips and tricks
-- Let CtrlUI automatically launch on Windows startup for easier alltime usage.
-- Some users may need to run the application as administrator to let it work properly.*
+- Let FpsOverlayer automatically launch on Windows startup for easier alltime usage.
 - For more information and help open the "Help" window or tab in the application.
-* You can run it as administrator by using the "CtrlUI-Launcher" executable.
 
 ## Known issues
 - Overlays may not always show up when you are in an exclusive fullscreen application.
-- Clicking on browser overlay while in exclusive fullscreen application may minimize it.
-- Alt+Enter controller shortcut may not work for all Windows Store applications.
 
 ## Requirements
 - Microsoft .NET Core Runtime installed.
-- Microsoft HEVC Video Extensions installed.
-- Microsoft Visual C++ Redistributable installed.
 - Microsoft Windows 11 64-bit or higher is required.
-- Supported game controller connected through DirectXInput.
 
 ## Special thanks
-- Benjamin Höglinger-Stelzer (Nefarius)
-- Travis Nickles (Ryochan7)
-- How Long To Beat (HLTB)
-- Internet Game Database (IGDB)
 - LibreHardwareMonitor community.
-- SteamKit community.
 
 ## Support and bug reporting
 When you are walking into any problems or a bug you can go to my help page at https://help.arnoldvink.com so I can try to help you out and get everything working.
