@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using LibreHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace FpsOverlayer
                 bool FanShowGpu = SettingLoad(vConfigurationFpsOverlayer, "FanShowGpu", typeof(bool));
                 if (!GpuShowName && !GpuShowPercentage && !GpuShowTemperature && !GpuShowTemperatureHotspot && !GpuShowMemoryUsed && !GpuShowMemorySpeed && !GpuShowCoreFrequency && !GpuShowFanSpeed && !GpuShowPowerWatt && !GpuShowPowerVolt && !FanShowGpu)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentGpu.Visibility = Visibility.Collapsed;
                     });
@@ -180,7 +181,7 @@ namespace FpsOverlayer
                         }
                     }
 
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CurrentGpu.Text = stringDisplay;
                         stackpanel_CurrentGpu.Visibility = Visibility.Visible;
@@ -188,7 +189,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentGpu.Visibility = Visibility.Collapsed;
                     });

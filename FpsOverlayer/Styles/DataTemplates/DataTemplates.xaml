@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
-    x:Class="ArnoldVinkCode.Styles.ListBoxItemAppPosition"
+    x:Class="ArnoldVinkStyles.ListBoxItemAppPosition"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:styles="clr-namespace:ArnoldVinkCode.Styles">
+    xmlns:styles="clr-namespace:ArnoldVinkStyles">
 
     <!-- ListBoxItemLink -->
     <DataTemplate x:Key="ListBoxItemLink">

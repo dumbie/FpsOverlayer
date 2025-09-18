@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using LibreHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace FpsOverlayer
                 bool showPercentage = SettingLoad(vConfigurationFpsOverlayer, "BatShowPercentage", typeof(bool));
                 if (!showPercentage)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentBat.Visibility = Visibility.Collapsed;
                     });
@@ -72,7 +73,7 @@ namespace FpsOverlayer
                 if (!string.IsNullOrWhiteSpace(BatteryPercentage) || !string.IsNullOrWhiteSpace(BatteryStatus))
                 {
                     string stringDisplay = AVFunctions.StringRemoveStart(vTitleBAT + BatteryPercentage + BatteryStatus, " ");
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CurrentBat.Text = stringDisplay;
                         stackpanel_CurrentBat.Visibility = Visibility.Visible;
@@ -80,7 +81,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentBat.Visibility = Visibility.Collapsed;
                     });

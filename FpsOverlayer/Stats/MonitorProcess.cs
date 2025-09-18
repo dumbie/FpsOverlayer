@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -123,7 +124,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     stackpanel_CurrentApp.Visibility = Visibility.Collapsed;
                     stackpanel_CurrentFps.Visibility = Visibility.Collapsed;
@@ -147,7 +148,7 @@ namespace FpsOverlayer
                     currentTimeString = DateTime.Now.ToShortTimeString();
                 }
 
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     vWindowTools.textblock_Time.Text = DateTime.Now.ToShortTimeString();
                 });
@@ -167,14 +168,14 @@ namespace FpsOverlayer
                 //Check if time string is empty
                 if (string.IsNullOrWhiteSpace(currentTimeString))
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentTime.Visibility = Visibility.Collapsed;
                     });
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CurrentTime.Text = currentTimeString;
                         stackpanel_CurrentTime.Visibility = Visibility.Visible;
@@ -194,7 +195,7 @@ namespace FpsOverlayer
 
                 if (!string.IsNullOrWhiteSpace(customText))
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CustomText.Text = customText;
                         stackpanel_CustomText.Visibility = Visibility.Visible;
@@ -202,7 +203,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CustomText.Visibility = Visibility.Collapsed;
                     });
@@ -216,7 +217,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (SettingLoad(vConfigurationFpsOverlayer, "AppShowName", typeof(bool)))
                     {
@@ -252,7 +253,7 @@ namespace FpsOverlayer
 
                 //Reset frametime variables
                 vFrametimeCurrent = 0;
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     vPointFrameTimes.Clear();
                 });

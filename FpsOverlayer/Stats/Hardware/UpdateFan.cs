@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using LibreHardwareMonitor.Hardware;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace FpsOverlayer
                 bool CpuShowFanSpeed = SettingLoad(vConfigurationFpsOverlayer, "CpuShowFanSpeed", typeof(bool));
                 if (!FanShowCpu && !FanShowGpu && !FanShowSystem && !CpuShowFanSpeed)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentFan.Visibility = Visibility.Collapsed;
                     });
@@ -89,7 +90,7 @@ namespace FpsOverlayer
                 if (!string.IsNullOrWhiteSpace(stringStats))
                 {
                     string stringDisplay = AVFunctions.StringRemoveStart(vTitleFAN + stringStats, " ");
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CurrentFan.Text = stringDisplay;
                         stackpanel_CurrentFan.Visibility = Visibility.Visible;
@@ -97,7 +98,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentFan.Visibility = Visibility.Collapsed;
                     });

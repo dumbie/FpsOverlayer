@@ -6,7 +6,7 @@ using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static FpsOverlayer.AppVariables;
 
-namespace ArnoldVinkCode.Styles
+namespace ArnoldVinkStyles
 {
     public partial class ListBoxItemAppPosition : ResourceDictionary
     {

@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using LibreHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace FpsOverlayer
                 bool showTotal = SettingLoad(vConfigurationFpsOverlayer, "MemShowTotal", typeof(bool));
                 if (!showName && !showSpeed && !showPercentage && !showUsed && !showFree && !showTotal)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentMem.Visibility = Visibility.Collapsed;
                     });
@@ -127,7 +128,7 @@ namespace FpsOverlayer
                         }
                     }
 
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CurrentMem.Text = stringDisplay;
                         stackpanel_CurrentMem.Visibility = Visibility.Visible;
@@ -135,7 +136,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentMem.Visibility = Visibility.Collapsed;
                     });

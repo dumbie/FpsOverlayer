@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Session;
@@ -49,7 +50,7 @@ namespace FpsOverlayer
                 //Check the total available frames and last added frame time
                 if (!vListFrameTimes.Any() || (GetSystemTicksMs() - vLastFrameTimeUpdate) >= 1000)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentFrametime.Visibility = Visibility.Collapsed;
                         stackpanel_CurrentFps.Visibility = Visibility.Collapsed;
@@ -60,7 +61,7 @@ namespace FpsOverlayer
                 else
                 {
                     bool showFrametime = SettingLoad(vConfigurationFpsOverlayer, "FrametimeGraphShow", typeof(bool));
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         if (showFrametime)
                         {
@@ -123,7 +124,7 @@ namespace FpsOverlayer
                         string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond;
                         StringDisplay = StringDisplay.Trim();
 
-                        AVActions.DispatcherInvoke(delegate
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             textblock_CurrentFps.Text = StringDisplay;
                         });
@@ -142,7 +143,7 @@ namespace FpsOverlayer
                 double xPoint = vFrametimeCurrent;
                 vFrametimeCurrent += SettingLoad(vConfigurationFpsOverlayer, "FrametimeAccuracy", typeof(double));
 
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Check point height
                     double graphHeight = SettingLoad(vConfigurationFpsOverlayer, "FrametimeHeight", typeof(double)) - 2;

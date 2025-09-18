@@ -18,7 +18,7 @@ namespace FpsOverlayer
                 messageAnswers.Add("Exit application");
                 messageAnswers.Add("Cancel");
 
-                string messageResult = await new AVMessageBox().Popup(vWindowSettings, "Do you really want to exit Fps Overlayer?", "This will hide the stats, tools and crosshair overlays.", messageAnswers);
+                string messageResult = AVMessageBox.Popup(vWindowSettings, "Do you really want to exit Fps Overlayer?", "This will hide the stats, tools and crosshair overlays.", messageAnswers);
                 if (messageResult == "Exit application")
                 {
                     await Exit();

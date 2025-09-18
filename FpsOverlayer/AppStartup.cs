@@ -21,7 +21,7 @@ namespace FpsOverlayer
                 Debug.WriteLine("Welcome to application.");
 
                 //Setup application defaults
-                AVStartup.SetupDefaults(ProcessPriority.High, true);
+                AVStartup.SetupDefaults(ProcessPriorityClasses.HIGH_PRIORITY_CLASS, true);
 
                 //Clean application update files
                 await UpdateCleanup();

@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Windows;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
@@ -47,7 +47,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     bool overlayVisible = grid_ToolsOverlayer.Visibility == Visibility.Visible;
                     if (overlayVisible && vToolsBlockInteract)

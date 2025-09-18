@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     grid_StatsOverlayer.Visibility = Visibility.Collapsed;
                 });
@@ -34,7 +35,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     grid_StatsOverlayer.Visibility = Visibility.Visible;
                 });
@@ -48,7 +49,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (grid_StatsOverlayer.Visibility == Visibility.Visible)
                     {
@@ -79,7 +80,7 @@ namespace FpsOverlayer
                 Debug.WriteLine("Changing text postion to: " + nextPosition);
                 SettingSave(vConfigurationFpsOverlayer, "TextPosition", nextPosition.ToString());
 
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     UpdateFpsOverlayStyle();
                 });
@@ -132,7 +133,7 @@ namespace FpsOverlayer
                 //Move fps to set position
                 if (targetOverlayPosition == OverlayPosition.TopLeft)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -157,7 +158,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.TopCenter)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -181,7 +182,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.TopRight)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -206,7 +207,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.MiddleRight)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -230,7 +231,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.BottomRight)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -256,7 +257,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.BottomCenter)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -281,7 +282,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.BottomLeft)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));
@@ -307,7 +308,7 @@ namespace FpsOverlayer
                 }
                 else if (targetOverlayPosition == OverlayPosition.MiddleLeft)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         double marginHorizontal = SettingLoad(vConfigurationFpsOverlayer, "MarginHorizontal", typeof(double));
                         double marginVertical = SettingLoad(vConfigurationFpsOverlayer, "MarginVertical", typeof(double));

@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Windows;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVSettings;
@@ -13,7 +13,7 @@ namespace FpsOverlayer
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (grid_CrosshairOverlayer.Visibility == Visibility.Visible)
                     {

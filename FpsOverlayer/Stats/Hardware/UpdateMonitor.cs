@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System.Windows;
 using static ArnoldVinkCode.AVDisplayMonitor;
 using static ArnoldVinkCode.AVSettings;
@@ -21,7 +22,7 @@ namespace FpsOverlayer
                 bool MonShowRefreshRate = SettingLoad(vConfigurationFpsOverlayer, "MonShowRefreshRate", typeof(bool));
                 if (!MonShowResolution && !MonShowColorBitDepth && !MonShowColorFormat && !MonShowColorHdr && !MonShowRefreshRate)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentMon.Visibility = Visibility.Collapsed;
                     });
@@ -80,7 +81,7 @@ namespace FpsOverlayer
 
                 //Update the screen resolution
                 string stringDisplay = AVFunctions.StringRemoveStart(vTitleMON + screenResolutionString + screenColorBitDepthString + screenHdrModeString + screenColorFormatString + screenRefreshRateString, " ");
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     textblock_CurrentMon.Text = stringDisplay;
                     stackpanel_CurrentMon.Visibility = Visibility.Visible;

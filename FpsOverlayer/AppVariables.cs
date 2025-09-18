@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Windows.Media;
-using System.Windows.Threading;
+using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVProcess;
@@ -30,8 +30,8 @@ namespace FpsOverlayer
         public static WindowSettings vWindowSettings = new WindowSettings();
         public static AppTray vAppTray = new AppTray();
 
-        //Dispatcher Timers
-        public static DispatcherTimer vDispatcherTimerOverlay = new DispatcherTimer();
+        //Overlay Variables
+        public static AVHighResTimer vTimerOverlay = new AVHighResTimer();
 
         //Image Variables
         public static string vImageBackupSource = "Assets/Default/Icons/Unknown.png";

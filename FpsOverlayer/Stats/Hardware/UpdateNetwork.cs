@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using LibreHardwareMonitor.Hardware;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace FpsOverlayer
                 bool showCurrentUsage = SettingLoad(vConfigurationFpsOverlayer, "NetShowCurrentUsage", typeof(bool));
                 if (!showCurrentUsage)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentNet.Visibility = Visibility.Collapsed;
                     });
@@ -61,7 +62,7 @@ namespace FpsOverlayer
                 if (!string.IsNullOrWhiteSpace(networkUsage))
                 {
                     string stringDisplay = AVFunctions.StringRemoveStart(vTitleNET + networkUsage, " ");
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         textblock_CurrentNet.Text = stringDisplay;
                         stackpanel_CurrentNet.Visibility = Visibility.Visible;
@@ -69,7 +70,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_CurrentNet.Visibility = Visibility.Collapsed;
                     });

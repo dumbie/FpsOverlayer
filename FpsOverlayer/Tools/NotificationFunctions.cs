@@ -1,7 +1,7 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Windows;
-using static ArnoldVinkCode.AVImage;
+using static ArnoldVinkStyles.AVImage;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -13,8 +13,8 @@ namespace FpsOverlayer
         {
             try
             {
-                //Update the notification
-                AVActions.DispatcherInvoke(delegate
+                //Update notification
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {
@@ -22,27 +22,27 @@ namespace FpsOverlayer
                         image_Notification_Icon.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/" + icon + ".png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
                         textblock_Notification_Status.Text = text;
 
-                        //Show the notification
+                        //Show notification
                         border_Notification.Visibility = Visibility.Visible;
                     }
                     catch { }
                 });
 
                 //Start notification timer
-                vDispatcherTimerOverlay.Interval = TimeSpan.FromMilliseconds(3000);
-                vDispatcherTimerOverlay.Tick += delegate
+                vTimerOverlay.Interval = 3000;
+                vTimerOverlay.TickSet = delegate
                 {
                     try
                     {
-                        //Hide the notification
-                        border_Notification.Visibility = Visibility.Collapsed;
-
-                        //Renew the timer
-                        AVFunctions.TimerRenew(ref vDispatcherTimerOverlay);
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
+                        {
+                            //Hide notification
+                            border_Notification.Visibility = Visibility.Collapsed;
+                        });
                     }
                     catch { }
                 };
-                AVFunctions.TimerReset(vDispatcherTimerOverlay);
+                vTimerOverlay.Start();
             }
             catch { }
         }
