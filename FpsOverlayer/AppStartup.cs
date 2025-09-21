@@ -8,6 +8,7 @@ using static ArnoldVinkCode.AVUpdate;
 using static FpsOverlayer.AppBackup;
 using static FpsOverlayer.AppHotkeys;
 using static FpsOverlayer.AppVariables;
+using static FpsOverlayer.DriverCheck;
 using static FpsOverlayer.SocketHandlers;
 
 namespace FpsOverlayer
@@ -38,8 +39,11 @@ namespace FpsOverlayer
                 //Check application shortcuts
                 vWindowSettings.Shortcuts_Check();
 
-                //Backup Notes
+                //Backup Profiles and Notes
                 BackupJsonProfiles();
+
+                //Check if drivers are installed
+                CheckDrivers();
 
                 //Show windows
                 vWindowStats.Show();
