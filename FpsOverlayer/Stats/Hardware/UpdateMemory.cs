@@ -12,19 +12,20 @@ namespace FpsOverlayer
 {
     public partial class WindowStats
     {
-        void UpdateMemoryInformation(IList<IHardware> hardwareItems)
+        private void UpdateMemoryInformation(IList<IHardware> hardwareItems)
         {
             try
             {
                 //Check if the information is visible
                 bool showName = SettingLoad(vConfigurationFpsOverlayer, "MemShowName", typeof(bool));
                 bool showSpeed = SettingLoad(vConfigurationFpsOverlayer, "MemShowSpeed", typeof(bool));
+                bool showTemperature = SettingLoad(vConfigurationFpsOverlayer, "MemShowTemperature", typeof(bool));
                 bool showPowerVolt = SettingLoad(vConfigurationFpsOverlayer, "MemShowPowerVolt", typeof(bool));
                 bool showPercentage = SettingLoad(vConfigurationFpsOverlayer, "MemShowPercentage", typeof(bool));
                 bool showUsed = SettingLoad(vConfigurationFpsOverlayer, "MemShowUsed", typeof(bool));
                 bool showFree = SettingLoad(vConfigurationFpsOverlayer, "MemShowFree", typeof(bool));
                 bool showTotal = SettingLoad(vConfigurationFpsOverlayer, "MemShowTotal", typeof(bool));
-                if (!showName && !showSpeed && !showPercentage && !showUsed && !showFree && !showTotal)
+                if (!showName && !showSpeed && !showPercentage && !showUsed && !showFree && !showTotal && !showTemperature && !showPowerVolt)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -34,7 +35,7 @@ namespace FpsOverlayer
                 }
 
                 //Select hardware item
-                IHardware hardwareItem = hardwareItems.FirstOrDefault(x => x.HardwareType == HardwareType.Memory);
+                IHardware hardwareItem = hardwareItems.FirstOrDefault(x => x.HardwareType == HardwareType.Memory && x.Identifier.ToString() == "/ram");
 
                 //Update hardware item
                 hardwareItem.Update();
@@ -44,6 +45,7 @@ namespace FpsOverlayer
                 string MemoryPowerVolt = string.Empty;
                 string MemoryPercentage = string.Empty;
                 string MemoryBytes = string.Empty;
+                string MemoryTemperature = string.Empty;
                 float RawMemoryUsed = 0;
                 float RawMemoryFree = 0;
 
@@ -63,6 +65,12 @@ namespace FpsOverlayer
                 if (showPowerVolt)
                 {
                     MemoryPowerVolt = " " + vHardwareMemoryVoltage;
+                }
+
+                //Set memory temperature
+                if (showTemperature)
+                {
+                    MemoryTemperature = GetMemoryTemperatureString(hardwareItems);
                 }
 
                 foreach (ISensor sensor in hardwareItem.Sensors)
@@ -107,10 +115,10 @@ namespace FpsOverlayer
                 }
 
                 bool memoryNameNullOrWhiteSpace = string.IsNullOrWhiteSpace(MemoryName);
-                if (!memoryNameNullOrWhiteSpace || !string.IsNullOrWhiteSpace(MemorySpeed) || !string.IsNullOrWhiteSpace(MemoryPowerVolt) || !string.IsNullOrWhiteSpace(MemoryPercentage) || !string.IsNullOrWhiteSpace(MemoryBytes))
+                if (!memoryNameNullOrWhiteSpace || !string.IsNullOrWhiteSpace(MemorySpeed) || !string.IsNullOrWhiteSpace(MemoryPowerVolt)|| !string.IsNullOrWhiteSpace(MemoryTemperature) || !string.IsNullOrWhiteSpace(MemoryPercentage) || !string.IsNullOrWhiteSpace(MemoryBytes))
                 {
                     string stringDisplay = string.Empty;
-                    string stringStats = AVFunctions.StringRemoveStart(vTitleMEM + MemoryPercentage + MemorySpeed + MemoryBytes + MemoryPowerVolt, " ");
+                    string stringStats = AVFunctions.StringRemoveStart(vTitleMEM + MemoryPercentage + MemorySpeed + MemoryBytes + MemoryPowerVolt + MemoryTemperature, " ");
 
                     if (string.IsNullOrWhiteSpace(stringStats))
                     {
@@ -143,6 +151,44 @@ namespace FpsOverlayer
                 }
             }
             catch { }
+        }
+
+        private string GetMemoryTemperatureString(IList<IHardware> hardwareItems)
+        {
+            string memoryTemperatureString = string.Empty;
+            try
+            {
+                //Select hardware items
+                IEnumerable<IHardware> hardwareItemDimm = hardwareItems.Where(x => x.HardwareType == HardwareType.Memory && x.Identifier.ToString().Contains("dimm"));
+                foreach (IHardware hardwareItem in hardwareItemDimm)
+                {
+                    try
+                    {
+                        //Update hardware item
+                        hardwareItem.Update();
+
+                        foreach (ISensor sensor in hardwareItem.Sensors)
+                        {
+                            try
+                            {
+                                if (sensor.SensorType == SensorType.Temperature)
+                                {
+                                    //Debug.WriteLine("Memory Temp: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
+                                    if (sensor.Name.StartsWith("DIMM"))
+                                    {
+                                        float RawMemTemperature = (float)sensor.Value;
+                                        memoryTemperatureString += " " + RawMemTemperature.ToString("0") + "°";
+                                    }
+                                }
+                            }
+                            catch { }
+                        }
+                    }
+                    catch { }
+                }
+            }
+            catch { }
+            return memoryTemperatureString;
         }
     }
 }

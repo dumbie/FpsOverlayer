@@ -78,6 +78,7 @@ namespace FpsOverlayer
                 checkbox_MemShowCategoryTitle.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowCategoryTitle", typeof(bool));
                 checkbox_MemShowName.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowName", typeof(bool));
                 checkbox_MemShowSpeed.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowSpeed", typeof(bool));
+                checkbox_MemShowTemperature.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowTemperature", typeof(bool));
                 checkbox_MemShowPowerVolt.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowPowerVolt", typeof(bool));
                 checkbox_MemShowPercentage.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowPercentage", typeof(bool));
                 checkbox_MemShowUsed.IsChecked = SettingLoad(vConfigurationFpsOverlayer, "MemShowUsed", typeof(bool));

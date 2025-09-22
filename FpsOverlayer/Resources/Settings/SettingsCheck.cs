@@ -77,7 +77,8 @@ namespace FpsOverlayer
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowCategoryTitle")) { SettingSave(vConfigurationFpsOverlayer, "MemShowCategoryTitle", "True"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowName")) { SettingSave(vConfigurationFpsOverlayer, "MemShowName", "False"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowSpeed")) { SettingSave(vConfigurationFpsOverlayer, "MemShowSpeed", "True"); }
-                if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowPowerVolt")) { SettingSave(vConfigurationFpsOverlayer, "MemShowPowerVolt", "True"); }
+                if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowTemperature")) { SettingSave(vConfigurationFpsOverlayer, "MemShowTemperature", "True"); }
+                if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowPowerVolt")) { SettingSave(vConfigurationFpsOverlayer, "MemShowPowerVolt", "False"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowPercentage")) { SettingSave(vConfigurationFpsOverlayer, "MemShowPercentage", "True"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowUsed")) { SettingSave(vConfigurationFpsOverlayer, "MemShowUsed", "True"); }
                 if (!SettingCheck(vConfigurationFpsOverlayer, "MemShowFree")) { SettingSave(vConfigurationFpsOverlayer, "MemShowFree", "False"); }
