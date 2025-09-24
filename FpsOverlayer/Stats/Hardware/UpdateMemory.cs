@@ -118,7 +118,7 @@ namespace FpsOverlayer
                 if (!memoryNameNullOrWhiteSpace || !string.IsNullOrWhiteSpace(MemorySpeed) || !string.IsNullOrWhiteSpace(MemoryPowerVolt)|| !string.IsNullOrWhiteSpace(MemoryTemperature) || !string.IsNullOrWhiteSpace(MemoryPercentage) || !string.IsNullOrWhiteSpace(MemoryBytes))
                 {
                     string stringDisplay = string.Empty;
-                    string stringStats = AVFunctions.StringRemoveStart(vTitleMEM + MemoryPercentage + MemorySpeed + MemoryBytes + MemoryPowerVolt + MemoryTemperature, " ");
+                    string stringStats = AVFunctions.StringRemoveStart(vTitleMEM + MemoryPercentage + MemoryTemperature + MemorySpeed + MemoryBytes + MemoryPowerVolt, " ");
 
                     if (string.IsNullOrWhiteSpace(stringStats))
                     {
