@@ -33,7 +33,7 @@ namespace FpsOverlayer
                 TrayContextMenu.Items.Add("Exit", null, NotifyIcon_Exit);
 
                 //Initialize the tray notify icon. 
-                TrayNotifyIcon.Text = "Fps Overlayer";
+                TrayNotifyIcon.Text = "FpsOverlayer";
                 TrayNotifyIcon.Icon = new Icon(AVEmbedded.EmbeddedResourceToStream(null, "FpsOverlayer.Assets.AppIcon.ico"));
 
                 //Handle Single Click event

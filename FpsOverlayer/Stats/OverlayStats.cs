@@ -119,7 +119,7 @@ namespace FpsOverlayer
                 //Get target overlay position
                 OverlayPosition targetOverlayPosition = GetFpsOverlayPosition(processName);
 
-                //Hide or show the fps overlayer
+                //Hide or show overlay
                 if (vManualHiddenFpsOverlay || targetOverlayPosition == OverlayPosition.Hidden)
                 {
                     HideFpsOverlayVisibility();

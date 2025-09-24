@@ -79,10 +79,10 @@ namespace FpsOverlayer
                         //Update overlays position and visibility
                         UpdateFpsOverlayPositionVisibility(foregroundProcess.ExeNameNoExt);
 
-                        //Check if the foreground window is fps overlayer
+                        //Check if the foreground window is FpsOverlayer
                         if (vProcessCurrent.Identifier == foregroundProcess.Identifier)
                         {
-                            Debug.WriteLine("Current process is fps overlayer.");
+                            Debug.WriteLine("Current process is FpsOverlayer.");
 
                             //Hide the application name and frames
                             HideApplicationNameFrames();

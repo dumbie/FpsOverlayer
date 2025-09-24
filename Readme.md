@@ -3,7 +3,7 @@
 ![Tools](Screenshots/Tools-screenshot1.jpg)
 
 ## Application Description
-Fps Overlayer is an application that shows the current frames per second and hardware information,
+FpsOverlayer is an application that shows the current frames per second and hardware information,
 it also features an separate overlay with a web browser, notepad, adjustable crosshair and more.
 
 ## Application Features
@@ -75,10 +75,10 @@ v1.84.0.0 (13-January-2023)
 - Added web browser overlay.
 
 v1.12.1.0 (24-March-2020)
-- Fps Overlayer can now show the current time.
+- FpsOverlayer can now show the current time.
 
 v1.9.5.0 (29-October-2019)
-- You can now set the fps overlayer position for each app.
+- You can now set stats overlay position for each app.
 
 v1.3.5.0 (5-June-2019)
 - First official test release.
