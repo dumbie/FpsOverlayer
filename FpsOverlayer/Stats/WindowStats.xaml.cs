@@ -10,7 +10,6 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVInteropDll;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
 using static FpsOverlayer.AppVariables;
 
@@ -148,7 +147,7 @@ namespace FpsOverlayer
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationFpsOverlayer, "DisplayMonitor", typeof(int));
+                int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));
 
                 //Move the window position
                 WindowUpdatePosition(monitorNumber, vInteropWindowHandle, AVWindowPosition.FullScreen);
@@ -161,7 +160,7 @@ namespace FpsOverlayer
         {
             try
             {
-                if (SettingLoad(vConfigurationFpsOverlayer, "HideScreenCapture", typeof(bool)))
+                if (vSettings.Load("HideScreenCapture", typeof(bool)))
                 {
                     SetWindowDisplayAffinity(vInteropWindowHandle, DisplayAffinityFlags.WDA_EXCLUDEFROMCAPTURE);
                 }
@@ -192,7 +191,7 @@ namespace FpsOverlayer
         {
             try
             {
-                string interfaceFontStyleName = SettingLoad(vConfigurationFpsOverlayer, "InterfaceFontStyleName", typeof(string));
+                string interfaceFontStyleName = vSettings.Load("InterfaceFontStyleName", typeof(string));
                 if (interfaceFontStyleName == "Segoe UI" || interfaceFontStyleName == "Verdana" || interfaceFontStyleName == "Consolas" || interfaceFontStyleName == "Arial")
                 {
                     this.FontFamily = new FontFamily(interfaceFontStyleName);

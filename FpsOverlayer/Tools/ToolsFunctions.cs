@@ -1,6 +1,5 @@
 ﻿using ArnoldVinkStyles;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
 using static FpsOverlayer.AppVariables;
 
@@ -13,8 +12,8 @@ namespace FpsOverlayer
         {
             try
             {
-                bool showNotes = SettingLoad(vConfigurationFpsOverlayer, "ToolsShowNotes", typeof(bool));
-                bool showBrowser = SettingLoad(vConfigurationFpsOverlayer, "ToolsShowBrowser", typeof(bool));
+                bool showNotes = vSettings.Load("ToolsShowNotes", typeof(bool));
+                bool showBrowser = vSettings.Load("ToolsShowBrowser", typeof(bool));
 
                 //Switch visibility
                 if (showNotes)

@@ -5,13 +5,11 @@ using Microsoft.Web.WebView2.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVProcess;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVTaskbarInformation;
 
 namespace FpsOverlayer
@@ -19,7 +17,7 @@ namespace FpsOverlayer
     public class AppVariables
     {
         //Application Variables
-        public static Configuration vConfigurationFpsOverlayer = SettingLoadConfig("FpsOverlayer.exe.csettings");
+        public static AVSettingsConfig vSettings = new AVSettingsConfig("FpsOverlayer.exe.csettings");
         public static bool vManualHiddenFpsOverlay = false;
         public const int vTotalStatsCount = 11;
 
@@ -81,7 +79,7 @@ namespace FpsOverlayer
         public static string vHardwareGpuFanSpeed = string.Empty;
 
         //Trace Events
-        public static TraceEventSession vTraceEventSession;
+        public static TraceEventSession vTraceEventSession = null;
 
         //Trace Events - Event IDs
         public const int vEventID_DxgKrnlPresent = 184;

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using static ArnoldVinkCode.AVInteropDll;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
 using static FpsOverlayer.AppVariables;
 
@@ -49,7 +48,7 @@ namespace FpsOverlayer
                 SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
 
                 //Show crosshair when enabled
-                if (SettingLoad(vConfigurationFpsOverlayer, "CrosshairLaunch", typeof(bool)))
+                if (vSettings.Load("CrosshairLaunch", typeof(bool)))
                 {
                     SwitchCrosshairVisibility(true);
                 }
@@ -124,7 +123,7 @@ namespace FpsOverlayer
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationFpsOverlayer, "DisplayMonitor", typeof(int));
+                int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));
 
                 //Move the window position
                 WindowUpdatePosition(monitorNumber, vInteropWindowHandle, AVWindowPosition.FullScreen);
@@ -137,7 +136,7 @@ namespace FpsOverlayer
         {
             try
             {
-                if (SettingLoad(vConfigurationFpsOverlayer, "HideScreenCapture", typeof(bool)))
+                if (vSettings.Load("HideScreenCapture", typeof(bool)))
                 {
                     SetWindowDisplayAffinity(vInteropWindowHandle, DisplayAffinityFlags.WDA_EXCLUDEFROMCAPTURE);
                 }

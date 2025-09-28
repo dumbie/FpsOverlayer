@@ -3,7 +3,6 @@ using LibreHardwareMonitor.Hardware;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppTasks;
 using static FpsOverlayer.AppVariables;
 
@@ -38,7 +37,7 @@ namespace FpsOverlayer
             {
                 int LoopDelayTime()
                 {
-                    return SettingLoad(vConfigurationFpsOverlayer, "HardwareUpdateRateMs", typeof(int));
+                    return vSettings.Load("HardwareUpdateRateMs", typeof(int));
                 }
 
                 while (await TaskCheckLoop(vTask_MonitorHardware, LoopDelayTime()))

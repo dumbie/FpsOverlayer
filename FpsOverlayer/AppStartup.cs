@@ -3,7 +3,6 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVInteropDll;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVUpdate;
 using static FpsOverlayer.AppBackup;
 using static FpsOverlayer.AppHotkeys;
@@ -65,7 +64,7 @@ namespace FpsOverlayer
         {
             try
             {
-                int socketServerPort = SettingLoad(vConfigurationFpsOverlayer, "ServerPort", typeof(int));
+                int socketServerPort = vSettings.Load("ServerPort", typeof(int));
                 vArnoldVinkSockets = new ArnoldVinkSockets("127.0.0.1", socketServerPort, false, true);
                 vArnoldVinkSockets.vSocketTimeout = 250;
                 vArnoldVinkSockets.EventBytesReceived += ReceivedSocketHandler;

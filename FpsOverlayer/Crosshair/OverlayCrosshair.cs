@@ -1,7 +1,6 @@
 ﻿using ArnoldVinkStyles;
 using System.Windows;
 using System.Windows.Media;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -40,7 +39,7 @@ namespace FpsOverlayer
                 crosshair_CrossClosed.Visibility = Visibility.Collapsed;
                 crosshair_CrossOpen.Visibility = Visibility.Collapsed;
                 crosshair_LineHorizontal.Visibility = Visibility.Collapsed;
-                int crosshairStyle = SettingLoad(vConfigurationFpsOverlayer, "CrosshairStyle", typeof(int));
+                int crosshairStyle = vSettings.Load("CrosshairStyle", typeof(int));
                 if (crosshairStyle == 0)
                 {
                     crosshair_Dot.Visibility = Visibility.Visible;
@@ -67,7 +66,7 @@ namespace FpsOverlayer
                 }
 
                 //Change crosshair color
-                string crosshairColor = SettingLoad(vConfigurationFpsOverlayer, "CrosshairColor", typeof(string));
+                string crosshairColor = vSettings.Load("CrosshairColor", typeof(string));
                 SolidColorBrush crosshairBrush = new BrushConverter().ConvertFrom(crosshairColor) as SolidColorBrush;
                 crosshair_Dot.Background = crosshairBrush;
                 crosshair_Circle.Stroke = crosshairBrush;
@@ -80,8 +79,8 @@ namespace FpsOverlayer
                 crosshair_CrossOpen_HorizontalLeft.Fill = crosshairBrush;
                 crosshair_CrossOpen_HorizontalRight.Fill = crosshairBrush;
 
-                int crosshairSize = SettingLoad(vConfigurationFpsOverlayer, "CrosshairSize", typeof(int));
-                int crosshairThickness = SettingLoad(vConfigurationFpsOverlayer, "CrosshairThickness", typeof(int));
+                int crosshairSize = vSettings.Load("CrosshairSize", typeof(int));
+                int crosshairThickness = vSettings.Load("CrosshairThickness", typeof(int));
 
                 //Change crosshair size - dot
                 crosshair_Dot.Width = crosshairSize;
@@ -121,11 +120,11 @@ namespace FpsOverlayer
                 crosshair_LineHorizontal.Height = crosshairThickness;
 
                 //Change crosshair opacity
-                grid_CrosshairOverlayer.Opacity = SettingLoad(vConfigurationFpsOverlayer, "CrosshairOpacity", typeof(double));
+                grid_CrosshairOverlayer.Opacity = vSettings.Load("CrosshairOpacity", typeof(double));
 
                 //Change crosshair position
-                int crosshairVerticalPosition = SettingLoad(vConfigurationFpsOverlayer, "CrosshairVerticalPosition", typeof(int));
-                int crosshairHorizontalPosition = SettingLoad(vConfigurationFpsOverlayer, "CrosshairHorizontalPosition", typeof(int));
+                int crosshairVerticalPosition = vSettings.Load("CrosshairVerticalPosition", typeof(int));
+                int crosshairHorizontalPosition = vSettings.Load("CrosshairHorizontalPosition", typeof(int));
                 grid_CrosshairOverlayer.Margin = new Thickness(crosshairHorizontalPosition, 0, 0, crosshairVerticalPosition);
             }
             catch { }

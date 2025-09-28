@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -17,7 +16,7 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool showPercentage = SettingLoad(vConfigurationFpsOverlayer, "BatShowPercentage", typeof(bool));
+                bool showPercentage = vSettings.Load("BatShowPercentage", typeof(bool));
                 if (!showPercentage)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate

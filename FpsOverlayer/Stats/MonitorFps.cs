@@ -9,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppTasks;
 using static FpsOverlayer.AppVariables;
 
@@ -60,7 +59,7 @@ namespace FpsOverlayer
                 }
                 else
                 {
-                    bool showFrametime = SettingLoad(vConfigurationFpsOverlayer, "FrametimeGraphShow", typeof(bool));
+                    bool showFrametime = vSettings.Load("FrametimeGraphShow", typeof(bool));
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         if (showFrametime)
@@ -107,17 +106,17 @@ namespace FpsOverlayer
                         int CurrentFramesPerSecond = Convert.ToInt32(1000 / CurrentFrameTimes);
 
                         //Calculate the average fps (setting)
-                        int AverageTimeSpan = SettingLoad(vConfigurationFpsOverlayer, "FpsAverageSeconds", typeof(int)) * 100;
+                        int AverageTimeSpan = vSettings.Load("FpsAverageSeconds", typeof(int)) * 100;
                         double AverageFrameTimes = vListFrameTimes.Take(AverageTimeSpan).Average();
                         int AverageFramesPerSecond = Convert.ToInt32(1000 / AverageFrameTimes);
 
                         //Convert fps to string
                         string StringCurrentFramesPerSecond = string.Empty;
-                        if (SettingLoad(vConfigurationFpsOverlayer, "FpsShowCurrentFps", typeof(bool))) { StringCurrentFramesPerSecond = " " + CurrentFramesPerSecond.ToString() + "FPS"; }
+                        if (vSettings.Load("FpsShowCurrentFps", typeof(bool))) { StringCurrentFramesPerSecond = " " + CurrentFramesPerSecond.ToString() + "FPS"; }
                         string StringCurrentFrameTimes = string.Empty;
-                        if (SettingLoad(vConfigurationFpsOverlayer, "FpsShowCurrentLatency", typeof(bool))) { StringCurrentFrameTimes = " " + CurrentFrameTimes.ToString("0.00") + "MS"; }
+                        if (vSettings.Load("FpsShowCurrentLatency", typeof(bool))) { StringCurrentFrameTimes = " " + CurrentFrameTimes.ToString("0.00") + "MS"; }
                         string StringAverageFramesPerSecond = string.Empty;
-                        if (SettingLoad(vConfigurationFpsOverlayer, "FpsShowAverageFps", typeof(bool))) { StringAverageFramesPerSecond = " " + AverageFramesPerSecond.ToString() + "AVG"; }
+                        if (vSettings.Load("FpsShowAverageFps", typeof(bool))) { StringAverageFramesPerSecond = " " + AverageFramesPerSecond.ToString() + "AVG"; }
 
                         //Update the fps counter
                         Debug.WriteLine("(" + vTargetProcess.Identifier + ") MS" + CurrentFrameTimes.ToString("0.00") + " / FPS " + CurrentFramesPerSecond + " / AVG " + AverageFramesPerSecond);
@@ -141,12 +140,12 @@ namespace FpsOverlayer
             {
                 double yPoint = frameTime;
                 double xPoint = vFrametimeCurrent;
-                vFrametimeCurrent += SettingLoad(vConfigurationFpsOverlayer, "FrametimeAccuracy", typeof(double));
+                vFrametimeCurrent += vSettings.Load("FrametimeAccuracy", typeof(double));
 
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Check point height
-                    double graphHeight = SettingLoad(vConfigurationFpsOverlayer, "FrametimeHeight", typeof(double)) - 2;
+                    double graphHeight = vSettings.Load("FrametimeHeight", typeof(double)) - 2;
                     if (yPoint < 2)
                     {
                         yPoint = 2;

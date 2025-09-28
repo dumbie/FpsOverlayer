@@ -2,7 +2,6 @@
 using ArnoldVinkStyles;
 using System.Windows;
 using static ArnoldVinkCode.AVDisplayMonitor;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -14,12 +13,12 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool MonShowResolution = SettingLoad(vConfigurationFpsOverlayer, "MonShowResolution", typeof(bool));
-                bool MonShowDpiResolution = SettingLoad(vConfigurationFpsOverlayer, "MonShowDpiResolution", typeof(bool));
-                bool MonShowColorBitDepth = SettingLoad(vConfigurationFpsOverlayer, "MonShowColorBitDepth", typeof(bool));
-                bool MonShowColorFormat = SettingLoad(vConfigurationFpsOverlayer, "MonShowColorFormat", typeof(bool));
-                bool MonShowColorHdr = SettingLoad(vConfigurationFpsOverlayer, "MonShowColorHdr", typeof(bool));
-                bool MonShowRefreshRate = SettingLoad(vConfigurationFpsOverlayer, "MonShowRefreshRate", typeof(bool));
+                bool MonShowResolution = vSettings.Load("MonShowResolution", typeof(bool));
+                bool MonShowDpiResolution = vSettings.Load("MonShowDpiResolution", typeof(bool));
+                bool MonShowColorBitDepth = vSettings.Load("MonShowColorBitDepth", typeof(bool));
+                bool MonShowColorFormat = vSettings.Load("MonShowColorFormat", typeof(bool));
+                bool MonShowColorHdr = vSettings.Load("MonShowColorHdr", typeof(bool));
+                bool MonShowRefreshRate = vSettings.Load("MonShowRefreshRate", typeof(bool));
                 if (!MonShowResolution && !MonShowColorBitDepth && !MonShowColorFormat && !MonShowColorHdr && !MonShowRefreshRate)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -30,7 +29,7 @@ namespace FpsOverlayer
                 }
 
                 //Get current active screen
-                int monitorNumber = SettingLoad(vConfigurationFpsOverlayer, "DisplayMonitor", typeof(int));
+                int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));
                 DisplayMonitor displayMonitorSettings = GetSingleMonitorDisplayConfig(monitorNumber - 1);
 
                 //Get screen resolution

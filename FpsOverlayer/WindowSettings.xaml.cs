@@ -11,7 +11,6 @@ using System.Windows.Media;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVFunctions;
 using static ArnoldVinkCode.AVJsonFunctions;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -196,18 +195,18 @@ namespace FpsOverlayer
         {
             try
             {
-                int AppId = SettingLoad(vConfigurationFpsOverlayer, "AppId", typeof(int));
-                int FpsId = SettingLoad(vConfigurationFpsOverlayer, "FpsId", typeof(int));
-                int FrametimeId = SettingLoad(vConfigurationFpsOverlayer, "FrametimeId", typeof(int));
-                int NetId = SettingLoad(vConfigurationFpsOverlayer, "NetId", typeof(int));
-                int CpuId = SettingLoad(vConfigurationFpsOverlayer, "CpuId", typeof(int));
-                int GpuId = SettingLoad(vConfigurationFpsOverlayer, "GpuId", typeof(int));
-                int MemId = SettingLoad(vConfigurationFpsOverlayer, "MemId", typeof(int));
-                int TimeId = SettingLoad(vConfigurationFpsOverlayer, "TimeId", typeof(int));
-                int CustomTextId = SettingLoad(vConfigurationFpsOverlayer, "CustomTextId", typeof(int));
-                int MonId = SettingLoad(vConfigurationFpsOverlayer, "MonId", typeof(int));
-                int BatId = SettingLoad(vConfigurationFpsOverlayer, "BatId", typeof(int));
-                int FanId = SettingLoad(vConfigurationFpsOverlayer, "FanId", typeof(int));
+                int AppId = vSettings.Load("AppId", typeof(int));
+                int FpsId = vSettings.Load("FpsId", typeof(int));
+                int FrametimeId = vSettings.Load("FrametimeId", typeof(int));
+                int NetId = vSettings.Load("NetId", typeof(int));
+                int CpuId = vSettings.Load("CpuId", typeof(int));
+                int GpuId = vSettings.Load("GpuId", typeof(int));
+                int MemId = vSettings.Load("MemId", typeof(int));
+                int TimeId = vSettings.Load("TimeId", typeof(int));
+                int CustomTextId = vSettings.Load("CustomTextId", typeof(int));
+                int MonId = vSettings.Load("MonId", typeof(int));
+                int BatId = vSettings.Load("BatId", typeof(int));
+                int FanId = vSettings.Load("FanId", typeof(int));
                 grid_GpuPosition.SetValue(Grid.RowProperty, GpuId);
                 grid_CpuPosition.SetValue(Grid.RowProperty, CpuId);
                 grid_MemPosition.SetValue(Grid.RowProperty, MemId);
@@ -228,18 +227,18 @@ namespace FpsOverlayer
         {
             try
             {
-                int AppId = SettingLoad(vConfigurationFpsOverlayer, "AppId", typeof(int));
-                int FpsId = SettingLoad(vConfigurationFpsOverlayer, "FpsId", typeof(int));
-                int FrametimeId = SettingLoad(vConfigurationFpsOverlayer, "FrametimeId", typeof(int));
-                int NetId = SettingLoad(vConfigurationFpsOverlayer, "NetId", typeof(int));
-                int CpuId = SettingLoad(vConfigurationFpsOverlayer, "CpuId", typeof(int));
-                int GpuId = SettingLoad(vConfigurationFpsOverlayer, "GpuId", typeof(int));
-                int MemId = SettingLoad(vConfigurationFpsOverlayer, "MemId", typeof(int));
-                int TimeId = SettingLoad(vConfigurationFpsOverlayer, "TimeId", typeof(int));
-                int CustomTextId = SettingLoad(vConfigurationFpsOverlayer, "CustomTextId", typeof(int));
-                int MonId = SettingLoad(vConfigurationFpsOverlayer, "MonId", typeof(int));
-                int BatId = SettingLoad(vConfigurationFpsOverlayer, "BatId", typeof(int));
-                int FanId = SettingLoad(vConfigurationFpsOverlayer, "FanId", typeof(int));
+                int AppId = vSettings.Load("AppId", typeof(int));
+                int FpsId = vSettings.Load("FpsId", typeof(int));
+                int FrametimeId = vSettings.Load("FrametimeId", typeof(int));
+                int NetId = vSettings.Load("NetId", typeof(int));
+                int CpuId = vSettings.Load("CpuId", typeof(int));
+                int GpuId = vSettings.Load("GpuId", typeof(int));
+                int MemId = vSettings.Load("MemId", typeof(int));
+                int TimeId = vSettings.Load("TimeId", typeof(int));
+                int CustomTextId = vSettings.Load("CustomTextId", typeof(int));
+                int MonId = vSettings.Load("MonId", typeof(int));
+                int BatId = vSettings.Load("BatId", typeof(int));
+                int FanId = vSettings.Load("FanId", typeof(int));
 
                 int newId = 0;
                 int currentId = 0;
@@ -279,55 +278,55 @@ namespace FpsOverlayer
                 {
                     if (AppId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "AppId", currentId.ToString());
+                        vSettings.Set("AppId", currentId.ToString());
                     }
                     else if (FpsId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "FpsId", currentId.ToString());
+                        vSettings.Set("FpsId", currentId.ToString());
                     }
                     else if (FrametimeId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "FrametimeId", currentId.ToString());
+                        vSettings.Set("FrametimeId", currentId.ToString());
                     }
                     else if (NetId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "NetId", currentId.ToString());
+                        vSettings.Set("NetId", currentId.ToString());
                     }
                     else if (CpuId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "CpuId", currentId.ToString());
+                        vSettings.Set("CpuId", currentId.ToString());
                     }
                     else if (GpuId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "GpuId", currentId.ToString());
+                        vSettings.Set("GpuId", currentId.ToString());
                     }
                     else if (MemId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "MemId", currentId.ToString());
+                        vSettings.Set("MemId", currentId.ToString());
                     }
                     else if (TimeId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "TimeId", currentId.ToString());
+                        vSettings.Set("TimeId", currentId.ToString());
                     }
                     else if (CustomTextId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "CustomTextId", currentId.ToString());
+                        vSettings.Set("CustomTextId", currentId.ToString());
                     }
                     else if (MonId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "MonId", currentId.ToString());
+                        vSettings.Set("MonId", currentId.ToString());
                     }
                     else if (BatId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "BatId", currentId.ToString());
+                        vSettings.Set("BatId", currentId.ToString());
                     }
                     else if (FanId == newId)
                     {
-                        SettingSave(vConfigurationFpsOverlayer, "FanId", currentId.ToString());
+                        vSettings.Set("FanId", currentId.ToString());
                     }
 
                     //Save new identifier
-                    SettingSave(vConfigurationFpsOverlayer, targetName, newId.ToString());
+                    vSettings.Set(targetName, newId.ToString());
 
                     //Update stats overlay style
                     vWindowStats.UpdateFpsOverlayStyle();

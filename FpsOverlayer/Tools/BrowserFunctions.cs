@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVFunctions;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -111,7 +110,7 @@ namespace FpsOverlayer
             try
             {
                 //Check unload setting
-                if (forceUnload || SettingLoad(vConfigurationFpsOverlayer, "BrowserUnload", typeof(bool)))
+                if (forceUnload || vSettings.Load("BrowserUnload", typeof(bool)))
                 {
                     Debug.WriteLine("Resetting browser interface and variables.");
 
@@ -174,7 +173,7 @@ namespace FpsOverlayer
                 }
 
                 //Update browser opacity
-                string targetOpacity = SettingLoad(vConfigurationFpsOverlayer, "BrowserOpacity", typeof(string)).Replace(",", ".");
+                string targetOpacity = vSettings.Load("BrowserOpacity", typeof(string)).Replace(",", ".");
                 string rgbaOpacity = "rgba(" + colorRed + "," + colorGreen + "," + colorBlue + "," + targetOpacity + ")";
                 await vBrowserWebView.CoreWebView2.ExecuteScriptAsync("document.documentElement.style.setProperty('opacity', '" + targetOpacity + "', 'important');");
                 await vBrowserWebView.CoreWebView2.ExecuteScriptAsync("document.documentElement.style.setProperty('background', '" + rgbaOpacity + "', 'important');");

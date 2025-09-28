@@ -4,7 +4,6 @@ using LibreHardwareMonitor.Hardware;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -16,7 +15,7 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool showCurrentUsage = SettingLoad(vConfigurationFpsOverlayer, "NetShowCurrentUsage", typeof(bool));
+                bool showCurrentUsage = vSettings.Load("NetShowCurrentUsage", typeof(bool));
                 if (!showCurrentUsage)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate

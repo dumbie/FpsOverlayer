@@ -4,7 +4,6 @@ using LibreHardwareMonitor.Hardware;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -16,10 +15,10 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool FanShowCpu = SettingLoad(vConfigurationFpsOverlayer, "FanShowCpu", typeof(bool));
-                bool FanShowGpu = SettingLoad(vConfigurationFpsOverlayer, "FanShowGpu", typeof(bool));
-                bool FanShowSystem = SettingLoad(vConfigurationFpsOverlayer, "FanShowSystem", typeof(bool));
-                bool CpuShowFanSpeed = SettingLoad(vConfigurationFpsOverlayer, "CpuShowFanSpeed", typeof(bool));
+                bool FanShowCpu = vSettings.Load("FanShowCpu", typeof(bool));
+                bool FanShowGpu = vSettings.Load("FanShowGpu", typeof(bool));
+                bool FanShowSystem = vSettings.Load("FanShowSystem", typeof(bool));
+                bool CpuShowFanSpeed = vSettings.Load("CpuShowFanSpeed", typeof(bool));
                 if (!FanShowCpu && !FanShowGpu && !FanShowSystem && !CpuShowFanSpeed)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate

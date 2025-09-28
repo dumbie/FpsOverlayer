@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -17,14 +16,14 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool CpuShowName = SettingLoad(vConfigurationFpsOverlayer, "CpuShowName", typeof(bool));
-                bool BoardShowName = SettingLoad(vConfigurationFpsOverlayer, "BoardShowName", typeof(bool));
-                bool CpuShowPercentage = SettingLoad(vConfigurationFpsOverlayer, "CpuShowPercentage", typeof(bool));
-                bool CpuShowTemperature = SettingLoad(vConfigurationFpsOverlayer, "CpuShowTemperature", typeof(bool));
-                bool CpuShowCoreFrequency = SettingLoad(vConfigurationFpsOverlayer, "CpuShowCoreFrequency", typeof(bool));
-                bool CpuShowPowerWatt = SettingLoad(vConfigurationFpsOverlayer, "CpuShowPowerWatt", typeof(bool));
-                bool CpuShowPowerVolt = SettingLoad(vConfigurationFpsOverlayer, "CpuShowPowerVolt", typeof(bool));
-                bool CpuShowFanSpeed = SettingLoad(vConfigurationFpsOverlayer, "CpuShowFanSpeed", typeof(bool));
+                bool CpuShowName = vSettings.Load("CpuShowName", typeof(bool));
+                bool BoardShowName = vSettings.Load("BoardShowName", typeof(bool));
+                bool CpuShowPercentage = vSettings.Load("CpuShowPercentage", typeof(bool));
+                bool CpuShowTemperature = vSettings.Load("CpuShowTemperature", typeof(bool));
+                bool CpuShowCoreFrequency = vSettings.Load("CpuShowCoreFrequency", typeof(bool));
+                bool CpuShowPowerWatt = vSettings.Load("CpuShowPowerWatt", typeof(bool));
+                bool CpuShowPowerVolt = vSettings.Load("CpuShowPowerVolt", typeof(bool));
+                bool CpuShowFanSpeed = vSettings.Load("CpuShowFanSpeed", typeof(bool));
                 if (!CpuShowName && !BoardShowName && !CpuShowPercentage && !CpuShowTemperature && !CpuShowCoreFrequency && !CpuShowPowerWatt && !CpuShowPowerVolt && !CpuShowFanSpeed)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate

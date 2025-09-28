@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -17,17 +16,17 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool GpuShowName = SettingLoad(vConfigurationFpsOverlayer, "GpuShowName", typeof(bool));
-                bool GpuShowPercentage = SettingLoad(vConfigurationFpsOverlayer, "GpuShowPercentage", typeof(bool));
-                bool GpuShowTemperature = SettingLoad(vConfigurationFpsOverlayer, "GpuShowTemperature", typeof(bool));
-                bool GpuShowTemperatureHotspot = SettingLoad(vConfigurationFpsOverlayer, "GpuShowTemperatureHotspot", typeof(bool));
-                bool GpuShowMemoryUsed = SettingLoad(vConfigurationFpsOverlayer, "GpuShowMemoryUsed", typeof(bool));
-                bool GpuShowMemorySpeed = SettingLoad(vConfigurationFpsOverlayer, "GpuShowMemorySpeed", typeof(bool));
-                bool GpuShowCoreFrequency = SettingLoad(vConfigurationFpsOverlayer, "GpuShowCoreFrequency", typeof(bool));
-                bool GpuShowFanSpeed = SettingLoad(vConfigurationFpsOverlayer, "GpuShowFanSpeed", typeof(bool));
-                bool GpuShowPowerWatt = SettingLoad(vConfigurationFpsOverlayer, "GpuShowPowerWatt", typeof(bool));
-                bool GpuShowPowerVolt = SettingLoad(vConfigurationFpsOverlayer, "GpuShowPowerVolt", typeof(bool));
-                bool FanShowGpu = SettingLoad(vConfigurationFpsOverlayer, "FanShowGpu", typeof(bool));
+                bool GpuShowName = vSettings.Load("GpuShowName", typeof(bool));
+                bool GpuShowPercentage = vSettings.Load("GpuShowPercentage", typeof(bool));
+                bool GpuShowTemperature = vSettings.Load("GpuShowTemperature", typeof(bool));
+                bool GpuShowTemperatureHotspot = vSettings.Load("GpuShowTemperatureHotspot", typeof(bool));
+                bool GpuShowMemoryUsed = vSettings.Load("GpuShowMemoryUsed", typeof(bool));
+                bool GpuShowMemorySpeed = vSettings.Load("GpuShowMemorySpeed", typeof(bool));
+                bool GpuShowCoreFrequency = vSettings.Load("GpuShowCoreFrequency", typeof(bool));
+                bool GpuShowFanSpeed = vSettings.Load("GpuShowFanSpeed", typeof(bool));
+                bool GpuShowPowerWatt = vSettings.Load("GpuShowPowerWatt", typeof(bool));
+                bool GpuShowPowerVolt = vSettings.Load("GpuShowPowerVolt", typeof(bool));
+                bool FanShowGpu = vSettings.Load("FanShowGpu", typeof(bool));
                 if (!GpuShowName && !GpuShowPercentage && !GpuShowTemperature && !GpuShowTemperatureHotspot && !GpuShowMemoryUsed && !GpuShowMemorySpeed && !GpuShowCoreFrequency && !GpuShowFanSpeed && !GpuShowPowerWatt && !GpuShowPowerVolt && !FanShowGpu)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -17,14 +16,14 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool showName = SettingLoad(vConfigurationFpsOverlayer, "MemShowName", typeof(bool));
-                bool showSpeed = SettingLoad(vConfigurationFpsOverlayer, "MemShowSpeed", typeof(bool));
-                bool showTemperature = SettingLoad(vConfigurationFpsOverlayer, "MemShowTemperature", typeof(bool));
-                bool showPowerVolt = SettingLoad(vConfigurationFpsOverlayer, "MemShowPowerVolt", typeof(bool));
-                bool showPercentage = SettingLoad(vConfigurationFpsOverlayer, "MemShowPercentage", typeof(bool));
-                bool showUsed = SettingLoad(vConfigurationFpsOverlayer, "MemShowUsed", typeof(bool));
-                bool showFree = SettingLoad(vConfigurationFpsOverlayer, "MemShowFree", typeof(bool));
-                bool showTotal = SettingLoad(vConfigurationFpsOverlayer, "MemShowTotal", typeof(bool));
+                bool showName = vSettings.Load("MemShowName", typeof(bool));
+                bool showSpeed = vSettings.Load("MemShowSpeed", typeof(bool));
+                bool showTemperature = vSettings.Load("MemShowTemperature", typeof(bool));
+                bool showPowerVolt = vSettings.Load("MemShowPowerVolt", typeof(bool));
+                bool showPercentage = vSettings.Load("MemShowPercentage", typeof(bool));
+                bool showUsed = vSettings.Load("MemShowUsed", typeof(bool));
+                bool showFree = vSettings.Load("MemShowFree", typeof(bool));
+                bool showTotal = vSettings.Load("MemShowTotal", typeof(bool));
                 if (!showName && !showSpeed && !showPercentage && !showUsed && !showFree && !showTotal && !showTemperature && !showPowerVolt)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate

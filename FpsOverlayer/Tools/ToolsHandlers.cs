@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -20,7 +19,7 @@ namespace FpsOverlayer
                     border_Browser.Visibility = Visibility.Collapsed;
 
                     //Update setting
-                    SettingSave(vConfigurationFpsOverlayer, "ToolsShowBrowser", "False");
+                    vSettings.Set("ToolsShowBrowser", "False");
                 }
                 else
                 {
@@ -28,7 +27,7 @@ namespace FpsOverlayer
                     border_Browser.Visibility = Visibility.Visible;
 
                     //Update setting
-                    SettingSave(vConfigurationFpsOverlayer, "ToolsShowBrowser", "True");
+                    vSettings.Set("ToolsShowBrowser", "True");
                 }
             }
             catch { }
@@ -45,7 +44,7 @@ namespace FpsOverlayer
                     border_Notes.Visibility = Visibility.Collapsed;
 
                     //Update setting
-                    SettingSave(vConfigurationFpsOverlayer, "ToolsShowNotes", "False");
+                    vSettings.Set("ToolsShowNotes", "False");
                 }
                 else
                 {
@@ -53,7 +52,7 @@ namespace FpsOverlayer
                     border_Notes.Visibility = Visibility.Visible;
 
                     //Update setting
-                    SettingSave(vConfigurationFpsOverlayer, "ToolsShowNotes", "True");
+                    vSettings.Set("ToolsShowNotes", "True");
                 }
             }
             catch { }
