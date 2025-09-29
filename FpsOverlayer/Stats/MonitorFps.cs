@@ -20,15 +20,47 @@ namespace FpsOverlayer
         {
             try
             {
-                vTraceEventSession = new TraceEventSession("FpsOverlayer");
-                vTraceEventSession.EnableKernelProvider(KernelTraceEventParser.Keywords.Process);
-                vTraceEventSession.EnableProvider(vProvider_DxgKrnl.ToString());
-                vTraceEventSession.Source.AllEvents += ProcessEvents;
-
-                AVActions.TaskStartBackground(TaskTraceEventSource);
                 AVActions.TaskStartLoop(UpdateStatsFps, vTask_UpdateStatsFps);
-
                 Debug.WriteLine("Started monitoring fps.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed starting fps monitor: " + ex.Message);
+            }
+        }
+
+        void TraceEventStart()
+        {
+            try
+            {
+                if (vTraceEventSession == null)
+                {
+                    vTraceEventSession = new TraceEventSession("FpsOverlayer");
+                    vTraceEventSession.EnableKernelProvider(KernelTraceEventParser.Keywords.Process);
+                    vTraceEventSession.EnableProvider(vProvider_DxgKrnl.ToString());
+                    vTraceEventSession.Source.AllEvents += ProcessEvents;
+                    AVActions.TaskStartBackground(TaskTraceEventSource);
+                    Debug.WriteLine("Started trace event session.");
+                }
+            }
+            catch (Exception ex)
+            {
+                //Note: some games using anticheat block trace event from starting
+                Debug.WriteLine("Failed starting trace event: " + ex.Message);
+                TraceEventStop();
+            }
+        }
+
+        void TraceEventStop()
+        {
+            try
+            {
+                if (vTraceEventSession != null)
+                {
+                    vTraceEventSession.Dispose();
+                    vTraceEventSession = null;
+                    Debug.WriteLine("Stopped trace event session.");
+                }
             }
             catch { }
         }
@@ -95,6 +127,9 @@ namespace FpsOverlayer
                 {
                     try
                     {
+                        //Start trace event session
+                        TraceEventStart();
+
                         //Update fps visibility
                         if (!UpdateFpsVisibility())
                         {
