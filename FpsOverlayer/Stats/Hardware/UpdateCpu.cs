@@ -81,7 +81,7 @@ namespace FpsOverlayer
                         else if (CpuShowTemperature && sensor.SensorType == SensorType.Temperature)
                         {
                             //Debug.WriteLine("CPU Temp: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
-                            if (sensor.Name == "CPU Package" || sensor.Name == "CPU Cores")
+                            if (sensor.Name == "CPU Package" || sensor.Name == "CPU Cores" || sensor.Name == "Core (Tctl/Tdie)")
                             {
                                 float RawCpuTemperature = (float)sensor.Value;
                                 CpuTemperature = " " + RawCpuTemperature.ToString("0") + "°";
