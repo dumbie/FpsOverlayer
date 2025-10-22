@@ -505,6 +505,9 @@
                         <CheckBox Margin="0,10,0,0" Name="checkbox_FanShowGpu" Content="Show videocard fan speed" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will show gpu fan speed." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
+                        <CheckBox Margin="0,10,0,0" Name="checkbox_FanShowPump" Content="Show pump fan speed" Style="{StaticResource CheckBoxBlack}"/>
+                        <TextBlock Text="Enabling this will show pump fan speed." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+
                         <CheckBox Margin="0,10,0,0" Name="checkbox_FanShowSystem" Content="Show system fan speed" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will show system fan speed." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
                     </StackPanel>

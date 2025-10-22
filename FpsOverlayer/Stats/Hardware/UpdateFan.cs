@@ -17,9 +17,10 @@ namespace FpsOverlayer
                 //Check if the information is visible
                 bool FanShowCpu = vSettings.Load("FanShowCpu", typeof(bool));
                 bool FanShowGpu = vSettings.Load("FanShowGpu", typeof(bool));
+                bool FanShowPump = vSettings.Load("FanShowPump", typeof(bool));
                 bool FanShowSystem = vSettings.Load("FanShowSystem", typeof(bool));
                 bool CpuShowFanSpeed = vSettings.Load("CpuShowFanSpeed", typeof(bool));
-                if (!FanShowCpu && !FanShowGpu && !FanShowSystem && !CpuShowFanSpeed)
+                if (!FanShowCpu && !FanShowGpu && !FanShowPump && !FanShowSystem && !CpuShowFanSpeed)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -35,7 +36,9 @@ namespace FpsOverlayer
                 hardwareItem.Update();
 
                 //Load hardware information
-                List<string> systemFans = new List<string>();
+                List<string> fansCpu = new List<string>();
+                List<string> fansPump = new List<string>();
+                List<string> fansSystem = new List<string>();
                 foreach (IHardware subHardware in hardwareItem.SubHardware)
                 {
                     try
@@ -46,16 +49,29 @@ namespace FpsOverlayer
                             //Debug.WriteLine("Fan: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
                             try
                             {
-                                if ((CpuShowFanSpeed || FanShowCpu) && sensor.Name.Contains("CPU") && sensor.Identifier.ToString().EndsWith("fan/0"))
+                                string sensorNameLower = sensor.Name.ToLower();
+                                if (sensorNameLower.Contains("cpu") && sensor.Identifier.ToString().Contains("/fan/"))
                                 {
-                                    vHardwareCpuFanSpeed = ((float)sensor.Value).ToString("0") + "RPM";
-                                }
-                                else if ((sensor.Name.Contains("System") || sensor.Name.Contains("Optional")) && sensor.Identifier.ToString().Contains("/fan/"))
-                                {
-                                    float RawFanSpeed = (float)sensor.Value;
-                                    if (RawFanSpeed > 0)
+                                    float rawFanSpeed = (float)sensor.Value;
+                                    if (rawFanSpeed > 0)
                                     {
-                                        systemFans.Add(RawFanSpeed.ToString("0") + "RPM");
+                                        fansCpu.Add(rawFanSpeed.ToString("0") + "RPM");
+                                    }
+                                }
+                                else if (sensorNameLower.Contains("pump") && sensor.Identifier.ToString().Contains("/fan/"))
+                                {
+                                    float rawFanSpeed = (float)sensor.Value;
+                                    if (rawFanSpeed > 0)
+                                    {
+                                        fansPump.Add(rawFanSpeed.ToString("0") + "RPM");
+                                    }
+                                }
+                                else if (sensorNameLower.Contains("system") && !sensorNameLower.Contains("pump") && sensor.Identifier.ToString().Contains("/fan/"))
+                                {
+                                    float rawFanSpeed = (float)sensor.Value;
+                                    if (rawFanSpeed > 0)
+                                    {
+                                        fansSystem.Add(rawFanSpeed.ToString("0") + "RPM");
                                     }
                                 }
                             }
@@ -64,6 +80,11 @@ namespace FpsOverlayer
                     }
                     catch { }
                 }
+
+                //Set fan string variables
+                vHardwareCpuFanSpeed = string.Join(" ", fansCpu);
+                vHardwarePumpFanSpeed = string.Join(" ", fansPump);
+                vHardwareSystemFanSpeed = string.Join(" ", fansSystem);
 
                 string stringStats = string.Empty;
                 if (FanShowCpu && !string.IsNullOrWhiteSpace(vHardwareCpuFanSpeed))
@@ -74,15 +95,26 @@ namespace FpsOverlayer
                 {
                     stringStats += " (G)" + vHardwareGpuFanSpeed;
                 }
-                if (FanShowSystem && systemFans.Any())
+                if (FanShowPump && !string.IsNullOrWhiteSpace(vHardwarePumpFanSpeed))
                 {
                     if (string.IsNullOrWhiteSpace(stringStats))
                     {
-                        stringStats += " " + string.Join(" ", systemFans);
+                        stringStats += " " + vHardwarePumpFanSpeed;
                     }
                     else
                     {
-                        stringStats += " (S)" + string.Join(" ", systemFans);
+                        stringStats += " (P)" + vHardwarePumpFanSpeed;
+                    }
+                }
+                if (FanShowSystem && !string.IsNullOrWhiteSpace(vHardwareSystemFanSpeed))
+                {
+                    if (string.IsNullOrWhiteSpace(stringStats))
+                    {
+                        stringStats += " " + vHardwareSystemFanSpeed;
+                    }
+                    else
+                    {
+                        stringStats += " (S)" + vHardwareSystemFanSpeed;
                     }
                 }
 

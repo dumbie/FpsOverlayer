@@ -119,20 +119,30 @@ namespace FpsOverlayer
                             {
                                 if (sensor.Identifier.ToString().EndsWith("fan/0"))
                                 {
+                                    //Set fan string variables
+                                    vHardwareGpuFanSpeed = ((float)sensor.Value).ToString("0") + "RPM";
+
+                                    //Set fan speed string
                                     if (GpuShowFanSpeed)
                                     {
-                                        GpuFanSpeed = " " + ((float)sensor.Value).ToString("0") + "RPM";
+                                        GpuFanSpeed = " " + vHardwareGpuFanSpeed;
                                     }
-                                    vHardwareGpuFanSpeed = ((float)sensor.Value).ToString("0") + "RPM";
+
+                                    //Set status variable
                                     GpuFanSpeedSet = true;
                                 }
                                 else if (sensor.Name == "GPU Fan")
                                 {
+                                    //Set fan string variables
+                                    vHardwareGpuFanSpeed = sensor.Value.ToString() + "%";
+
+                                    //Set fan speed string
                                     if (GpuShowFanSpeed)
                                     {
-                                        GpuFanSpeed = " " + sensor.Value.ToString() + "%";
+                                        GpuFanSpeed = " " + vHardwareGpuFanSpeed;
                                     }
-                                    vHardwareGpuFanSpeed = sensor.Value.ToString() + "%";
+
+                                    //Set status variable
                                     GpuFanSpeedSet = true;
                                 }
                             }

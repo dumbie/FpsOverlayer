@@ -77,6 +77,8 @@ namespace FpsOverlayer
         public static string vHardwareMemoryVoltage = string.Empty;
         public static string vHardwareCpuFanSpeed = string.Empty;
         public static string vHardwareGpuFanSpeed = string.Empty;
+        public static string vHardwarePumpFanSpeed = string.Empty;
+        public static string vHardwareSystemFanSpeed = string.Empty;
 
         //Trace Events
         public static TraceEventSession vTraceEventSession = null;

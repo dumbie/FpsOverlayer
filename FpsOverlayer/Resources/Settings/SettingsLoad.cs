@@ -121,6 +121,7 @@ namespace FpsOverlayer
                 checkbox_FanShowCategoryTitle.IsChecked = vSettings.Load("FanShowCategoryTitle", typeof(bool));
                 checkbox_FanShowCpu.IsChecked = vSettings.Load("FanShowCpu", typeof(bool));
                 checkbox_FanShowGpu.IsChecked = vSettings.Load("FanShowGpu", typeof(bool));
+                checkbox_FanShowPump.IsChecked = vSettings.Load("FanShowPump", typeof(bool));
                 checkbox_FanShowSystem.IsChecked = vSettings.Load("FanShowSystem", typeof(bool));
 
                 //Colors

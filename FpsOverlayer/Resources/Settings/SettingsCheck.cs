@@ -126,6 +126,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("FanShowCategoryTitle")) { vSettings.Set("FanShowCategoryTitle", "True"); }
                 if (!vSettings.Check("FanShowCpu")) { vSettings.Set("FanShowCpu", "False"); }
                 if (!vSettings.Check("FanShowGpu")) { vSettings.Set("FanShowGpu", "False"); }
+                if (!vSettings.Check("FanShowPump")) { vSettings.Set("FanShowPump", "True"); }
                 if (!vSettings.Check("FanShowSystem")) { vSettings.Set("FanShowSystem", "True"); }
 
                 //Crosshair

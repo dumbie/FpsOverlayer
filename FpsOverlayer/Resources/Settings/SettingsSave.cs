@@ -265,6 +265,7 @@ namespace FpsOverlayer
                 };
                 checkbox_FanShowCpu.Click += (sender, e) => { vSettings.Set("FanShowCpu", checkbox_FanShowCpu.IsChecked.ToString()); };
                 checkbox_FanShowGpu.Click += (sender, e) => { vSettings.Set("FanShowGpu", checkbox_FanShowGpu.IsChecked.ToString()); };
+                checkbox_FanShowPump.Click += (sender, e) => { vSettings.Set("FanShowPump", checkbox_FanShowPump.IsChecked.ToString()); };
                 checkbox_FanShowSystem.Click += (sender, e) => { vSettings.Set("FanShowSystem", checkbox_FanShowSystem.IsChecked.ToString()); };
 
                 //Colors
