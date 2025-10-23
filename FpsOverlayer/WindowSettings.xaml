@@ -421,6 +421,10 @@
                         <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Videocard Settings"/>
                         <TextBlock Text="* Some settings below may not work with your hardware." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
+                        <TextBlock Margin="0,10,0,0" Text="Select videocard" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
+                        <TextBlock Text="Change the used videocard." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <ComboBox Name="combobox_GpuIndex" HorizontalAlignment="Left" Width="440" Style="{StaticResource ComboBoxBlack}"/>
+
                         <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                             <CheckBox Name="checkbox_GpuShowCategoryTitle" Content="Show category title" Style="{StaticResource CheckBoxBlack}"/>
                             <TextBox Name="textbox_GpuCategoryTitle" MaxLength="20" Width="80" Margin="5,0,0,0" Padding="0" Style="{StaticResource TextBoxBlack}"/>

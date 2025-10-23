@@ -16,6 +16,7 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
+                int GpuIndex = vSettings.Load("GpuIndex", typeof(int));
                 bool GpuShowName = vSettings.Load("GpuShowName", typeof(bool));
                 bool GpuShowPercentage = vSettings.Load("GpuShowPercentage", typeof(bool));
                 bool GpuShowTemperature = vSettings.Load("GpuShowTemperature", typeof(bool));
@@ -37,7 +38,17 @@ namespace FpsOverlayer
                 }
 
                 //Select hardware item
-                IHardware hardwareItem = hardwareItems.FirstOrDefault(x => x.HardwareType == HardwareType.GpuAmd || x.HardwareType == HardwareType.GpuNvidia || x.HardwareType == HardwareType.GpuIntel);
+                IHardware hardwareItem = null;
+                List<IHardware> hardwareItemList = hardwareItems.Where(x => x.HardwareType == HardwareType.GpuAmd || x.HardwareType == HardwareType.GpuNvidia || x.HardwareType == HardwareType.GpuIntel).ToList();
+                if ((GpuIndex + 1) <= hardwareItemList.Count())
+                {
+                    hardwareItem = hardwareItemList[GpuIndex];
+                }
+                else
+                {
+                    //Debug.WriteLine("Selected gpu not available, using default.");
+                    hardwareItem = hardwareItemList.FirstOrDefault();
+                }
 
                 //Update hardware item
                 hardwareItem.Update();

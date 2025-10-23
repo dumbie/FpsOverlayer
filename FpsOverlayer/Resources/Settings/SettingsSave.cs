@@ -110,6 +110,11 @@ namespace FpsOverlayer
                     vWindowStats.UpdateFpsOverlayStyle();
                 };
 
+                combobox_GpuIndex.SelectionChanged += (sender, e) =>
+                {
+                    ComboBox senderComboBox = (ComboBox)sender;
+                    vSettings.Set("GpuIndex", senderComboBox.SelectedIndex.ToString());
+                };
                 textbox_GpuCategoryTitle.TextChanged += (sender, e) =>
                 {
                     TextBox senderTextbox = (TextBox)sender;

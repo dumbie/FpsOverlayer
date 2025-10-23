@@ -48,6 +48,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("ColorCustomText")) { vSettings.Set("ColorCustomText", "#F1F1F1"); }
                 if (!vSettings.Check("ColorMon")) { vSettings.Set("ColorMon", "#21A000"); }
 
+                if (!vSettings.Check("GpuIndex")) { vSettings.Set("GpuIndex", "0"); }
                 if (!vSettings.Check("GpuCategoryTitle")) { vSettings.Set("GpuCategoryTitle", "GPU"); }
                 if (!vSettings.Check("GpuShowCategoryTitle")) { vSettings.Set("GpuShowCategoryTitle", "True"); }
                 if (!vSettings.Check("GpuShowName")) { vSettings.Set("GpuShowName", "False"); }

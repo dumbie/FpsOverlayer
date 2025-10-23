@@ -49,6 +49,7 @@ namespace FpsOverlayer
 
                 checkbox_TextColorSingle.IsChecked = vSettings.Load("TextColorSingle", typeof(bool));
 
+                combobox_GpuIndex.SelectedIndex = vSettings.Load("GpuIndex", typeof(int));
                 textbox_GpuCategoryTitle.Text = vSettings.Load("GpuCategoryTitle", typeof(string));
                 checkbox_GpuShowCategoryTitle.IsChecked = vSettings.Load("GpuShowCategoryTitle", typeof(bool));
                 checkbox_GpuShowName.IsChecked = vSettings.Load("GpuShowName", typeof(bool));

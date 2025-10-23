@@ -29,6 +29,7 @@ namespace FpsOverlayer
                 LoadAvailableFonts();
 
                 //Load and save settings
+                Settings_Values();
                 await Settings_Load();
                 Settings_Save();
 
