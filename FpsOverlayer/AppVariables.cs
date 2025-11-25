@@ -39,7 +39,7 @@ namespace FpsOverlayer
 
         //Process Variables
         public static ProcessMulti vProcessCurrent = Get_ProcessMultiCurrent();
-        public static ProcessMulti vTargetProcess = new ProcessMulti(0, 0);
+        public static ProcessMulti vTargetProcess = new ProcessMulti(0, 0, string.Empty);
 
         //Margin Variables
         public static int vKeypadAdjustMargin = 0;

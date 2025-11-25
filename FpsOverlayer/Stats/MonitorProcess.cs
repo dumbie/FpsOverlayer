@@ -244,7 +244,7 @@ namespace FpsOverlayer
             try
             {
                 //Reset the target process
-                vTargetProcess = new ProcessMulti(0, 0);
+                vTargetProcess = new ProcessMulti(0, 0, string.Empty);
 
                 //Reset fps variables
                 vLastFrameTimeStamp = 0;
