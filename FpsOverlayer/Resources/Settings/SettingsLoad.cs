@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -216,7 +217,7 @@ namespace FpsOverlayer
                 UpdateStatsPositionText();
 
                 //Check if application is set to launch on Windows startup
-                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck();
+                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck(StartupShortcutType.Startup);
 
                 //Display settings
                 int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));

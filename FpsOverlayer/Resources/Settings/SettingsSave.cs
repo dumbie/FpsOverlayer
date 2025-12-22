@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Media;
+using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer
@@ -17,7 +18,7 @@ namespace FpsOverlayer
             {
                 cb_SettingsWindowsStartup.Click += (sender, e) =>
                 {
-                    AVSettings.StartupShortcutManage("Launcher.exe", false);
+                    AVSettings.StartupShortcutManage("Launcher.exe", false, StartupShortcutType.Startup);
                 };
 
                 checkbox_DisplayBackground.Click += (sender, e) =>
