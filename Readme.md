@@ -28,16 +28,16 @@ it also features an separate overlay with a web browser, notepad, adjustable cro
 - Let FpsOverlayer automatically launch on Windows startup for easier alltime usage.
 - For more information and help open the "Help" window or tab in the application.
 
-## Known issues
-- Overlays may not always show up when you are in an exclusive fullscreen application.
-
 ## Requirements
-- Microsoft .NET Core Runtime installed.
+- Microsoft .NET Runtime installed.
 - Microsoft Windows 11 64-bit or higher is required.
 - PawnIO driver (Automatically installs on first launch)
 
 ## Special thanks
 - LibreHardwareMonitor community.
+
+## Known Issues
+You can find all known issues at https://issues.arnoldvink.com/?p=FpsOverlayer
 
 ## Support and bug reporting
 When you are walking into any problems or a bug you can go to my help page at https://help.arnoldvink.com so I can try to help you out and get everything working.
