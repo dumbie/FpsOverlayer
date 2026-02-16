@@ -26,9 +26,6 @@ namespace FpsOverlayer
                 //Clean application update files
                 await UpdateCleanup();
 
-                //Check for available application update
-                await UpdateCheck("dumbie", "FpsOverlayer", true);
-
                 //Check application user folders
                 vWindowSettings.Folders_Check();
 
