@@ -37,7 +37,6 @@ namespace FpsOverlayer
                             if (setup_information.FileVersion != installed_version)
                             {
                                 Debug.WriteLine("PawnIO drivers are not up-to-date.");
-                                Launch_ShellExecute(setup_path, string.Empty, "-uninstall -silent", true, true);
                                 Launch_ShellExecute(setup_path, string.Empty, "-install -silent", true, true);
                             }
                         }
