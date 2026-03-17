@@ -203,8 +203,8 @@
 		<EmbeddedResource Include="Assets\AppIcon.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.1.29" />
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3719.77" />
+		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.1.30" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3856.49" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />

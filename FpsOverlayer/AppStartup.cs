@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using static ArnoldVinkCode.AVInteropDll;
+using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVUpdate;
 using static FpsOverlayer.AppBackup;
 using static FpsOverlayer.AppHotkeys;
@@ -21,7 +21,7 @@ namespace FpsOverlayer
                 Debug.WriteLine("Welcome to application.");
 
                 //Setup application defaults
-                AVStartup.SetupDefaults(ProcessPriorityClasses.HIGH_PRIORITY_CLASS, true);
+                AVStartup.SetupDefaults(ProcessPriorityClasses.High, true);
 
                 //Clean application update files
                 await UpdateCleanup();
