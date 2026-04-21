@@ -37,14 +37,14 @@ namespace FpsOverlayer
                             if (setup_information.FileVersion != installed_version)
                             {
                                 Debug.WriteLine("PawnIO drivers are not up-to-date.");
-                                Launch_ShellExecute(setup_path, string.Empty, "-install -silent", true, true);
+                                Launch_ApplicationDesktop(setup_path, string.Empty, "-install -silent", true, true);
                             }
                         }
                         else
                         {
                             Debug.WriteLine("PawnIO drivers are not installed.");
                             string setup_path = Path.Combine(AVFunctions.ApplicationPathRoot(), "Drivers\\PawnIO_setup.exe");
-                            Launch_ShellExecute(setup_path, string.Empty, "-install -silent", true, true);
+                            Launch_ApplicationDesktop(setup_path, string.Empty, "-install -silent", true, true);
                         }
                     }
                 }

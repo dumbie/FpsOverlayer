@@ -38,8 +38,8 @@ namespace FpsOverlayer
         public static bool vSingleTappedEvent = true;
 
         //Process Variables
-        public static ProcessMulti vProcessCurrent = Get_ProcessMultiCurrent();
-        public static ProcessMulti vTargetProcess = new ProcessMulti(0, 0, string.Empty);
+        public static AVProcess vProcessCurrent = Get_ProcessCurrent();
+        public static AVProcess vTargetProcess = new AVProcess(0);
 
         //Margin Variables
         public static int vKeypadAdjustMargin = 0;

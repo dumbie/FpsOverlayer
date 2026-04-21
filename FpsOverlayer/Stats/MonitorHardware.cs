@@ -1,5 +1,6 @@
 ﻿using ArnoldVinkCode;
 using LibreHardwareMonitor.Hardware;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVActions;
@@ -28,7 +29,10 @@ namespace FpsOverlayer
 
                 Debug.WriteLine("Started monitoring hardware.");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed starting hardware monitor: " + ex.Message);
+            }
         }
 
         async Task LoopMonitorHardware()

@@ -40,7 +40,7 @@ namespace FpsOverlayer
                         UpdateCustomText();
 
                         //Get and check the focused process
-                        ProcessMulti foregroundProcess = Get_ProcessMultiByWindowHandle(GetForegroundWindow());
+                        AVProcess foregroundProcess = Get_ProcessByWindowHandle(GetForegroundWindow());
                         if (foregroundProcess == null)
                         {
                             Debug.WriteLine("No active or valid process found.");
@@ -244,7 +244,7 @@ namespace FpsOverlayer
             try
             {
                 //Reset the target process
-                vTargetProcess = new ProcessMulti(0, 0, string.Empty);
+                vTargetProcess = new AVProcess(0);
 
                 //Reset fps variables
                 vLastFrameTimeStamp = 0;
