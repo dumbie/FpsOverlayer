@@ -90,7 +90,7 @@ namespace FpsOverlayer
                         else if (CpuShowCoreFrequency && sensor.SensorType == SensorType.Clock)
                         {
                             //Debug.WriteLine("CPU Frequency: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
-                            if (sensor.Name == "CPU Core #1" || sensor.Name == "Cores (Average)")
+                            if (sensor.Name == "Cores (Average)" || sensor.Name == "CPU Core #1" || sensor.Name == "P-Core #1")
                             {
                                 float RawCpuFrequency = (float)sensor.Value;
                                 if (RawCpuFrequency < 1000)
