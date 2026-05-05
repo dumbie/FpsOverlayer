@@ -136,11 +136,11 @@ namespace FpsOverlayer
                             continue;
                         }
 
-                        //Calculate the current fps (1sec)
+                        //Calculate current fps (1sec)
                         double CurrentFrameTimes = vListFrameTimes.Take(100).Average();
                         int CurrentFramesPerSecond = Convert.ToInt32(1000 / CurrentFrameTimes);
 
-                        //Calculate the average fps (setting)
+                        //Calculate average fps (setting)
                         int AverageTimeSpan = vSettings.Load("FpsAverageSeconds", typeof(int)) * 100;
                         double AverageFrameTimes = vListFrameTimes.Take(AverageTimeSpan).Average();
                         int AverageFramesPerSecond = Convert.ToInt32(1000 / AverageFrameTimes);
@@ -153,9 +153,19 @@ namespace FpsOverlayer
                         string StringAverageFramesPerSecond = string.Empty;
                         if (vSettings.Load("FpsShowAverageFps", typeof(bool))) { StringAverageFramesPerSecond = " " + AverageFramesPerSecond.ToString() + "AVG"; }
 
-                        //Update the fps counter
-                        Debug.WriteLine("(" + vTargetProcess.Identifier + ") MS" + CurrentFrameTimes.ToString("0.00") + " / FPS " + CurrentFramesPerSecond + " / AVG " + AverageFramesPerSecond);
-                        string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond;
+                        //Update render api
+                        string StringRenderApi = string.Empty;
+                        if (vSettings.Load("FpsShowRenderer", typeof(bool)))
+                        {
+                            if (!vProcessRenderApi.RenderingUI && !string.IsNullOrWhiteSpace(vProcessRenderApi.ApiName3D))
+                            {
+                                StringRenderApi = " " + vProcessRenderApi.ApiName3D;
+                            }
+                        }
+
+                        //Update fps counter
+                        Debug.WriteLine("(P" + vProcessTarget.Identifier + ") MS " + CurrentFrameTimes.ToString("0.00") + " / FPS " + CurrentFramesPerSecond + " / AVG " + AverageFramesPerSecond);
+                        string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond + StringRenderApi;
                         StringDisplay = StringDisplay.Trim();
 
                         AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -220,10 +230,12 @@ namespace FpsOverlayer
                     return;
                 }
 
+                //Fix what if process uses external rendering process? like Portal and Quake III Arena RTX use NvRemixBridge
+
                 //Check process identifier and name
-                if (traceEvent.ProcessID != vTargetProcess.Identifier)
+                if (traceEvent.ProcessID != vProcessTarget.Identifier)
                 {
-                    if (traceEvent.ProcessName != vTargetProcess.ExeNameNoExt)
+                    if (traceEvent.ProcessName != vProcessTarget.ExeNameNoExt)
                     {
                         //Fix fps when two of the same process names are running
                         //Debug.WriteLine("Event process is not foreground window or process.");

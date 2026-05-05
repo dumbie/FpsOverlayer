@@ -90,8 +90,6 @@ namespace FpsOverlayer
                 checkbox_NetShowCategoryTitle.IsChecked = vSettings.Load("NetShowCategoryTitle", typeof(bool));
                 checkbox_NetShowCurrentUsage.IsChecked = vSettings.Load("NetShowCurrentUsage", typeof(bool));
 
-                checkbox_AppShowName.IsChecked = vSettings.Load("AppShowName", typeof(bool));
-
                 textbox_BatCategoryTitle.Text = vSettings.Load("BatCategoryTitle", typeof(string));
                 checkbox_BatShowCategoryTitle.IsChecked = vSettings.Load("BatShowCategoryTitle", typeof(bool));
                 checkbox_BatShowPercentage.IsChecked = vSettings.Load("BatShowPercentage", typeof(bool));
@@ -114,6 +112,7 @@ namespace FpsOverlayer
                 checkbox_FpsShowCurrentFps.IsChecked = vSettings.Load("FpsShowCurrentFps", typeof(bool));
                 checkbox_FpsShowCurrentLatency.IsChecked = vSettings.Load("FpsShowCurrentLatency", typeof(bool));
                 checkbox_FpsShowAverageFps.IsChecked = vSettings.Load("FpsShowAverageFps", typeof(bool));
+                checkbox_FpsShowRenderer.IsChecked = vSettings.Load("FpsShowRenderer", typeof(bool));
 
                 textblock_FpsAverageSeconds.Text = textblock_FpsAverageSeconds.Tag + ": " + vSettings.Load("FpsAverageSeconds", typeof(string)) + " seconds";
                 slider_FpsAverageSeconds.Value = vSettings.Load("FpsAverageSeconds", typeof(double));
@@ -125,6 +124,10 @@ namespace FpsOverlayer
                 checkbox_FanShowGpu.IsChecked = vSettings.Load("FanShowGpu", typeof(bool));
                 checkbox_FanShowPump.IsChecked = vSettings.Load("FanShowPump", typeof(bool));
                 checkbox_FanShowSystem.IsChecked = vSettings.Load("FanShowSystem", typeof(bool));
+
+                //Applications
+                checkbox_AppShowName.IsChecked = vSettings.Load("AppShowName", typeof(bool));
+                checkbox_AppShow3dOnly.IsChecked = vSettings.Load("AppShow3dOnly", typeof(bool));
 
                 //Colors
                 string ColorBackground = vSettings.Load("ColorBackground", typeof(string));

@@ -197,7 +197,7 @@
 		<Content Include="FpsOverlayer.exe.csettings">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Updater\Updater.json">
+		<Content Include="Settings\Updater.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
@@ -215,7 +215,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Assets\User\Fonts\" />
-		<Folder Include="Library\Classes\" />
 	</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="if $(Configuration) == Release (&#xD;&#xA;$(SolutionDir)SignToolExe.exe)&#xD;&#xA;)" />

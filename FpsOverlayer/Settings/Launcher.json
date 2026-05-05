@@ -1,0 +1,8 @@
+{
+  "TaskName": "FpsOverlayer",
+  "ApplicationTitle": "FpsOverlayer",
+  "LaunchExecutables": [ "FpsOverlayer.exe" ],
+  "InstallCertificate": true,
+  "FirewallAllow": false,
+  "UIAccess": true
+}

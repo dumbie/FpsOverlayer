@@ -5,11 +5,11 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVInteropDll;
 using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVWindowFunctions;
 using static FpsOverlayer.AppTasks;
 using static FpsOverlayer.AppVariables;
+using static LibraryShared.Classes;
 
 namespace FpsOverlayer
 {
@@ -29,7 +29,7 @@ namespace FpsOverlayer
         {
             try
             {
-                while (await TaskCheckLoop(vTask_MonitorProcess, 1000))
+                while (await TaskCheckLoop(vTask_MonitorProcess, 2000))
                 {
                     try
                     {
@@ -40,15 +40,15 @@ namespace FpsOverlayer
                         UpdateCustomText();
 
                         //Get and check the focused process
-                        AVProcess foregroundProcess = Get_ProcessByWindowHandle(GetForegroundWindow());
-                        if (foregroundProcess == null)
+                        AVProcess foregroundProcess = Get_ProcessForeground();
+                        if (foregroundProcess == null || !foregroundProcess.Validate())
                         {
                             Debug.WriteLine("No active or valid process found.");
 
-                            //Reset the fps counter
+                            //Reset fps counter
                             ResetFpsCounter();
 
-                            //Hide the application name and frames
+                            //Hide application name and frames
                             HideApplicationNameFrames();
 
                             continue;
@@ -56,47 +56,34 @@ namespace FpsOverlayer
 
                         Debug.WriteLine("Checking process: (" + foregroundProcess.Identifier + ") " + foregroundProcess.ExeNameNoExt);
 
-                        //Check if the foreground window has changed
-                        if (vTargetProcess.Identifier == foregroundProcess.Identifier)
+                        //Update application name
+                        //Note: Some applications change window title while running
+                        UpdateApplicationName(foregroundProcess.WindowTitleMain);
+
+                        //Update process render api
+                        //Note: Some applications change 3d rendering modules while running
+                        RenderApiDetails foregroundRenderApi = GetRenderApi(foregroundProcess);
+
+                        //Check if foreground window or render api changed
+                        if (vProcessTarget.Identifier != foregroundProcess.Identifier || vProcessRenderApi.ApiName3D != foregroundRenderApi.ApiName3D)
                         {
-                            Debug.WriteLine("Foreground window has not changed.");
+                            Debug.WriteLine("New foreground window or render api detected (" + foregroundProcess.Identifier + ") " + foregroundProcess.ExeNameNoExt);
 
-                            //Update the current target process
-                            vTargetProcess = foregroundProcess;
+                            //Update current process
+                            vProcessTarget = foregroundProcess;
 
-                            //Update the application name
-                            UpdateApplicationName(foregroundProcess.WindowTitleMain);
+                            //Update current render api
+                            vProcessRenderApi = foregroundRenderApi;
 
-                            continue;
-                        }
+                            //Reset fps counter
+                            ResetFpsCounter();
 
-                        Debug.WriteLine("New foreground window detected (" + foregroundProcess.Identifier + ") " + foregroundProcess.ExeNameNoExt);
-
-                        //Reset the fps counter
-                        ResetFpsCounter();
-
-                        //Update overlays position and visibility
-                        UpdateFpsOverlayPositionVisibility(foregroundProcess.ExeNameNoExt);
-
-                        //Check if the foreground window is FpsOverlayer
-                        if (vProcessCurrent.Identifier == foregroundProcess.Identifier)
-                        {
-                            Debug.WriteLine("Current process is FpsOverlayer.");
-
-                            //Hide the application name and frames
-                            HideApplicationNameFrames();
-                        }
-                        else
-                        {
-                            //Update application name
-                            UpdateApplicationName(foregroundProcess.WindowTitleMain);
+                            //Update overlays position and visibility
+                            UpdateFpsOverlayPositionVisibility(foregroundProcess, foregroundRenderApi);
 
                             //Update windows on change
                             UpdateWindowOnChange();
                         }
-
-                        //Update the current target process
-                        vTargetProcess = foregroundProcess;
                     }
                     catch { }
                 }
@@ -243,9 +230,6 @@ namespace FpsOverlayer
         {
             try
             {
-                //Reset the target process
-                vTargetProcess = new AVProcess(0);
-
                 //Reset fps variables
                 vLastFrameTimeStamp = 0;
                 vListFrameTimes.Clear();

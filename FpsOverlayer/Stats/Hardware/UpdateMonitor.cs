@@ -50,7 +50,7 @@ namespace FpsOverlayer
                 string screenColorBitDepthString = string.Empty;
                 if (MonShowColorBitDepth)
                 {
-                    screenColorBitDepthString = " " + displayMonitorSettings.BitDepth + "bit";
+                    screenColorBitDepthString = " " + displayMonitorSettings.BitDepth + "Bit";
                 }
 
                 //Get screen hdr mode

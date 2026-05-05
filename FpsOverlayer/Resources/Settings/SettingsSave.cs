@@ -195,8 +195,6 @@ namespace FpsOverlayer
                 };
                 checkbox_NetShowCurrentUsage.Click += (sender, e) => { vSettings.Set("NetShowCurrentUsage", checkbox_NetShowCurrentUsage.IsChecked.ToString()); };
 
-                checkbox_AppShowName.Click += (sender, e) => { vSettings.Set("AppShowName", checkbox_AppShowName.IsChecked.ToString()); };
-
                 textbox_BatCategoryTitle.TextChanged += (sender, e) =>
                 {
                     TextBox senderTextbox = (TextBox)sender;
@@ -246,15 +244,15 @@ namespace FpsOverlayer
                     vSettings.Set("FpsShowCategoryTitle", senderCheckBox.IsChecked.ToString());
                     vWindowStats.UpdateFpsOverlayStyle();
                 };
-                checkbox_FpsShowCurrentFps.Click += (sender, e) => { vSettings.Set("FpsShowCurrentFps", checkbox_FpsShowCurrentFps.IsChecked.ToString()); };
-                checkbox_FpsShowCurrentLatency.Click += (sender, e) => { vSettings.Set("FpsShowCurrentLatency", checkbox_FpsShowCurrentLatency.IsChecked.ToString()); };
-                checkbox_FpsShowAverageFps.Click += (sender, e) => { vSettings.Set("FpsShowAverageFps", checkbox_FpsShowAverageFps.IsChecked.ToString()); };
-
                 slider_FpsAverageSeconds.ValueChanged += (sender, e) =>
                 {
                     textblock_FpsAverageSeconds.Text = textblock_FpsAverageSeconds.Tag + ": " + slider_FpsAverageSeconds.Value.ToString("0") + " seconds";
                     vSettings.Set("FpsAverageSeconds", slider_FpsAverageSeconds.Value);
                 };
+                checkbox_FpsShowCurrentFps.Click += (sender, e) => { vSettings.Set("FpsShowCurrentFps", checkbox_FpsShowCurrentFps.IsChecked.ToString()); };
+                checkbox_FpsShowCurrentLatency.Click += (sender, e) => { vSettings.Set("FpsShowCurrentLatency", checkbox_FpsShowCurrentLatency.IsChecked.ToString()); };
+                checkbox_FpsShowAverageFps.Click += (sender, e) => { vSettings.Set("FpsShowAverageFps", checkbox_FpsShowAverageFps.IsChecked.ToString()); };
+                checkbox_FpsShowRenderer.Click += (sender, e) => { vSettings.Set("FpsShowRenderer", checkbox_FpsShowRenderer.IsChecked.ToString()); };
 
                 //Fan
                 textbox_FanCategoryTitle.TextChanged += (sender, e) =>
@@ -273,6 +271,10 @@ namespace FpsOverlayer
                 checkbox_FanShowGpu.Click += (sender, e) => { vSettings.Set("FanShowGpu", checkbox_FanShowGpu.IsChecked.ToString()); };
                 checkbox_FanShowPump.Click += (sender, e) => { vSettings.Set("FanShowPump", checkbox_FanShowPump.IsChecked.ToString()); };
                 checkbox_FanShowSystem.Click += (sender, e) => { vSettings.Set("FanShowSystem", checkbox_FanShowSystem.IsChecked.ToString()); };
+
+                //Applications
+                checkbox_AppShowName.Click += (sender, e) => { vSettings.Set("AppShowName", checkbox_AppShowName.IsChecked.ToString()); };
+                checkbox_AppShow3dOnly.Click += (sender, e) => { vSettings.Set("AppShow3dOnly", checkbox_AppShow3dOnly.IsChecked.ToString()); };
 
                 //Colors
                 colorpicker_ColorSingle.Click += async (sender, e) =>

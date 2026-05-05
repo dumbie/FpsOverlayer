@@ -9,6 +9,7 @@ using System.Windows.Media;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVTaskbarInformation;
 using static FpsOverlayer.AppVariables;
+using static LibraryShared.Classes;
 using static LibraryShared.Enums;
 
 namespace FpsOverlayer
@@ -53,12 +54,12 @@ namespace FpsOverlayer
                     if (grid_StatsOverlayer.Visibility == Visibility.Visible)
                     {
                         vManualHiddenFpsOverlay = true;
-                        UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
+                        UpdateFpsOverlayPositionVisibility(vProcessTarget, vProcessRenderApi);
                     }
                     else
                     {
                         vManualHiddenFpsOverlay = false;
-                        UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
+                        UpdateFpsOverlayPositionVisibility(vProcessTarget, vProcessRenderApi);
                     }
                 });
             }
@@ -88,10 +89,13 @@ namespace FpsOverlayer
         }
 
         //Get window position
-        public OverlayPosition GetFpsOverlayPosition(string processName)
+        public OverlayPosition GetFpsOverlayPosition(AVProcess targetProcess)
         {
             try
             {
+                //Get process executable name
+                string processName = targetProcess.ExeNameNoExt;
+
                 //Load the text position
                 OverlayPosition targetTextPosition = (OverlayPosition)vSettings.Load("TextPosition", typeof(int));
                 if (!string.IsNullOrWhiteSpace(processName))
@@ -111,12 +115,22 @@ namespace FpsOverlayer
         }
 
         //Update window position and visibility
-        public void UpdateFpsOverlayPositionVisibility(string processName)
+        public void UpdateFpsOverlayPositionVisibility(AVProcess targetProcess, RenderApiDetails renderApiDetails)
         {
             try
             {
+                //Check if application is using 3D renderer
+                if (vSettings.Load("AppShow3dOnly", typeof(bool)))
+                {
+                    if (vProcessRenderApi.RenderingUI)
+                    {
+                        HideFpsOverlayVisibility();
+                        return;
+                    }
+                }
+
                 //Get target overlay position
-                OverlayPosition targetOverlayPosition = GetFpsOverlayPosition(processName);
+                OverlayPosition targetOverlayPosition = GetFpsOverlayPosition(targetProcess);
 
                 //Hide or show overlay
                 if (vManualHiddenFpsOverlay || targetOverlayPosition == OverlayPosition.Hidden)
@@ -424,7 +438,7 @@ namespace FpsOverlayer
                     //Reverse stats order when on bottom
                     if (vSettings.Load("StatsFlipBottom", typeof(bool)))
                     {
-                        OverlayPosition overlayPosition = GetFpsOverlayPosition(vTargetProcess.ExeNameNoExt);
+                        OverlayPosition overlayPosition = GetFpsOverlayPosition(vProcessTarget);
                         if (overlayPosition == OverlayPosition.BottomLeft || overlayPosition == OverlayPosition.BottomCenter || overlayPosition == OverlayPosition.BottomRight)
                         {
                             TimeId = vTotalStatsCount - TimeId;
@@ -616,7 +630,7 @@ namespace FpsOverlayer
                 grid_StatsOverlayer.Opacity = vSettings.Load("DisplayOpacity", typeof(double));
 
                 //Update fps overlay position and visibility
-                UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
+                UpdateFpsOverlayPositionVisibility(vProcessTarget, vProcessRenderApi);
             }
             catch { }
         }

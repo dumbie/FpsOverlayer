@@ -11,6 +11,7 @@ using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVTaskbarInformation;
+using static LibraryShared.Classes;
 
 namespace FpsOverlayer
 {
@@ -39,7 +40,8 @@ namespace FpsOverlayer
 
         //Process Variables
         public static AVProcess vProcessCurrent = Get_ProcessCurrent();
-        public static AVProcess vTargetProcess = new AVProcess(0);
+        public static AVProcess vProcessTarget = new AVProcess(0);
+        public static RenderApiDetails vProcessRenderApi = new RenderApiDetails();
 
         //Margin Variables
         public static int vKeypadAdjustMargin = 0;

@@ -64,7 +64,7 @@ namespace FpsOverlayer
                                 vTaskBarAdjustMargin = taskbarSize;
 
                                 //Update fps overlay position and visibility
-                                vWindowStats.UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
+                                vWindowStats.UpdateFpsOverlayPositionVisibility(vProcessTarget, vProcessRenderApi);
                             }
                         }
                         else
@@ -75,7 +75,7 @@ namespace FpsOverlayer
                                 vTaskBarAdjustMargin = 0;
 
                                 //Update fps overlay position and visibility
-                                vWindowStats.UpdateFpsOverlayPositionVisibility(vTargetProcess.ExeNameNoExt);
+                                vWindowStats.UpdateFpsOverlayPositionVisibility(vProcessTarget, vProcessRenderApi);
                             }
                         }
                     }
