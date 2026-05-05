@@ -19,7 +19,7 @@ namespace FpsOverlayer
                 int GpuIndex = vSettings.Load("GpuIndex", typeof(int));
                 bool GpuShowName = vSettings.Load("GpuShowName", typeof(bool));
                 bool GpuShowPercentage = vSettings.Load("GpuShowPercentage", typeof(bool));
-                bool GpuShowTemperature = vSettings.Load("GpuShowTemperature", typeof(bool));
+                bool GpuShowTemperatureCore = vSettings.Load("GpuShowTemperature", typeof(bool));
                 bool GpuShowTemperatureHotspot = vSettings.Load("GpuShowTemperatureHotspot", typeof(bool));
                 bool GpuShowMemoryUsed = vSettings.Load("GpuShowMemoryUsed", typeof(bool));
                 bool GpuShowMemorySpeed = vSettings.Load("GpuShowMemorySpeed", typeof(bool));
@@ -28,7 +28,7 @@ namespace FpsOverlayer
                 bool GpuShowPowerWatt = vSettings.Load("GpuShowPowerWatt", typeof(bool));
                 bool GpuShowPowerVolt = vSettings.Load("GpuShowPowerVolt", typeof(bool));
                 bool FanShowGpu = vSettings.Load("FanShowGpu", typeof(bool));
-                if (!GpuShowName && !GpuShowPercentage && !GpuShowTemperature && !GpuShowTemperatureHotspot && !GpuShowMemoryUsed && !GpuShowMemorySpeed && !GpuShowCoreFrequency && !GpuShowFanSpeed && !GpuShowPowerWatt && !GpuShowPowerVolt && !FanShowGpu)
+                if (!GpuShowName && !GpuShowPercentage && !GpuShowTemperatureCore && !GpuShowTemperatureHotspot && !GpuShowMemoryUsed && !GpuShowMemorySpeed && !GpuShowCoreFrequency && !GpuShowFanSpeed && !GpuShowPowerWatt && !GpuShowPowerVolt && !FanShowGpu)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -48,6 +48,13 @@ namespace FpsOverlayer
                 {
                     //Debug.WriteLine("Selected gpu not available, using default.");
                     hardwareItem = hardwareItemList.FirstOrDefault();
+                }
+
+                //Check hardware item
+                if (hardwareItem == null)
+                {
+                    //Debug.WriteLine("Gpu is not available.");
+                    return;
                 }
 
                 //Update hardware item
@@ -83,16 +90,18 @@ namespace FpsOverlayer
                                 GpuPercentage = " " + Convert.ToInt32(sensor.Value) + "%";
                             }
                         }
-                        else if ((GpuShowTemperature || GpuShowTemperatureHotspot) && sensor.SensorType == SensorType.Temperature)
+                        else if ((GpuShowTemperatureCore || GpuShowTemperatureHotspot) && sensor.SensorType == SensorType.Temperature)
                         {
                             //Debug.WriteLine("GPU Temp: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
-                            if (GpuShowTemperature && sensor.Identifier.ToString().EndsWith("temperature/0"))
+                            if (GpuShowTemperatureCore && sensor.Identifier.ToString().EndsWith("temperature/0"))
                             {
-                                GpuTemperatureCore = " " + sensor.Value.ToString() + "°";
+                                float RawGpuTemperatureCore = (float)sensor.Value;
+                                GpuTemperatureCore = " " + RawGpuTemperatureCore.ToString("0") + "°";
                             }
                             else if (GpuShowTemperatureHotspot && sensor.Name == "GPU Hot Spot")
                             {
-                                GpuTemperatureHotspot = " " + sensor.Value.ToString() + "°";
+                                float RawGpuTemperatureHotspot = (float)sensor.Value;
+                                GpuTemperatureHotspot = " " + RawGpuTemperatureHotspot.ToString("0") + "°";
                             }
                         }
                         else if (GpuShowMemoryUsed && sensor.SensorType == SensorType.SmallData)
