@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using static LibraryShared.Classes;
 
 namespace FpsOverlayer
@@ -13,7 +14,6 @@ namespace FpsOverlayer
             RenderApiDetails renderApiDetails = new RenderApiDetails();
             try
             {
-                //Fix opengl32.dll is loaded in pretty much every application
                 //Fix find way to separate frontend from backend renderer
                 //Fix find reliable way to determine if process renders 3D or UI
 
@@ -35,13 +35,14 @@ namespace FpsOverlayer
 
                 //Lower and trim module names
                 List<string> modules = processModules.Select(m => m.ToLower().Trim()).ToList();
-                foreach (string module in modules)
-                {
-                    AVDebug.WriteLine("Module file: " + module);
-                }
+                //foreach (string module in modules)
+                //{
+                //    AVDebug.WriteLine("Module file: " + module);
+                //}
 
                 //Glide (3DFX)
-                if (modules.Contains("glide2x.dll") || modules.Contains("glide3x.dll") || modules.Contains("voodoo2a.dll") || modules.Contains("voodoo2z.dll"))
+                string[] dllGlide = ["glide2x.dll", "glide3x.dll", "voodoo2a.dll", "voodoo2z.dll"];
+                if (dllGlide.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -49,22 +50,37 @@ namespace FpsOverlayer
                 }
 
                 //Mantle
-                if (modules.Contains("mantle64.dll") || modules.Contains("mantle32.dll"))
+                string[] dllMantle = ["mantle64.dll", "mantle32.dll"];
+                if (dllMantle.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     renderApiNames.Add("Mantle");
                 }
 
                 //Vulkan
-                if (modules.Contains("vulkan-1.dll"))
+                string[] dllVulkan = ["vulkan-1.dll", "vulkan_lvp.dll"];
+                if (dllVulkan.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
                     renderApiNames.Add("Vulkan");
                 }
 
-                //OpenGL
-                if (modules.Contains("opengl.dll") || modules.Contains("opengl32.dll") || modules.Contains("opengl1z.dll") || modules.Contains("opengl3z.dll")) //glu32.dll, glew32.dll
+                //OpenGL (System)
+                //string[] dllOpenGL = ["opengl.dll", "opengl32.dll", "opengl1z.dll", "opengl3z.dll"]; //glu32.dll, glew32.dll, opengl32sw.dll
+                //if (dllOpenGL.Any(x => modules.Contains(x)))
+                //{
+                //    apiCount3D++;
+                //    apiFound3D = true;
+                //}
+
+                //OpenGL (Vendor)
+                //Note: opengl32.dll gets loaded on pretty much every 3D application using this as workaround
+                //bool dllOpenglVirtual = modules.Any(x => Regex.IsMatch(x, @"vm3dgl.*..dll"));
+                bool dllOpenglAMD = modules.Any(x => Regex.IsMatch(x, @"atio.*.xx.dll")); //atig.*.pxx.dll
+                bool dllOpenglNvidia = modules.Any(x => Regex.IsMatch(x, @"nvoglv.*..dll"));
+                bool dllOpenglIntel = modules.Any(x => Regex.IsMatch(x, @"ig.*.icd.*..dll"));
+                if (dllOpenglAMD || dllOpenglNvidia || dllOpenglIntel)
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -72,15 +88,17 @@ namespace FpsOverlayer
                 }
 
                 //OpenGL ES
-                if (modules.Contains("libegl.dll") || modules.Contains("libglesv2.dll") || modules.Contains("glfw3.dll"))
-                {
-                    apiCount3D++;
-                    apiFound3D = true;
-                    renderApiNames.Add("OpenGL ES");
-                }
+                //string[] dllOpenGlEs = ["libegl.dll", "libglesv2.dll", "glfw3.dll"];
+                //if (dllOpenGlEs.Any(x => modules.Contains(x)))
+                //{
+                //    apiCount3D++;
+                //    apiFound3D = true;
+                //    renderApiNames.Add("OpenGL ES");
+                //}
 
                 //WebGPU
-                if (modules.Contains("wgpu_native.dll") || modules.Contains("webgpu_dawn.dll"))
+                string[] dllWebGpu = ["wgpu_native.dll", "webgpu_dawn.dll"];
+                if (dllWebGpu.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -95,8 +113,9 @@ namespace FpsOverlayer
                 //    renderApiDirectX.Add("2D1");
                 //}
 
-                //DirectX 1–7
-                if (modules.Contains("ddraw.dll"))
+                //DirectX 1 to 7
+                string[] dllDirectX1to7 = ["d3dim.dll", "d3drm.dll", "ddraw.dll"];
+                if (dllDirectX1to7.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -104,7 +123,8 @@ namespace FpsOverlayer
                 }
 
                 //DirectX 8
-                if (modules.Contains("d3d8.dll")) //d3d8thk.dll
+                string[] dllDirectX8 = ["d3d8.dll", "d3d8thk.dll"];
+                if (dllDirectX8.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -112,7 +132,8 @@ namespace FpsOverlayer
                 }
 
                 //DirectX 9
-                if (modules.Contains("d3d9.dll")) //d3d9on12.dll
+                string[] dllDirectX9 = ["d3d9.dll"]; //d3d9on12.dll
+                if (dllDirectX9.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -120,7 +141,8 @@ namespace FpsOverlayer
                 }
 
                 //DirectX 10
-                if (modules.Contains("d3d10.dll") || modules.Contains("d3d10_1.dll")) //d3d10core.dll, d3d10_1core.dll, d3d10level9.dll, d3d10warp.dll
+                string[] dllDirectX10 = ["d3d10.dll", "d3d10_1.dll"]; //d3d10core.dll, d3d10_1core.dll, d3d10level9.dll, d3d10warp.dll
+                if (dllDirectX10.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -128,7 +150,8 @@ namespace FpsOverlayer
                 }
 
                 //DirectX 11
-                if (modules.Contains("d3d11.dll")) //d3d11on12.dll
+                string[] dllDirectX11 = ["d3d11.dll"]; //d3d11on12.dll
+                if (dllDirectX11.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -136,7 +159,8 @@ namespace FpsOverlayer
                 }
 
                 //DirectX 12
-                if (modules.Contains("d3d12.dll")) //d3d12core.dll
+                string[] dllDirectX12 = ["d3d12.dll"]; //d3d12core.dll
+                if (dllDirectX12.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -158,7 +182,8 @@ namespace FpsOverlayer
                 }
 
                 //AMD FSR
-                if (modules.Contains("amd_fidelityfx_dx12.dll") || modules.Contains("amdxcffx64.dll"))
+                string[] dllAmdFsr = ["amd_fidelityfx_vk.dll", "amd_fidelityfx_dx12.dll", "amd_fidelityfx_upscaler_dx12.dll", "amd_fidelityfx_framegeneration_dx12.dll", "amdxcffx64.dll"];
+                if (dllAmdFsr.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -166,7 +191,8 @@ namespace FpsOverlayer
                 }
 
                 //Intel XeSS
-                if (modules.Contains("libxess.dll"))
+                string[] dllIntelXess = ["libxess.dll", "libxess_dx11.dll", "libxess_fg.dll"];
+                if (dllIntelXess.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -174,7 +200,8 @@ namespace FpsOverlayer
                 }
 
                 //nVidia DLSS
-                if (modules.Contains("nvngx_dlss.dll"))
+                string[] dllNvidiaDlss = ["nvngx_dlss.dll", "nvngx_dlssg.dll"];
+                if (dllNvidiaDlss.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -182,7 +209,8 @@ namespace FpsOverlayer
                 }
 
                 //nVidia OptiX
-                if (modules.Contains("nvoptix.dll") || modules.Contains("optix.1.dll"))
+                string[] dllNvidiaOptix = ["nvoptix.dll", "optix.1.dll"];
+                if (dllNvidiaOptix.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
@@ -190,16 +218,49 @@ namespace FpsOverlayer
                 }
 
                 //nVidia PhysX
-                if (modules.Contains("physxloader.dll") || modules.Contains("physxloader64.dll") || modules.Contains("physxdevice.dll") || modules.Contains("physxdevice64.dll") || modules.Contains("physx3_x86.dll") || modules.Contains("physx3_x64.dll"))
+                string[] dllNvidiaPhysx = ["physxloader.dll", "physxloader64.dll", "physxdevice.dll", "physxdevice64.dll", "physx3_x86.dll", "physx3_x64.dll", "physx3common_x86.dll", "physx3common_x64.dll"];
+                if (dllNvidiaPhysx.Any(x => modules.Contains(x)))
                 {
                     apiCount3D++;
                     apiFound3D = true;
                     renderApiNames.Add("PhysX");
                 }
 
+                //nVidia HairWorks
+                if (modules.Any(x => Regex.IsMatch(x, @".*.hairworks.*.win.*..dll")))
+                {
+                    apiCount3D++;
+                    apiFound3D = true;
+                    renderApiNames.Add("HairWorks");
+                }
+
+                //Unity Player / IL2CPP
+                string[] dllUnity = ["unityplayer.dll", "baselib.dll"];
+                if (dllUnity.Any(x => modules.Contains(x)))
+                {
+                    apiCount3D++;
+                    apiFound3D = true;
+                }
+
+                //Simple DirectMedia Layer
+                string[] dllSdl = ["sdl.dll", "sdl2.dll", "sdl3.dll"];
+                if (dllSdl.Any(x => modules.Contains(x)))
+                {
+                    apiCount3D++;
+                    apiFound3D = true;
+                }
+
+                //Gaming Title Callable UI
+                if (modules.Contains("gamingtcui.dll"))
+                {
+                    apiCount3D++;
+                    apiFound3D = true;
+                }
+
                 //Graphics Device Interface
                 bool renderGDI = false;
-                if (modules.Contains("gdiplus.dll") || modules.Contains("gdi32.dll") || modules.Contains("gdi32full.dll"))
+                string[] dllGDI = ["gdiplus.dll", "gdi32.dll", "gdi32full.dll"];
+                if (dllGDI.Any(x => modules.Contains(x)))
                 {
                     renderGDI = true;
                 }
@@ -233,7 +294,7 @@ namespace FpsOverlayer
                 }
 
                 //Check if rendering user interface
-                if (!apiFound3D || renderWindowsUI || (renderGDI && renderDirectWrite && renderDirectXCore && renderDXGI && apiCount3D <= 1))
+                if (!apiFound3D || (renderWindowsUI && apiCount3D <= 1) || (renderGDI && renderDirectWrite && renderDirectXCore && renderDXGI && apiCount3D <= 1))
                 {
                     renderApiDetails.RenderingUI = true;
                 }
@@ -242,7 +303,7 @@ namespace FpsOverlayer
                 renderApiDetails.ApiName3D = string.Join(", ", renderApiNames);
 
                 //Return result
-                AVDebug.WriteLine("Rendering api: 3D " + apiFound3D + " / UI " + renderApiDetails.RenderingUI + " / " + renderApiDetails.ApiName3D);
+                AVDebug.WriteLine("Rendering api: 3D " + apiFound3D + " (" + apiCount3D + "x) / UI " + renderApiDetails.RenderingUI + " / " + renderApiDetails.ApiName3D);
                 return renderApiDetails;
             }
             catch (Exception ex)
