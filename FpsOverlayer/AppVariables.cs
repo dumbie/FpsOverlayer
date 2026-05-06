@@ -41,6 +41,7 @@ namespace FpsOverlayer
         //Process Variables
         public static AVProcess vProcessCurrent = Get_ProcessCurrent();
         public static AVProcess vProcessTarget = new AVProcess(0);
+        public static int[] vProcessTargetChildren = new int[0];
         public static RenderApiDetails vProcessRenderApi = new RenderApiDetails();
 
         //Margin Variables

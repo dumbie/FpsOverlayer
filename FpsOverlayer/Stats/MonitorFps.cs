@@ -45,7 +45,7 @@ namespace FpsOverlayer
             }
             catch (Exception ex)
             {
-                //Note: some games using anticheat block trace event from starting
+                //Note: some games using anti-cheat block trace event from starting
                 Debug.WriteLine("Failed starting trace event: " + ex.Message);
                 TraceEventStop();
             }
@@ -223,6 +223,8 @@ namespace FpsOverlayer
         {
             try
             {
+                //Debug.WriteLine("Trace event identifier: " + traceEvent.ID);
+
                 //Check event identifier
                 if ((int)traceEvent.ID != vEventID_DxgKrnlPresent)
                 {
@@ -230,17 +232,11 @@ namespace FpsOverlayer
                     return;
                 }
 
-                //Fix what if process uses external rendering process? like Portal and Quake III Arena RTX use NvRemixBridge
-
-                //Check process identifier and name
-                if (traceEvent.ProcessID != vProcessTarget.Identifier)
+                //Check process identifiers
+                if (vProcessTarget.Identifier != traceEvent.ProcessID && !vProcessTargetChildren.Contains(traceEvent.ProcessID))
                 {
-                    if (traceEvent.ProcessName != vProcessTarget.ExeNameNoExt)
-                    {
-                        //Fix fps when two of the same process names are running
-                        //Debug.WriteLine("Event process is not foreground window or process.");
-                        return;
-                    }
+                    //Debug.WriteLine("Event process is not foreground window or process.");
+                    return;
                 }
 
                 //Calculate new frame time

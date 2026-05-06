@@ -2,6 +2,7 @@
 using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVActions;
@@ -71,6 +72,7 @@ namespace FpsOverlayer
 
                             //Update current process
                             vProcessTarget = foregroundProcess;
+                            vProcessTargetChildren = vProcessTarget.IdentifierChildren.Select(x => x.Identifier).ToArray();
 
                             //Update current render api
                             vProcessRenderApi = foregroundRenderApi;
