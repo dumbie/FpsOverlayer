@@ -3,6 +3,7 @@ using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVActions;
@@ -72,7 +73,7 @@ namespace FpsOverlayer
 
                             //Update current process
                             vProcessTarget = foregroundProcess;
-                            vProcessTargetChildren = vProcessTarget.IdentifierChildren.Select(x => x.Identifier).ToArray();
+                            vProcessTargetChildren = vProcessTarget.ProcessChildren.Select(x => x.Identifier).ToArray();
 
                             //Update current render api
                             vProcessRenderApi = foregroundRenderApi;
@@ -211,7 +212,7 @@ namespace FpsOverlayer
                     {
                         if (!string.IsNullOrWhiteSpace(processTitle) && processTitle != "Unknown")
                         {
-                            textblock_CurrentApp.Text = processTitle;
+                            textblock_CurrentApp.Text = Regex.Replace(processTitle, @"\t|\n|\r", " ").Trim();
                             stackpanel_CurrentApp.Visibility = Visibility.Visible;
                         }
                         else
