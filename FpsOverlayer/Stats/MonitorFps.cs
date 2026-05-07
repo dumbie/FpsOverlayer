@@ -1,7 +1,6 @@
 ﻿using ArnoldVinkCode;
 using ArnoldVinkStyles;
 using Microsoft.Diagnostics.Tracing;
-using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Session;
 using System;
 using System.Diagnostics;
@@ -35,10 +34,16 @@ namespace FpsOverlayer
             {
                 if (vTraceEventSession == null)
                 {
+                    //Set trace event provider options
+                    TraceEventProviderOptions traceEventProviderOptions = new TraceEventProviderOptions();
+                    traceEventProviderOptions.EventIDsToEnable = [(int)vTraceEventIdentifiers.DxgKrnl_Present];
+
+                    //Create trace event session
                     vTraceEventSession = new TraceEventSession("FpsOverlayer");
-                    vTraceEventSession.EnableKernelProvider(KernelTraceEventParser.Keywords.Process);
-                    vTraceEventSession.EnableProvider(vProvider_DxgKrnl.ToString());
+                    vTraceEventSession.EnableProvider(vProvider_DxgKrnl.ToString(), TraceEventLevel.Informational, 0, traceEventProviderOptions);
                     vTraceEventSession.Source.AllEvents += ProcessEvents;
+
+                    //Start trace event session
                     AVActions.TaskStartBackground(TaskTraceEventSource);
                     Debug.WriteLine("Started trace event session.");
                 }
@@ -223,10 +228,10 @@ namespace FpsOverlayer
         {
             try
             {
-                //Debug.WriteLine("Trace event identifier: " + traceEvent.ID);
+                //Debug.WriteLine("Trace event identifier: " + traceEvent.ID + " / " + (vTraceEventIdentifiers)traceEvent.ID);
 
                 //Check event identifier
-                if ((int)traceEvent.ID != vEventID_DxgKrnlPresent)
+                if ((int)traceEvent.ID != (int)vTraceEventIdentifiers.DxgKrnl_Present)
                 {
                     //Debug.WriteLine("DxgKrnl skipping invalid frame.");
                     return;

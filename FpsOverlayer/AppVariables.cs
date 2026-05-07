@@ -9,7 +9,6 @@ using System.Windows.Media;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
-using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVTaskbarInformation;
 using static LibraryShared.Classes;
 
@@ -39,7 +38,6 @@ namespace FpsOverlayer
         public static bool vSingleTappedEvent = true;
 
         //Process Variables
-        public static AVProcess vProcessCurrent = Get_ProcessCurrent();
         public static AVProcess vProcessTarget = new AVProcess(0);
         public static int[] vProcessTargetChildren = new int[0];
         public static RenderApiDetails vProcessRenderApi = new RenderApiDetails();
@@ -86,11 +84,42 @@ namespace FpsOverlayer
         //Trace Events
         public static TraceEventSession vTraceEventSession = null;
 
-        //Trace Events - Event IDs
-        public const int vEventID_DxgKrnlPresent = 184;
+        //Trace Event Identifiers
+        public enum vTraceEventIdentifiers : int
+        {
+            D3D9PresentStart = 1,
+            D3D9PresentStop = 2,
+            DXGIPresent_Start = 42,
+            DXGIPresent_Stop = 43,
+            DXGIPresentMPO_Start = 55,
+            DXGIPresentMPO_Stop = 56,
+            DWM_GetPresentHistory = 64,
+            DWM_Schedule_Present_Start = 15,
+            DWM_FlipChain_Pending = 69,
+            DWM_FlipChain_Complete = 70,
+            DWM_FlipChain_Dirty = 101,
+            DWM_Schedule_SurfaceUpdate = 196,
+            DxgKrnl_Flip = 168,
+            DxgKrnl_FlipMPO = 252,
+            DxgKrnl_QueueSubmit = 178,
+            DxgKrnl_QueueComplete = 180,
+            DxgKrnl_MMIOFlip = 116,
+            DxgKrnl_MMIOFlipMPO = 259,
+            DxgKrnl_HSyncDPC = 382,
+            DxgKrnl_VSyncDPC = 17,
+            DxgKrnl_Present = 184,
+            DxgKrnl_PresentHistoryDetailed = 215,
+            DxgKrnl_SubmitPresentHistory = 171,
+            DxgKrnl_PropagatePresentHistory = 172,
+            DxgKrnl_Blit = 166,
+            Win32K_TokenCompositionSurfaceObject = 201,
+            Win32K_TokenStateChanged = 301
+        }
 
         //Trace Events - Provider Guids
-        public static Guid vProvider_DxgKrnl = Guid.Parse("{802ec45a-1e99-4b83-9920-87c98277ba9d}");
+        public static Guid vProvider_D3D9 = Guid.Parse("{783ACA0A-790E-4D7F-8451-AA850511C6B9}");
+        public static Guid vProvider_Dxgi = Guid.Parse("{CA11C036-0102-4A2D-A6AD-F03CFED5D3C9}");
+        public static Guid vProvider_DxgKrnl = Guid.Parse("{802EC45A-1E99-4B83-9920-87C98277BA9D}");
 
         //Sockets Variables
         public static ArnoldVinkSockets vArnoldVinkSockets = null;
