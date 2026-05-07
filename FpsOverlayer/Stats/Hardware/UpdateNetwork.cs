@@ -15,8 +15,9 @@ namespace FpsOverlayer
             try
             {
                 //Check if the information is visible
-                bool showCurrentUsage = vSettings.Load("NetShowCurrentUsage", typeof(bool));
-                if (!showCurrentUsage)
+                int NetIndex = vSettings.Load("NetIndex", typeof(int));
+                bool NetShowCurrentUsage = vSettings.Load("NetShowCurrentUsage", typeof(bool));
+                if (!NetShowCurrentUsage)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -26,7 +27,17 @@ namespace FpsOverlayer
                 }
 
                 //Select hardware item
-                IHardware hardwareItem = hardwareItems.FirstOrDefault(x => x.HardwareType == HardwareType.Network && x.Name == "Ethernet");
+                IHardware hardwareItem = null;
+                List<IHardware> hardwareItemList = hardwareItems.Where(x => x.HardwareType == HardwareType.Network).OrderByDescending(x => x.Name.ToLower().Contains("ethernet")).ToList();
+                if ((NetIndex + 1) <= hardwareItemList.Count())
+                {
+                    hardwareItem = hardwareItemList[NetIndex];
+                }
+                else
+                {
+                    //Debug.WriteLine("Selected network adapter not available, using default.");
+                    hardwareItem = hardwareItemList.FirstOrDefault();
+                }
 
                 //Update hardware item
                 hardwareItem.Update();

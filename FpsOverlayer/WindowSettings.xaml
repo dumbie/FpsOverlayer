@@ -493,7 +493,7 @@
                         <TextBlock Text="Enabling this will show the total memory in bytes." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <CheckBox Margin="0,10,0,0" Name="checkbox_MemShowPowerVolt" Content="Show the power voltage" Style="{StaticResource CheckBoxBlack}"/>
-                        <TextBlock Text="Enabling this will show the memory configured power usage." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <TextBlock Text="Enabling this will show the configured memory power voltage." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <CheckBox Margin="0,10,0,0" Name="checkbox_MemShowTemperature" Content="Show memory temperature" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will show the current memory temperature." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
@@ -522,7 +522,12 @@
 
                     <StackPanel Name="stackpanel_Network" Visibility="Collapsed">
                         <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Network Settings"/>
-                        <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="Select network adapter" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
+                        <TextBlock Text="Change the used network adapter." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <ComboBox Name="combobox_NetIndex" HorizontalAlignment="Left" Width="440" Style="{StaticResource ComboBoxBlack}"/>
+
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                             <CheckBox Name="checkbox_NetShowCategoryTitle" Content="Show category title" Style="{StaticResource CheckBoxBlack}"/>
                             <TextBox Name="textbox_NetCategoryTitle" MaxLength="20" Width="80" Margin="5,0,0,0" Padding="0" Style="{StaticResource TextBoxBlack}"/>
                         </StackPanel>
@@ -581,7 +586,7 @@
                         <TextBlock Text="Enabling this will show the currently focused application name." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <CheckBox Name="checkbox_AppShow3dOnly" Content="Only show stats when app uses 3D rendering" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
-                        <TextBlock Text="Enabling this will only show the stats when an application uses a 3D renderer like DirectX, OpenGL or Vulkan, this setting will override application styles set below." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <TextBlock Text="Enabling this will only show the stats when an application uses a 3D renderer like DirectX, OpenGL or Vulkan, this setting will override application styles set below when the stats are hidden." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Application Styles"/>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">

@@ -84,6 +84,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("MemShowFree")) { vSettings.Set("MemShowFree", "False"); }
                 if (!vSettings.Check("MemShowTotal")) { vSettings.Set("MemShowTotal", "True"); }
 
+                if (!vSettings.Check("NetIndex")) { vSettings.Set("NetIndex", "0"); }
                 if (!vSettings.Check("NetCategoryTitle")) { vSettings.Set("NetCategoryTitle", "NET"); }
                 if (!vSettings.Check("NetShowCategoryTitle")) { vSettings.Set("NetShowCategoryTitle", "True"); }
                 if (!vSettings.Check("NetShowCurrentUsage")) { vSettings.Set("NetShowCurrentUsage", "False"); }

@@ -181,6 +181,11 @@ namespace FpsOverlayer
                 checkbox_MemShowFree.Click += (sender, e) => { vSettings.Set("MemShowFree", checkbox_MemShowFree.IsChecked.ToString()); };
                 checkbox_MemShowTotal.Click += (sender, e) => { vSettings.Set("MemShowTotal", checkbox_MemShowTotal.IsChecked.ToString()); };
 
+                combobox_NetIndex.SelectionChanged += (sender, e) =>
+                {
+                    ComboBox senderComboBox = (ComboBox)sender;
+                    vSettings.Set("NetIndex", senderComboBox.SelectedIndex.ToString());
+                };
                 textbox_NetCategoryTitle.TextChanged += (sender, e) =>
                 {
                     TextBox senderTextbox = (TextBox)sender;

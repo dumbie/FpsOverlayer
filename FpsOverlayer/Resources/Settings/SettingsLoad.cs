@@ -86,6 +86,7 @@ namespace FpsOverlayer
                 checkbox_MemShowFree.IsChecked = vSettings.Load("MemShowFree", typeof(bool));
                 checkbox_MemShowTotal.IsChecked = vSettings.Load("MemShowTotal", typeof(bool));
 
+                combobox_NetIndex.SelectedIndex = vSettings.Load("NetIndex", typeof(int));
                 textbox_NetCategoryTitle.Text = vSettings.Load("NetCategoryTitle", typeof(string));
                 checkbox_NetShowCategoryTitle.IsChecked = vSettings.Load("NetShowCategoryTitle", typeof(bool));
                 checkbox_NetShowCurrentUsage.IsChecked = vSettings.Load("NetShowCurrentUsage", typeof(bool));
