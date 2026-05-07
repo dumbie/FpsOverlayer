@@ -63,7 +63,10 @@ namespace FpsOverlayer
                 //Set the cpu fan speed
                 if (CpuShowFanSpeed)
                 {
-                    CpuFanSpeed = " " + vHardwareCpuFanSpeed;
+                    if (!string.IsNullOrWhiteSpace(vHardwareCpuFanSpeed))
+                    {
+                        CpuFanSpeed = " " + vHardwareCpuFanSpeed;
+                    }
                 }
 
                 foreach (ISensor sensor in hardwareItem.Sensors)

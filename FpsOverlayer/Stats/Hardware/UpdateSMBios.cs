@@ -27,9 +27,25 @@ namespace FpsOverlayer
                     if (memoryDevice.Size > 0)
                     {
                         memoryCount++;
+
+                        //Get memory name
                         vHardwareMemoryName = memoryDevice.ManufacturerName + " " + memoryDevice.PartNumber + " (" + memoryCount + "X) " + memoryDevice.Type;
-                        vHardwareMemorySpeed = memoryDevice.ConfiguredSpeed + "MTs";
-                        vHardwareMemoryVoltage = (memoryDevice.ConfiguredVoltage / 1000F).ToString("0.000") + "V";
+
+                        //Get memory speed
+                        if (memoryDevice.ConfiguredSpeed != 0)
+                        {
+                            vHardwareMemorySpeed = memoryDevice.ConfiguredSpeed + "MTs";
+                        }
+                        else
+                        {
+                            vHardwareMemorySpeed = memoryDevice.Speed + "MTs";
+                        }
+
+                        //Get memory voltage
+                        if (memoryDevice.ConfiguredVoltage != 0)
+                        {
+                            vHardwareMemoryVoltage = (memoryDevice.ConfiguredVoltage / 1000F).ToString("0.000") + "V";
+                        }
                     }
                 }
             }

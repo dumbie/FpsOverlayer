@@ -49,29 +49,32 @@ namespace FpsOverlayer
                             //Debug.WriteLine("Fan: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
                             try
                             {
-                                string sensorNameLower = sensor.Name.ToLower();
-                                if (sensorNameLower.Contains("cpu") && sensor.Identifier.ToString().Contains("/fan/"))
+                                if (sensor.Identifier.ToString().Contains("/fan/"))
                                 {
-                                    float rawFanSpeed = (float)sensor.Value;
-                                    if (rawFanSpeed > 0)
+                                    string sensorNameLower = sensor.Name.ToLower();
+                                    if (sensorNameLower.Contains("cpu"))
                                     {
-                                        fansCpu.Add(rawFanSpeed.ToString("0") + "RPM");
+                                        float rawFanSpeed = (float)sensor.Value;
+                                        if (rawFanSpeed > 0)
+                                        {
+                                            fansCpu.Add(rawFanSpeed.ToString("0") + "RPM");
+                                        }
                                     }
-                                }
-                                else if (sensorNameLower.Contains("pump") && sensor.Identifier.ToString().Contains("/fan/"))
-                                {
-                                    float rawFanSpeed = (float)sensor.Value;
-                                    if (rawFanSpeed > 0)
+                                    else if (sensorNameLower.Contains("pump"))
                                     {
-                                        fansPump.Add(rawFanSpeed.ToString("0") + "RPM");
+                                        float rawFanSpeed = (float)sensor.Value;
+                                        if (rawFanSpeed > 0)
+                                        {
+                                            fansPump.Add(rawFanSpeed.ToString("0") + "RPM");
+                                        }
                                     }
-                                }
-                                else if (sensorNameLower.Contains("system") && !sensorNameLower.Contains("pump") && sensor.Identifier.ToString().Contains("/fan/"))
-                                {
-                                    float rawFanSpeed = (float)sensor.Value;
-                                    if (rawFanSpeed > 0)
+                                    else
                                     {
-                                        fansSystem.Add(rawFanSpeed.ToString("0") + "RPM");
+                                        float rawFanSpeed = (float)sensor.Value;
+                                        if (rawFanSpeed > 0)
+                                        {
+                                            fansSystem.Add(rawFanSpeed.ToString("0") + "RPM");
+                                        }
                                     }
                                 }
                             }

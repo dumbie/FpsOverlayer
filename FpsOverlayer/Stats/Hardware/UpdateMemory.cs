@@ -57,13 +57,19 @@ namespace FpsOverlayer
                 //Set the memory speed
                 if (showSpeed)
                 {
-                    MemorySpeed = " " + vHardwareMemorySpeed;
+                    if (!string.IsNullOrWhiteSpace(vHardwareMemorySpeed))
+                    {
+                        MemorySpeed = " " + vHardwareMemorySpeed;
+                    }
                 }
 
                 //Set the memory voltage
                 if (showPowerVolt)
                 {
-                    MemoryPowerVolt = " " + vHardwareMemoryVoltage;
+                    if (!string.IsNullOrWhiteSpace(vHardwareMemoryVoltage))
+                    {
+                        MemoryPowerVolt = " " + vHardwareMemoryVoltage;
+                    }
                 }
 
                 //Set memory temperature
