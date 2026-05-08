@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using static FpsOverlayer.AppVariables;
 using static LibraryShared.Classes;
 
 namespace FpsOverlayer
@@ -17,11 +18,11 @@ namespace FpsOverlayer
                 //Fix find way to separate frontend from backend renderer
                 //Fix find reliable way to determine if process renders 3D or UI
 
-                //Render variables
-                List<string> renderApiNames = new List<string>();
-                List<string> renderApiDirectX = new List<string>();
-                bool apiFound3D = false;
-                int apiCount3D = 0;
+                //Check rendering api settings
+                if (!vSettings.Load("FpsShowRenderer", typeof(bool)) && !vSettings.Load("AppShow3dOnly", typeof(bool)))
+                {
+                    return renderApiDetails;
+                }
 
                 //Get process modules
                 List<string> processModules = targetProcess.Modules;
@@ -29,9 +30,14 @@ namespace FpsOverlayer
                 //Anti cheat blocks access to modules so assume render api is used
                 if (!processModules.Any())
                 {
-                    renderApiDetails.RenderingUI = false;
                     return renderApiDetails;
                 }
+
+                //Render variables
+                List<string> renderApiNames = new List<string>();
+                List<string> renderApiDirectX = new List<string>();
+                bool apiFound3D = false;
+                int apiCount3D = 0;
 
                 //Lower and trim module names
                 List<string> modules = processModules.Select(m => m.ToLower().Trim()).ToList();
@@ -74,6 +80,15 @@ namespace FpsOverlayer
                 //    apiFound3D = true;
                 //}
 
+                //OpenGL ES
+                string[] dllOpenGlEs = ["libegl.dll", "libglesv2.dll", "glfw3.dll"];
+                bool foundOpenGlEs = dllOpenGlEs.Any(x => modules.Contains(x));
+                if (foundOpenGlEs)
+                {
+                    apiCount3D++;
+                    apiFound3D = true;
+                }
+
                 //OpenGL (Vendor)
                 //Note: opengl32.dll gets loaded on pretty much every 3D application using this as workaround
                 //bool dllOpenglVirtual = modules.Any(x => Regex.IsMatch(x, @"vm3dgl.*..dll"));
@@ -84,17 +99,15 @@ namespace FpsOverlayer
                 {
                     apiCount3D++;
                     apiFound3D = true;
-                    renderApiNames.Add("OpenGL");
+                    if (foundOpenGlEs)
+                    {
+                        renderApiNames.Add("OpenGL ES");
+                    }
+                    else
+                    {
+                        renderApiNames.Add("OpenGL");
+                    }
                 }
-
-                //OpenGL ES
-                //string[] dllOpenGlEs = ["libegl.dll", "libglesv2.dll", "glfw3.dll"];
-                //if (dllOpenGlEs.Any(x => modules.Contains(x)))
-                //{
-                //    apiCount3D++;
-                //    apiFound3D = true;
-                //    renderApiNames.Add("OpenGL ES");
-                //}
 
                 //WebGPU
                 string[] dllWebGpu = ["wgpu_native.dll", "webgpu_dawn.dll"];
