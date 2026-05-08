@@ -29,7 +29,7 @@ it also features an separate overlay with a web browser, notepad, adjustable cro
 - For more information and help open the "Help" window or tab in the application.
 
 ## Requirements
-- Microsoft .NET Runtime installed.
+- Microsoft .NET Desktop Runtime installed.
 - Microsoft Windows 11 64-bit or higher is required.
 - PawnIO driver (Automatically installs on first launch)
 
@@ -46,6 +46,12 @@ When you are walking into any problems or a bug you can go to my help page at ht
 If you appreciate my project and want to support me you can make a donation through https://donation.arnoldvink.com
 
 ## Changelog
+v2.7.0.0 (8-May-2026)
+- Added setting to show used 3D renderer names.
+- Added setting to hide stats when app is not using 3D renderer.
+- Added setting to show 1% low frames per second.
+- Added setting to select network adapter to show in stats.
+
 v2.5.0.0 (22-September-2025)
 - Added setting to show memory temperature.
 - Switched from WinRing0 to PawnIO.
