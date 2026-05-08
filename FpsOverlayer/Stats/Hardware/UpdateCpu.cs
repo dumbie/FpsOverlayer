@@ -118,11 +118,7 @@ namespace FpsOverlayer
                         {
                             //Debug.WriteLine("CPU Voltage: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
                             float RawPowerVoltage = (float)sensor.Value;
-                            if (RawPowerVoltage <= 0)
-                            {
-                                CpuPowerVoltage = " 0V";
-                            }
-                            else
+                            if (RawPowerVoltage > 0.010F)
                             {
                                 CpuPowerVoltage = " " + RawPowerVoltage.ToString("0.000") + "V";
                             }
