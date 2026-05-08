@@ -258,6 +258,7 @@ namespace FpsOverlayer
                 checkbox_FpsShowCurrentLatency.Click += (sender, e) => { vSettings.Set("FpsShowCurrentLatency", checkbox_FpsShowCurrentLatency.IsChecked.ToString()); };
                 checkbox_FpsShowAverageFps.Click += (sender, e) => { vSettings.Set("FpsShowAverageFps", checkbox_FpsShowAverageFps.IsChecked.ToString()); };
                 checkbox_FpsShowRenderer.Click += (sender, e) => { vSettings.Set("FpsShowRenderer", checkbox_FpsShowRenderer.IsChecked.ToString()); };
+                checkbox_FpsShowOnePercentLowFps.Click += (sender, e) => { vSettings.Set("FpsShowOnePercentLowFps", checkbox_FpsShowOnePercentLowFps.IsChecked.ToString()); };
 
                 //Fan
                 textbox_FanCategoryTitle.TextChanged += (sender, e) =>

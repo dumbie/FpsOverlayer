@@ -354,7 +354,10 @@
 
                         <TextBlock Name="textblock_FpsAverageSeconds" Tag="Average fps time span" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                         <TextBlock Text="Change time span used to calculate the average fps." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
-                        <Slider Minimum="5" Maximum="15" HorizontalAlignment="Left" Width="440" Name="slider_FpsAverageSeconds" Style="{StaticResource SliderBlockWhite}"/>
+                        <Slider Minimum="4" Maximum="10" HorizontalAlignment="Left" Width="440" Name="slider_FpsAverageSeconds" Style="{StaticResource SliderBlockWhite}"/>
+
+                        <CheckBox Name="checkbox_FpsShowOnePercentLowFps" Content="Show the 1% low fps" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
+                        <TextBlock Text="Enabling this will show the 1% low fps based on frame times from the last 10 seconds." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Application Settings"/>
                         <CheckBox Name="checkbox_FpsShowRenderer" Content="Show 3D renderer used by application" Style="{StaticResource CheckBoxBlack}"/>
@@ -364,8 +367,8 @@
                         <CheckBox Name="checkbox_FrametimeGraphShow" Content="Show frametime graph in stats" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will show frametime graph in the stats." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
-                        <TextBlock Name="textblock_FrametimeAccuracy" Tag="Frametime frame width" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
-                        <TextBlock Text="Change the frametime graph frame width." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <TextBlock Name="textblock_FrametimeAccuracy" Tag="Frametime space width" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
+                        <TextBlock Text="Change the space between frames in the frametime graph." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
                         <Slider Minimum="1" Maximum="8" HorizontalAlignment="Left" Width="440" Name="slider_FrametimeAccuracy" Style="{StaticResource SliderBlockWhite}"/>
 
                         <TextBlock Name="textblock_FrametimeWidth" Tag="Frametime graph width" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>

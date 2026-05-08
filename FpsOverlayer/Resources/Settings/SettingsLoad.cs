@@ -114,6 +114,7 @@ namespace FpsOverlayer
                 checkbox_FpsShowCurrentLatency.IsChecked = vSettings.Load("FpsShowCurrentLatency", typeof(bool));
                 checkbox_FpsShowAverageFps.IsChecked = vSettings.Load("FpsShowAverageFps", typeof(bool));
                 checkbox_FpsShowRenderer.IsChecked = vSettings.Load("FpsShowRenderer", typeof(bool));
+                checkbox_FpsShowOnePercentLowFps.IsChecked = vSettings.Load("FpsShowOnePercentLowFps", typeof(bool));
 
                 textblock_FpsAverageSeconds.Text = textblock_FpsAverageSeconds.Tag + ": " + vSettings.Load("FpsAverageSeconds", typeof(string)) + " seconds";
                 slider_FpsAverageSeconds.Value = vSettings.Load("FpsAverageSeconds", typeof(double));

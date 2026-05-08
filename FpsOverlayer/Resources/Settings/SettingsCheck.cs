@@ -58,9 +58,9 @@ namespace FpsOverlayer
                 if (!vSettings.Check("GpuShowTemperatureHotspot")) { vSettings.Set("GpuShowTemperatureHotspot", "False"); }
                 if (!vSettings.Check("GpuShowMemorySpeed")) { vSettings.Set("GpuShowMemorySpeed", "False"); }
                 if (!vSettings.Check("GpuShowCoreFrequency")) { vSettings.Set("GpuShowCoreFrequency", "True"); }
-                if (!vSettings.Check("GpuShowFanSpeed")) { vSettings.Set("GpuShowFanSpeed", "True"); }
+                if (!vSettings.Check("GpuShowFanSpeed")) { vSettings.Set("GpuShowFanSpeed", "False"); }
                 if (!vSettings.Check("GpuShowPowerWatt")) { vSettings.Set("GpuShowPowerWatt", "True"); }
-                if (!vSettings.Check("GpuShowPowerVolt")) { vSettings.Set("GpuShowPowerVolt", "False"); }
+                if (!vSettings.Check("GpuShowPowerVolt")) { vSettings.Set("GpuShowPowerVolt", "True"); }
 
                 if (!vSettings.Check("CpuCategoryTitle")) { vSettings.Set("CpuCategoryTitle", "CPU"); }
                 if (!vSettings.Check("CpuShowCategoryTitle")) { vSettings.Set("CpuShowCategoryTitle", "True"); }
@@ -70,8 +70,8 @@ namespace FpsOverlayer
                 if (!vSettings.Check("CpuShowTemperature")) { vSettings.Set("CpuShowTemperature", "True"); }
                 if (!vSettings.Check("CpuShowCoreFrequency")) { vSettings.Set("CpuShowCoreFrequency", "True"); }
                 if (!vSettings.Check("CpuShowPowerWatt")) { vSettings.Set("CpuShowPowerWatt", "True"); }
-                if (!vSettings.Check("CpuShowPowerVolt")) { vSettings.Set("CpuShowPowerVolt", "False"); }
-                if (!vSettings.Check("CpuShowFanSpeed")) { vSettings.Set("CpuShowFanSpeed", "True"); }
+                if (!vSettings.Check("CpuShowPowerVolt")) { vSettings.Set("CpuShowPowerVolt", "True"); }
+                if (!vSettings.Check("CpuShowFanSpeed")) { vSettings.Set("CpuShowFanSpeed", "False"); }
 
                 if (!vSettings.Check("MemCategoryTitle")) { vSettings.Set("MemCategoryTitle", "MEM"); }
                 if (!vSettings.Check("MemShowCategoryTitle")) { vSettings.Set("MemShowCategoryTitle", "True"); }
@@ -115,6 +115,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("FpsShowAverageFps")) { vSettings.Set("FpsShowAverageFps", "True"); }
                 if (!vSettings.Check("FpsAverageSeconds")) { vSettings.Set("FpsAverageSeconds", "10"); }
                 if (!vSettings.Check("FpsShowRenderer")) { vSettings.Set("FpsShowRenderer", "False"); }
+                if (!vSettings.Check("FpsShowOnePercentLowFps")) { vSettings.Set("FpsShowOnePercentLowFps", "False"); }
 
                 //Frame times
                 if (!vSettings.Check("FrametimeGraphShow")) { vSettings.Set("FrametimeGraphShow", "True"); }
@@ -125,8 +126,8 @@ namespace FpsOverlayer
                 //Fan
                 if (!vSettings.Check("FanCategoryTitle")) { vSettings.Set("FanCategoryTitle", "FAN"); }
                 if (!vSettings.Check("FanShowCategoryTitle")) { vSettings.Set("FanShowCategoryTitle", "True"); }
-                if (!vSettings.Check("FanShowCpu")) { vSettings.Set("FanShowCpu", "False"); }
-                if (!vSettings.Check("FanShowGpu")) { vSettings.Set("FanShowGpu", "False"); }
+                if (!vSettings.Check("FanShowCpu")) { vSettings.Set("FanShowCpu", "True"); }
+                if (!vSettings.Check("FanShowGpu")) { vSettings.Set("FanShowGpu", "True"); }
                 if (!vSettings.Check("FanShowPump")) { vSettings.Set("FanShowPump", "True"); }
                 if (!vSettings.Check("FanShowSystem")) { vSettings.Set("FanShowSystem", "True"); }
 

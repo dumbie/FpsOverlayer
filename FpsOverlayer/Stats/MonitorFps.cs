@@ -141,22 +141,43 @@ namespace FpsOverlayer
                             continue;
                         }
 
-                        //Calculate current fps (1sec)
+                        //Get frame times from last second
                         double CurrentFrameTimes = vListFrameTimes.Take(100).Average();
-                        int CurrentFramesPerSecond = Convert.ToInt32(1000 / CurrentFrameTimes);
+
+                        //Set frame time string (1sec)
+                        string StringCurrentFrameTimes = string.Empty;
+                        if (vSettings.Load("FpsShowCurrentLatency", typeof(bool)))
+                        {
+                            StringCurrentFrameTimes = " " + CurrentFrameTimes.ToString("0.00") + "MS";
+                        }
+
+                        //Calculate current fps (1sec)
+                        string StringCurrentFramesPerSecond = string.Empty;
+                        if (vSettings.Load("FpsShowCurrentFps", typeof(bool)))
+                        {
+                            int CurrentFramesPerSecond = Convert.ToInt32(1000 / CurrentFrameTimes);
+                            StringCurrentFramesPerSecond = " " + CurrentFramesPerSecond.ToString() + "FPS";
+                        }
 
                         //Calculate average fps (setting)
-                        int AverageTimeSpan = vSettings.Load("FpsAverageSeconds", typeof(int)) * 100;
-                        double AverageFrameTimes = vListFrameTimes.Take(AverageTimeSpan).Average();
-                        int AverageFramesPerSecond = Convert.ToInt32(1000 / AverageFrameTimes);
-
-                        //Convert fps to string
-                        string StringCurrentFramesPerSecond = string.Empty;
-                        if (vSettings.Load("FpsShowCurrentFps", typeof(bool))) { StringCurrentFramesPerSecond = " " + CurrentFramesPerSecond.ToString() + "FPS"; }
-                        string StringCurrentFrameTimes = string.Empty;
-                        if (vSettings.Load("FpsShowCurrentLatency", typeof(bool))) { StringCurrentFrameTimes = " " + CurrentFrameTimes.ToString("0.00") + "MS"; }
                         string StringAverageFramesPerSecond = string.Empty;
-                        if (vSettings.Load("FpsShowAverageFps", typeof(bool))) { StringAverageFramesPerSecond = " " + AverageFramesPerSecond.ToString() + "AVG"; }
+                        if (vSettings.Load("FpsShowAverageFps", typeof(bool)))
+                        {
+                            int AverageCount = vSettings.Load("FpsAverageSeconds", typeof(int)) * 100;
+                            double AverageFrameTimes = vListFrameTimes.Take(AverageCount).Average();
+                            int AverageFramesPerSecond = Convert.ToInt32(1000 / AverageFrameTimes);
+                            StringAverageFramesPerSecond = " " + AverageFramesPerSecond.ToString() + "AVG";
+                        }
+
+                        //Calculate 1% low fps
+                        string StringOnePercentLowFramesPerSecond = string.Empty;
+                        if (vSettings.Load("FpsShowOnePercentLowFps", typeof(bool)))
+                        {
+                            int OnePercentLowCount = Math.Max(1, (int)(vListFrameTimes.Count * 0.01));
+                            double OnePercentLowFrameTimes = vListFrameTimes.OrderByDescending(x => x).Take(OnePercentLowCount).Average();
+                            int OnePercentLowPerSecond = Convert.ToInt32(1000 / OnePercentLowFrameTimes);
+                            StringOnePercentLowFramesPerSecond = " " + OnePercentLowPerSecond.ToString() + "LOW";
+                        }
 
                         //Update render api
                         string StringRenderApi = string.Empty;
@@ -169,8 +190,8 @@ namespace FpsOverlayer
                         }
 
                         //Update fps counter
-                        Debug.WriteLine("(P" + vProcessTarget.Identifier + ") MS " + CurrentFrameTimes.ToString("0.00") + " / FPS " + CurrentFramesPerSecond + " / AVG " + AverageFramesPerSecond);
-                        string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond + StringRenderApi;
+                        Debug.WriteLine("(P" + vProcessTarget.Identifier + ")" + StringCurrentFrameTimes + " /" + StringCurrentFramesPerSecond + " /" + StringAverageFramesPerSecond + " /" + StringOnePercentLowFramesPerSecond + " /" + StringRenderApi);
+                        string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond + StringOnePercentLowFramesPerSecond + StringRenderApi;
                         StringDisplay = StringDisplay.Trim();
 
                         AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -228,7 +249,7 @@ namespace FpsOverlayer
         {
             try
             {
-                //Debug.WriteLine("Trace event identifier: " + traceEvent.ID + " / " + (vTraceEventIdentifiers)traceEvent.ID);
+                //Debug.WriteLine("Trace event identifier: " + traceEvent.ProcessID + " / " + (vTraceEventIdentifiers)traceEvent.ID + " / " + traceEvent.TimeStampRelativeMSec);
 
                 //Check event identifier
                 if ((int)traceEvent.ID != (int)vTraceEventIdentifiers.DxgKrnl_Present)
