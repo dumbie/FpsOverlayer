@@ -55,6 +55,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("GpuShowPercentage")) { vSettings.Set("GpuShowPercentage", "True"); }
                 if (!vSettings.Check("GpuShowMemoryUsed")) { vSettings.Set("GpuShowMemoryUsed", "True"); }
                 if (!vSettings.Check("GpuShowTemperature")) { vSettings.Set("GpuShowTemperature", "True"); }
+                if (!vSettings.Check("GpuShowTemperatureMemory")) { vSettings.Set("GpuShowTemperatureMemory", "False"); }
                 if (!vSettings.Check("GpuShowTemperatureHotspot")) { vSettings.Set("GpuShowTemperatureHotspot", "False"); }
                 if (!vSettings.Check("GpuShowMemorySpeed")) { vSettings.Set("GpuShowMemorySpeed", "False"); }
                 if (!vSettings.Check("GpuShowCoreFrequency")) { vSettings.Set("GpuShowCoreFrequency", "True"); }

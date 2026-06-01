@@ -84,7 +84,7 @@ namespace FpsOverlayer
             try
             {
                 //Check the total available frames and last added frame time
-                if (!vListFrameTimes.Any() || (GetSystemTicksMs() - vLastFrameTimeUpdate) >= 1000)
+                if (!vListFrameTimes.Any() || (GetSystemTicksMilli() - vLastFrameTimeUpdate) >= 1000)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -268,7 +268,7 @@ namespace FpsOverlayer
                 //Calculate new frame time
                 double timeElapsed = traceEvent.TimeStampRelativeMSec;
                 double timeBetween = timeElapsed - vLastFrameTimeStamp;
-                vLastFrameTimeUpdate = GetSystemTicksMs();
+                vLastFrameTimeUpdate = GetSystemTicksMilli();
                 vLastFrameTimeStamp = timeElapsed;
 
                 //Check frametime

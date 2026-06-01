@@ -20,6 +20,7 @@ namespace FpsOverlayer
                 bool GpuShowName = vSettings.Load("GpuShowName", typeof(bool));
                 bool GpuShowPercentage = vSettings.Load("GpuShowPercentage", typeof(bool));
                 bool GpuShowTemperatureCore = vSettings.Load("GpuShowTemperature", typeof(bool));
+                bool GpuShowTemperatureMemory = vSettings.Load("GpuShowTemperatureMemory", typeof(bool));
                 bool GpuShowTemperatureHotspot = vSettings.Load("GpuShowTemperatureHotspot", typeof(bool));
                 bool GpuShowMemoryUsed = vSettings.Load("GpuShowMemoryUsed", typeof(bool));
                 bool GpuShowMemorySpeed = vSettings.Load("GpuShowMemorySpeed", typeof(bool));
@@ -28,7 +29,7 @@ namespace FpsOverlayer
                 bool GpuShowPowerWatt = vSettings.Load("GpuShowPowerWatt", typeof(bool));
                 bool GpuShowPowerVolt = vSettings.Load("GpuShowPowerVolt", typeof(bool));
                 bool FanShowGpu = vSettings.Load("FanShowGpu", typeof(bool));
-                if (!GpuShowName && !GpuShowPercentage && !GpuShowTemperatureCore && !GpuShowTemperatureHotspot && !GpuShowMemoryUsed && !GpuShowMemorySpeed && !GpuShowCoreFrequency && !GpuShowFanSpeed && !GpuShowPowerWatt && !GpuShowPowerVolt && !FanShowGpu)
+                if (!GpuShowName && !GpuShowPercentage && !GpuShowTemperatureCore && !GpuShowTemperatureMemory && !GpuShowTemperatureHotspot && !GpuShowMemoryUsed && !GpuShowMemorySpeed && !GpuShowCoreFrequency && !GpuShowFanSpeed && !GpuShowPowerWatt && !GpuShowPowerVolt && !FanShowGpu)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -63,6 +64,7 @@ namespace FpsOverlayer
                 string GpuName = string.Empty;
                 string GpuPercentage = string.Empty;
                 string GpuTemperatureCore = string.Empty;
+                string GpuTemperatureMemory = string.Empty;
                 string GpuTemperatureHotspot = string.Empty;
                 string GpuMemoryUsed = string.Empty;
                 string GpuMemorySpeed = string.Empty;
@@ -90,13 +92,18 @@ namespace FpsOverlayer
                                 GpuPercentage = " " + Convert.ToInt32(sensor.Value) + "%";
                             }
                         }
-                        else if ((GpuShowTemperatureCore || GpuShowTemperatureHotspot) && sensor.SensorType == SensorType.Temperature)
+                        else if ((GpuShowTemperatureCore || GpuShowTemperatureMemory || GpuShowTemperatureHotspot) && sensor.SensorType == SensorType.Temperature)
                         {
                             //Debug.WriteLine("GPU Temp: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
                             if (GpuShowTemperatureCore && sensor.Identifier.ToString().EndsWith("temperature/0"))
                             {
                                 float RawGpuTemperatureCore = (float)sensor.Value;
                                 GpuTemperatureCore = " " + RawGpuTemperatureCore.ToString("0") + "°";
+                            }
+                            else if (GpuShowTemperatureMemory && sensor.Name == "GPU Memory")
+                            {
+                                float RawGpuTemperatureMemory = (float)sensor.Value;
+                                GpuTemperatureMemory = " " + RawGpuTemperatureMemory.ToString("0") + "°";
                             }
                             else if (GpuShowTemperatureHotspot && sensor.Name == "GPU Hot Spot")
                             {
@@ -186,17 +193,28 @@ namespace FpsOverlayer
                 }
 
                 //Add temperature tags
-                if (!string.IsNullOrWhiteSpace(GpuTemperatureCore) && !string.IsNullOrWhiteSpace(GpuTemperatureHotspot))
+                bool[] temperatureTagBool = [!string.IsNullOrWhiteSpace(GpuTemperatureCore), !string.IsNullOrWhiteSpace(GpuTemperatureMemory), !string.IsNullOrWhiteSpace(GpuTemperatureHotspot)];
+                if (temperatureTagBool.Count(b => b == true) > 1)
                 {
-                    GpuTemperatureCore += "(C)";
-                    GpuTemperatureHotspot += "(H)";
+                    if (temperatureTagBool[0])
+                    {
+                        GpuTemperatureCore += "(C)";
+                    }
+                    if (temperatureTagBool[1])
+                    {
+                        GpuTemperatureMemory += "(M)";
+                    }
+                    if (temperatureTagBool[2])
+                    {
+                        GpuTemperatureHotspot += "(H)";
+                    }
                 }
 
                 bool gpuNameNullOrWhiteSpace = string.IsNullOrWhiteSpace(GpuName);
-                if (!gpuNameNullOrWhiteSpace || !string.IsNullOrWhiteSpace(GpuPercentage) || !string.IsNullOrWhiteSpace(GpuTemperatureCore) || !string.IsNullOrWhiteSpace(GpuTemperatureHotspot) || !string.IsNullOrWhiteSpace(GpuFrequency) || !string.IsNullOrWhiteSpace(GpuMemorySpeed) || !string.IsNullOrWhiteSpace(GpuMemoryUsed) || !string.IsNullOrWhiteSpace(GpuFanSpeed) || !string.IsNullOrWhiteSpace(GpuPowerWattage) || !string.IsNullOrWhiteSpace(GpuPowerVoltage))
+                if (!gpuNameNullOrWhiteSpace || !string.IsNullOrWhiteSpace(GpuPercentage) || !string.IsNullOrWhiteSpace(GpuTemperatureCore) || !string.IsNullOrWhiteSpace(GpuTemperatureMemory) || !string.IsNullOrWhiteSpace(GpuTemperatureHotspot) || !string.IsNullOrWhiteSpace(GpuFrequency) || !string.IsNullOrWhiteSpace(GpuMemorySpeed) || !string.IsNullOrWhiteSpace(GpuMemoryUsed) || !string.IsNullOrWhiteSpace(GpuFanSpeed) || !string.IsNullOrWhiteSpace(GpuPowerWattage) || !string.IsNullOrWhiteSpace(GpuPowerVoltage))
                 {
                     string stringDisplay = string.Empty;
-                    string stringStats = AVFunctions.StringRemoveStart(vTitleGPU + GpuPercentage + GpuTemperatureCore + GpuTemperatureHotspot + GpuFrequency + GpuMemorySpeed + GpuMemoryUsed + GpuFanSpeed + GpuPowerWattage + GpuPowerVoltage, " ");
+                    string stringStats = AVFunctions.StringRemoveStart(vTitleGPU + GpuPercentage + GpuTemperatureCore + GpuTemperatureMemory + GpuTemperatureHotspot + GpuFrequency + GpuMemorySpeed + GpuMemoryUsed + GpuFanSpeed + GpuPowerWattage + GpuPowerVoltage, " ");
                     if (string.IsNullOrWhiteSpace(stringStats))
                     {
                         stringDisplay = GpuName;

@@ -132,6 +132,7 @@ namespace FpsOverlayer
                 checkbox_GpuShowPercentage.Click += (sender, e) => { vSettings.Set("GpuShowPercentage", checkbox_GpuShowPercentage.IsChecked.ToString()); };
                 checkbox_GpuShowMemoryUsed.Click += (sender, e) => { vSettings.Set("GpuShowMemoryUsed", checkbox_GpuShowMemoryUsed.IsChecked.ToString()); };
                 checkbox_GpuShowTemperature.Click += (sender, e) => { vSettings.Set("GpuShowTemperature", checkbox_GpuShowTemperature.IsChecked.ToString()); };
+                checkbox_GpuShowTemperatureMemory.Click += (sender, e) => { vSettings.Set("GpuShowTemperatureMemory", checkbox_GpuShowTemperatureMemory.IsChecked.ToString()); };
                 checkbox_GpuShowTemperatureHotspot.Click += (sender, e) => { vSettings.Set("GpuShowTemperatureHotspot", checkbox_GpuShowTemperatureHotspot.IsChecked.ToString()); };
                 checkbox_GpuShowMemorySpeed.Click += (sender, e) => { vSettings.Set("GpuShowMemorySpeed", checkbox_GpuShowMemorySpeed.IsChecked.ToString()); };
                 checkbox_GpuShowCoreFrequency.Click += (sender, e) => { vSettings.Set("GpuShowCoreFrequency", checkbox_GpuShowCoreFrequency.IsChecked.ToString()); };
