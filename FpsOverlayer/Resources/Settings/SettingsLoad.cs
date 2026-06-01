@@ -114,11 +114,15 @@ namespace FpsOverlayer
                 checkbox_FpsShowCurrentFps.IsChecked = vSettings.Load("FpsShowCurrentFps", typeof(bool));
                 checkbox_FpsShowCurrentLatency.IsChecked = vSettings.Load("FpsShowCurrentLatency", typeof(bool));
                 checkbox_FpsShowAverageFps.IsChecked = vSettings.Load("FpsShowAverageFps", typeof(bool));
-                checkbox_FpsShowRenderer.IsChecked = vSettings.Load("FpsShowRenderer", typeof(bool));
                 checkbox_FpsShowOnePercentLowFps.IsChecked = vSettings.Load("FpsShowOnePercentLowFps", typeof(bool));
-
                 textblock_FpsAverageSeconds.Text = textblock_FpsAverageSeconds.Tag + ": " + vSettings.Load("FpsAverageSeconds", typeof(string)) + " seconds";
                 slider_FpsAverageSeconds.Value = vSettings.Load("FpsAverageSeconds", typeof(double));
+
+                //Renderer
+                textbox_RendererCategoryTitle.Text = vSettings.Load("RendererCategoryTitle", typeof(string));
+                checkbox_RendererShowCategoryTitle.IsChecked = vSettings.Load("RendererShowCategoryTitle", typeof(bool));
+                checkbox_AppShow3dOnly.IsChecked = vSettings.Load("AppShow3dOnly", typeof(bool));
+                checkbox_RendererShowApi.IsChecked = vSettings.Load("RendererShowApi", typeof(bool));
 
                 //Fan
                 textbox_FanCategoryTitle.Text = vSettings.Load("FanCategoryTitle", typeof(string));
@@ -130,7 +134,6 @@ namespace FpsOverlayer
 
                 //Applications
                 checkbox_AppShowName.IsChecked = vSettings.Load("AppShowName", typeof(bool));
-                checkbox_AppShow3dOnly.IsChecked = vSettings.Load("AppShow3dOnly", typeof(bool));
 
                 //Colors
                 string ColorBackground = vSettings.Load("ColorBackground", typeof(string));

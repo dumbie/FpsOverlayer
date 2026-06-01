@@ -30,8 +30,10 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -88,6 +90,14 @@
 
         <Grid Visibility="Collapsed" Name="stackpanel_CurrentFps">
             <TextBlock FontWeight="SemiBold" Name="textblock_CurrentFps" Padding="2" Margin="0" Text="FPS" VerticalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="2" Direction="320" Color="Black" Opacity="0.90" BlurRadius="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+
+        <Grid Visibility="Collapsed" Name="stackpanel_CurrentRenderer">
+            <TextBlock FontWeight="SemiBold" Name="textblock_CurrentRenderer" Padding="2" Margin="0" Text="REN" VerticalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="2" Direction="320" Color="Black" Opacity="0.90" BlurRadius="2"/>
                 </TextBlock.Effect>

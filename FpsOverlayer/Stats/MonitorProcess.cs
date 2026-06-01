@@ -64,7 +64,6 @@ namespace FpsOverlayer
 
                         //Update process render api
                         //Note: Some applications change 3d rendering modules while running
-                        //Fix what if rendering is done in child process?
                         RenderApiDetails foregroundRenderApi = GetRenderApi(foregroundProcess);
 
                         //Check if foreground window or render api changed
@@ -78,6 +77,7 @@ namespace FpsOverlayer
 
                             //Update current render api
                             vProcessRenderApi = foregroundRenderApi;
+                            UpdateRenderApiText(foregroundRenderApi);
 
                             //Reset fps counter
                             ResetFpsCounter();

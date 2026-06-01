@@ -19,7 +19,7 @@ namespace FpsOverlayer
         //Application Variables
         public static AVSettingsConfig vSettings = new AVSettingsConfig("FpsOverlayer.exe.csettings");
         public static bool vManualHiddenFpsOverlay = false;
-        public const int vTotalStatsCount = 11;
+        public const int vTotalStatsCount = 12;
 
         //Application Windows
         public static WindowStats vWindowStats = new WindowStats();
@@ -64,6 +64,7 @@ namespace FpsOverlayer
         public static string vTitleNET = "NET";
         public static string vTitleMON = "MON";
         public static string vTitleFPS = "FPS";
+        public static string vTitleREN = "REN";
         public static string vTitleBAT = "BAT";
 
         //Tools Variables

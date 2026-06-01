@@ -258,8 +258,23 @@ namespace FpsOverlayer
                 checkbox_FpsShowCurrentFps.Click += (sender, e) => { vSettings.Set("FpsShowCurrentFps", checkbox_FpsShowCurrentFps.IsChecked.ToString()); };
                 checkbox_FpsShowCurrentLatency.Click += (sender, e) => { vSettings.Set("FpsShowCurrentLatency", checkbox_FpsShowCurrentLatency.IsChecked.ToString()); };
                 checkbox_FpsShowAverageFps.Click += (sender, e) => { vSettings.Set("FpsShowAverageFps", checkbox_FpsShowAverageFps.IsChecked.ToString()); };
-                checkbox_FpsShowRenderer.Click += (sender, e) => { vSettings.Set("FpsShowRenderer", checkbox_FpsShowRenderer.IsChecked.ToString()); };
                 checkbox_FpsShowOnePercentLowFps.Click += (sender, e) => { vSettings.Set("FpsShowOnePercentLowFps", checkbox_FpsShowOnePercentLowFps.IsChecked.ToString()); };
+
+                //Renderer
+                textbox_RendererCategoryTitle.TextChanged += (sender, e) =>
+                {
+                    TextBox senderTextbox = (TextBox)sender;
+                    vSettings.Set("RendererCategoryTitle", senderTextbox.Text);
+                    vWindowStats.UpdateFpsOverlayStyle();
+                };
+                checkbox_RendererShowCategoryTitle.Click += (sender, e) =>
+                {
+                    CheckBox senderCheckBox = (CheckBox)sender;
+                    vSettings.Set("RendererShowCategoryTitle", senderCheckBox.IsChecked.ToString());
+                    vWindowStats.UpdateFpsOverlayStyle();
+                };
+                checkbox_AppShow3dOnly.Click += (sender, e) => { vSettings.Set("AppShow3dOnly", checkbox_AppShow3dOnly.IsChecked.ToString()); };
+                checkbox_RendererShowApi.Click += (sender, e) => { vSettings.Set("RendererShowApi", checkbox_RendererShowApi.IsChecked.ToString()); };
 
                 //Fan
                 textbox_FanCategoryTitle.TextChanged += (sender, e) =>
@@ -281,7 +296,6 @@ namespace FpsOverlayer
 
                 //Applications
                 checkbox_AppShowName.Click += (sender, e) => { vSettings.Set("AppShowName", checkbox_AppShowName.IsChecked.ToString()); };
-                checkbox_AppShow3dOnly.Click += (sender, e) => { vSettings.Set("AppShow3dOnly", checkbox_AppShow3dOnly.IsChecked.ToString()); };
 
                 //Colors
                 colorpicker_ColorSingle.Click += async (sender, e) =>

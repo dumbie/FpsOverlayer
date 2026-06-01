@@ -179,19 +179,9 @@ namespace FpsOverlayer
                             StringOnePercentLowFramesPerSecond = " " + OnePercentLowPerSecond.ToString() + "LOW";
                         }
 
-                        //Update render api
-                        string StringRenderApi = string.Empty;
-                        if (vSettings.Load("FpsShowRenderer", typeof(bool)))
-                        {
-                            if (!vProcessRenderApi.RenderingUI && !string.IsNullOrWhiteSpace(vProcessRenderApi.ApiName3D))
-                            {
-                                StringRenderApi = " " + vProcessRenderApi.ApiName3D;
-                            }
-                        }
-
                         //Update fps counter
-                        Debug.WriteLine("(P" + vProcessTarget.Identifier + ")" + StringCurrentFrameTimes + " /" + StringCurrentFramesPerSecond + " /" + StringAverageFramesPerSecond + " /" + StringOnePercentLowFramesPerSecond + " /" + StringRenderApi);
-                        string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond + StringOnePercentLowFramesPerSecond + StringRenderApi;
+                        Debug.WriteLine("(P" + vProcessTarget.Identifier + ")" + StringCurrentFrameTimes + " /" + StringCurrentFramesPerSecond + " /" + StringAverageFramesPerSecond + " /" + StringOnePercentLowFramesPerSecond);
+                        string StringDisplay = vTitleFPS + StringCurrentFramesPerSecond + StringCurrentFrameTimes + StringAverageFramesPerSecond + StringOnePercentLowFramesPerSecond;
                         StringDisplay = StringDisplay.Trim();
 
                         AVDispatcherInvoke.DispatcherInvoke(delegate

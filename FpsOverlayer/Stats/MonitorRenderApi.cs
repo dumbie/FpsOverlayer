@@ -1,8 +1,10 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 using static FpsOverlayer.AppVariables;
 using static LibraryShared.Classes;
 
@@ -10,16 +12,51 @@ namespace FpsOverlayer
 {
     public partial class WindowStats
     {
+        //Update render api text
+        void UpdateRenderApiText(RenderApiDetails renderApiDetails)
+        {
+            try
+            {
+                AVDispatcherInvoke.DispatcherInvoke(delegate
+                {
+                    //Update render api
+                    string stringRenderApi = string.Empty;
+                    if (vSettings.Load("RendererShowApi", typeof(bool)))
+                    {
+                        if (!renderApiDetails.RenderingUI)
+                        {
+                            stringRenderApi = renderApiDetails.ApiName3D;
+                        }
+                    }
+
+                    //Set render api text
+                    if (string.IsNullOrWhiteSpace(stringRenderApi))
+                    {
+                        stackpanel_CurrentRenderer.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        string stringDisplay = AVFunctions.StringRemoveStart(vTitleREN + " " + stringRenderApi, " ");
+                        textblock_CurrentRenderer.Text = stringDisplay;
+                        stackpanel_CurrentRenderer.Visibility = Visibility.Visible;
+                    }
+                });
+            }
+            catch { }
+        }
+
+        //Get render api
         public static RenderApiDetails GetRenderApi(AVProcess targetProcess)
         {
             RenderApiDetails renderApiDetails = new RenderApiDetails();
             try
             {
+                //Fix what if rendering is done in child process?
                 //Fix find way to separate frontend from backend renderer
                 //Fix find reliable way to determine if process renders 3D or UI
 
                 //Check rendering api settings
-                if (!vSettings.Load("FpsShowRenderer", typeof(bool)) && !vSettings.Load("AppShow3dOnly", typeof(bool)))
+                if (!vSettings.Load("RendererShowApi", typeof(bool)) && !vSettings.Load("AppShow3dOnly", typeof(bool)))
                 {
                     return renderApiDetails;
                 }
