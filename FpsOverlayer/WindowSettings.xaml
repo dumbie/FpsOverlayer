@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FpsOverlayer"
-        xmlns:styles="clr-namespace:ArnoldVinkStyles;assembly=ArnoldVinkStyles"
+        xmlns:AVStyles="clr-namespace:ArnoldVinkStyles;assembly=ArnoldVinkStyles"
         RenderOptions.BitmapScalingMode="HighQuality"
         SnapsToDevicePixels="True"
         mc:Ignorable="d"
@@ -31,10 +31,6 @@
                 <StackPanel Name="menuButtonTools" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage tools settings">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Tools.png" Width="55" HorizontalAlignment="Center"/>
                     <TextBlock Text="Tools" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Name="menuButtonShortcuts" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage shortcut settings">
-                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Shortcut.png" Width="55" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Shortcuts" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Name="menuButtonText" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage text settings">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Font.png" Width="55" HorizontalAlignment="Center"/>
@@ -95,6 +91,10 @@
                 <StackPanel Name="menuButtonOrder" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage stats order">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/List.png" Width="55" HorizontalAlignment="Center"/>
                     <TextBlock Text="Order" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Name="menuButtonShortcuts" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage shortcut settings">
+                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Shortcut.png" Width="55" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Shortcuts" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Name="menuButtonSettings" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Manage general settings">
                     <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Settings.png" Width="55" HorizontalAlignment="Center"/>
@@ -312,7 +312,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                            <TextBox Name="textbox_Browser_LinkString" HorizontalAlignment="Left" Width="300" Style="{StaticResource TextBoxBlack}" Text="Link..." styles:TextboxPlaceholder.Placeholder="Link..."/>
+                            <TextBox Name="textbox_Browser_LinkString" HorizontalAlignment="Left" Width="300" Style="{StaticResource TextBoxBlack}" Text="Link..." AVStyles:TextboxPlaceholder.Placeholder="Link..."/>
                             <Button Name="button_Browser_Link_Add" Margin="10,0,0,0" Width="135" Content="Add link" HorizontalAlignment="Left" Style="{StaticResource ButtonAccentBlack}"/>
                         </StackPanel>
 
@@ -327,16 +327,16 @@
                         <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Shortcut Settings"/>
 
                         <TextBlock Text="Show, hide or unpin browser by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
-                        <styles:ShortcutKeyboard Name="keyboard_ShowHideTools" TriggerName="ShowHideTools"/>
+                        <AVStyles:ShortcutKeyboard Name="keyboard_ShowHideTools" TriggerName="ShowHideTools"/>
 
                         <TextBlock Margin="0,10,0,0" Text="Show or hide crosshair by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
-                        <styles:ShortcutKeyboard Name="keyboard_ShowHideCrosshair" TriggerName="ShowHideCrosshair"/>
+                        <AVStyles:ShortcutKeyboard Name="keyboard_ShowHideCrosshair" TriggerName="ShowHideCrosshair"/>
 
                         <TextBlock Margin="0,10,0,0" Text="Show or hide fps stats by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
-                        <styles:ShortcutKeyboard Name="keyboard_ShowHideFpsStats" TriggerName="ShowHideFpsStats"/>
+                        <AVStyles:ShortcutKeyboard Name="keyboard_ShowHideFpsStats" TriggerName="ShowHideFpsStats"/>
 
                         <TextBlock Margin="0,10,0,0" Text="Change fps stats position by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
-                        <styles:ShortcutKeyboard Name="keyboard_PositionFpsStats"  TriggerName="PositionFpsStats"/>
+                        <AVStyles:ShortcutKeyboard Name="keyboard_PositionFpsStats"  TriggerName="PositionFpsStats"/>
                     </StackPanel>
 
                     <StackPanel Name="stackpanel_Fps" Visibility="Collapsed">
@@ -609,7 +609,7 @@
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Application Styles"/>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBox Name="textbox_AddApp" Width="300" Text="Process name..." styles:TextboxPlaceholder.Placeholder="Process name..." Style="{StaticResource TextBoxBlack}"/>
+                            <TextBox Name="textbox_AddApp" Width="300" Text="Process name..." AVStyles:TextboxPlaceholder.Placeholder="Process name..." Style="{StaticResource TextBoxBlack}"/>
                             <Button Name="button_AddApp" Margin="10,0,0,0" Content="Add process" Style="{StaticResource ButtonAccentBlack}"/>
                         </StackPanel>
 
@@ -622,141 +622,8 @@
                         <TextBlock Text="Flip stats order when overlay is positioned on bottom of the screen." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Stats order"/>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Orientation="Horizontal" Name="grid_TimePosition">
-                                <Button Name="button_TimeUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_TimeDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Time" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_CustomTextPosition">
-                                <Button Name="button_CustomTextUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_CustomTextDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Custom text" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_AppPosition">
-                                <Button Name="button_AppUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_AppDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Application" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_BatPosition">
-                                <Button Name="button_BatUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_BatDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Battery" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_MonPosition">
-                                <Button Name="button_MonUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_MonDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Monitor" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_NetPosition">
-                                <Button Name="button_NetUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_NetDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Network" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_FanPosition">
-                                <Button Name="button_FanUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_FanDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Fans" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_MemPosition">
-                                <Button Name="button_MemUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_MemDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Memory" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_GpuPosition">
-                                <Button Name="button_GpuUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_GpuDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Videocard" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_CpuPosition">
-                                <Button Name="button_CpuUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_CpuDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Processor" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_FrametimePosition">
-                                <Button Name="button_FrametimeUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_FrametimeDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Frame times" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_FpsPosition">
-                                <Button Name="button_FpsUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_FpsDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Frames per second" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Name="grid_RendererPosition">
-                                <Button Name="button_RendererUp" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move up in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsUp.png" Height="30"/>
-                                </Button>
-                                <Button Name="button_RendererDown" Margin="5,0,0,0" Style="{StaticResource ButtonImageTransparentNoBorder}" ToolTipService.ToolTip="Move down in stats">
-                                    <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/FpsDown.png" Height="30"/>
-                                </Button>
-                                <TextBlock Margin="5,0,0,0" Text="Renderer" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}"/>
-                            </StackPanel>
-                        </Grid>
+                        <TextBlock Text="Drag and drop stats below in the order you want them to appear." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <AVStyles:ListBoxDragDrop Name="listbox_StatsOrder" ItemContainerStyle="{StaticResource ListBoxItemBlack}" ItemTemplate="{StaticResource ListBoxItemStatsOrder}" Style="{StaticResource ListBoxVerticalNoScroll}"/>
                     </StackPanel>
 
                     <StackPanel Name="stackpanel_Settings" Visibility="Collapsed">

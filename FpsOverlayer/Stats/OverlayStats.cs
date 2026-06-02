@@ -435,42 +435,45 @@ namespace FpsOverlayer
                 }
 
                 //Load stats order identifier
-                int TimeId = vSettings.Load("TimeId", typeof(int));
-                int CustomTextId = vSettings.Load("CustomTextId", typeof(int));
-                int MonId = vSettings.Load("MonId", typeof(int));
-                int RendererId = vSettings.Load("RendererId", typeof(int));
-                int AppId = vSettings.Load("AppId", typeof(int));
-                int FpsId = vSettings.Load("FpsId", typeof(int));
-                int FrametimeId = vSettings.Load("FrametimeId", typeof(int));
-                int NetId = vSettings.Load("NetId", typeof(int));
-                int CpuId = vSettings.Load("CpuId", typeof(int));
-                int GpuId = vSettings.Load("GpuId", typeof(int));
-                int MemId = vSettings.Load("MemId", typeof(int));
-                int BatId = vSettings.Load("BatId", typeof(int));
-                int FanId = vSettings.Load("FanId", typeof(int));
+                int FrametimeId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "FrametimeId").Index;
+                int TimeId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "TimeId").Index;
+                int CustomTextId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "CustomTextId").Index;
+                int AppId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "AppId").Index;
+                int RendererId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "RendererId").Index;
+                int FpsId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "FpsId").Index;
+                int CpuId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "CpuId").Index;
+                int GpuId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "GpuId").Index;
+                int MemId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "MemId").Index;
+                int FanId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "FanId").Index;
+                int MonId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "MonId").Index;
+                int NetId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "NetId").Index;
+                int BatId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "BatId").Index;
 
                 //Update the stats text orientation and order
                 if (vSettings.Load("TextDirection", typeof(int)) == 1)
                 {
+                    //Get total stats count
+                    int vTotalStatsCount = vStatsOrderDetails.Count() - 1;
+
                     //Reverse stats order when on bottom
                     if (vSettings.Load("StatsFlipBottom", typeof(bool)))
                     {
                         OverlayPosition overlayPosition = GetFpsOverlayPosition(vProcessTarget);
                         if (overlayPosition == OverlayPosition.BottomLeft || overlayPosition == OverlayPosition.BottomCenter || overlayPosition == OverlayPosition.BottomRight)
                         {
+                            FrametimeId = vTotalStatsCount - FrametimeId;
                             TimeId = vTotalStatsCount - TimeId;
                             CustomTextId = vTotalStatsCount - CustomTextId;
-                            MonId = vTotalStatsCount - MonId;
-                            RendererId = vTotalStatsCount - RendererId;
                             AppId = vTotalStatsCount - AppId;
+                            RendererId = vTotalStatsCount - RendererId;
                             FpsId = vTotalStatsCount - FpsId;
-                            FrametimeId = vTotalStatsCount - FrametimeId;
-                            NetId = vTotalStatsCount - NetId;
                             CpuId = vTotalStatsCount - CpuId;
                             GpuId = vTotalStatsCount - GpuId;
                             MemId = vTotalStatsCount - MemId;
-                            BatId = vTotalStatsCount - BatId;
                             FanId = vTotalStatsCount - FanId;
+                            MonId = vTotalStatsCount - MonId;
+                            NetId = vTotalStatsCount - NetId;
+                            BatId = vTotalStatsCount - BatId;
                         }
                     }
 

@@ -9,6 +9,18 @@
         <TextBlock Text="{Binding String1}" VerticalAlignment="Center" Style="{StaticResource TextBlockWhiteLight}" FontSize="{DynamicResource TextSizeLarge}"/>
     </DataTemplate>
 
+    <!-- ListBoxItemStatsOrder -->
+    <DataTemplate x:Key="ListBoxItemStatsOrder">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Height="20" Source="/Assets/Default/Icons/DragDropDark.png"/>
+            <TextBlock Grid.Column="1" Margin="10,0,0,0" Text="{Binding Name}" VerticalAlignment="Center" Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeMedium}"/>
+        </Grid>
+    </DataTemplate>
+
     <!-- ListBoxItemAppPosition -->
     <DataTemplate x:Key="ListBoxItemAppPosition">
         <StackPanel Orientation="Horizontal" Margin="0,3,0,3">

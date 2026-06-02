@@ -68,6 +68,9 @@
 		<Content Include="Assets\Default\Icons\Crosshair.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Default\Icons\DragDropDark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Default\Icons\Fan.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -173,6 +176,9 @@
 		<Content Include="Drivers\PawnIO_setup.exe">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Profiles\User\FpsBrowserLinks.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Resources\BlackSharp.Core.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -191,7 +197,7 @@
 		<Content Include="Profiles\User\FpsShortcutsKeyboard.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Profiles\User\FpsBrowserLinks.json">
+		<Content Include="Profiles\User\FpsStatsOrderDetails.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Profiles\User\FpsPositionProcessName.json">

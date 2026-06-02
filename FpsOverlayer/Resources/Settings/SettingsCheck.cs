@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using static ArnoldVinkCode.AVJsonFunctions;
 using static FpsOverlayer.AppVariables;
+using static LibraryShared.Classes;
 
 namespace FpsOverlayer
 {
@@ -160,9 +161,9 @@ namespace FpsOverlayer
                 if (!vSettings.Check("BrowserUnload")) { vSettings.Set("BrowserUnload", "True"); }
                 if (!vSettings.Check("BrowserOpacity")) { vSettings.Set("BrowserOpacity", "0,70"); }
 
-                //Check stats position
-                CheckStatsPositionExists(false);
-                CheckStatsPositionDouble();
+                //Check stats order
+                CheckStatsOrderExists();
+                CheckStatsOrderDouble();
 
                 Debug.WriteLine("Checked the application settings.");
             }
@@ -172,65 +173,160 @@ namespace FpsOverlayer
             }
         }
 
-        void CheckStatsPositionExists(bool forceReset)
+        void CheckStatsOrderExists()
         {
             try
             {
-                if (forceReset || !vSettings.Check("RendererId")) { vSettings.Set("RendererId", "0"); }
-                if (forceReset || !vSettings.Check("FpsId")) { vSettings.Set("FpsId", "1"); }
-                if (forceReset || !vSettings.Check("AppId")) { vSettings.Set("AppId", "2"); }
-                if (forceReset || !vSettings.Check("CpuId")) { vSettings.Set("CpuId", "3"); }
-                if (forceReset || !vSettings.Check("GpuId")) { vSettings.Set("GpuId", "4"); }
-                if (forceReset || !vSettings.Check("MemId")) { vSettings.Set("MemId", "5"); }
-                if (forceReset || !vSettings.Check("FanId")) { vSettings.Set("FanId", "6"); }
-                if (forceReset || !vSettings.Check("MonId")) { vSettings.Set("MonId", "7"); }
-                if (forceReset || !vSettings.Check("NetId")) { vSettings.Set("NetId", "8"); }
-                if (forceReset || !vSettings.Check("BatId")) { vSettings.Set("BatId", "9"); }
-                if (forceReset || !vSettings.Check("CustomTextId")) { vSettings.Set("CustomTextId", "10"); }
-                if (forceReset || !vSettings.Check("TimeId")) { vSettings.Set("TimeId", "11"); }
-                if (forceReset || !vSettings.Check("FrametimeId")) { vSettings.Set("FrametimeId", "12"); }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Failed to check existing stats position: " + ex.Message);
-            }
-        }
-
-        void CheckStatsPositionDouble()
-        {
-            try
-            {
-                //Load used stat positions
-                List<int> usedStatPositions = new List<int>()
+                //Check variables
+                bool saveNeeded = false;
+                int highestIndex = 0;
+                if (vStatsOrderDetails.Any())
                 {
-                    vSettings.Load("RendererId", typeof(int)),
-                    vSettings.Load("AppId", typeof(int)),
-                    vSettings.Load("FpsId", typeof(int)),
-                    vSettings.Load("FrametimeId", typeof(int)),
-                    vSettings.Load("NetId", typeof(int)),
-                    vSettings.Load("CpuId", typeof(int)),
-                    vSettings.Load("GpuId", typeof(int)),
-                    vSettings.Load("MemId", typeof(int)),
-                    vSettings.Load("TimeId", typeof(int)),
-                    vSettings.Load("CustomTextId", typeof(int)),
-                    vSettings.Load("MonId", typeof(int)),
-                    vSettings.Load("BatId", typeof(int)),
-                    vSettings.Load("FanId", typeof(int))
-                };
+                    highestIndex = vStatsOrderDetails.OrderBy(x => x.Index).LastOrDefault().Index;
+                }
 
-                //Check if there are double positions
-                bool doublePositions = usedStatPositions.GroupBy(x => x).Any(x => x.Count() > 1);
-
-                //Reset stat positions when double found
-                if (doublePositions)
+                //Check stat order
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "FrametimeId"))
                 {
-                    Debug.WriteLine("Found double stat positions, resetting the order.");
-                    CheckStatsPositionExists(true);
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "FrametimeId", Name = "Frame time graph" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "TimeId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "TimeId", Name = "Time and Date" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "CustomTextId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "CustomTextId", Name = "Custom text line" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "AppId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "AppId", Name = "Application information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "RendererId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "RendererId", Name = "Renderer information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "FpsId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "FpsId", Name = "Frames Per Second" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "CpuId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "CpuId", Name = "Processor information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "GpuId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "GpuId", Name = "Videocard information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "MemId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "MemId", Name = "Memory information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "FanId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "FanId", Name = "Fans information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "MonId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "MonId", Name = "Monitor information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "NetId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "NetId", Name = "Network information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+                if (!vStatsOrderDetails.Any(x => x.Identifier == "BatId"))
+                {
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "BatId", Name = "Battery information" });
+                    highestIndex++;
+                    saveNeeded = true;
+                }
+
+                //Save stats order to json file
+                if (saveNeeded)
+                {
+                    JsonSaveObject(vStatsOrderDetails, @"Profiles\User\FpsStatsOrderDetails.json");
+                    Debug.WriteLine("Added missing stats order.");
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to check double stats position: " + ex.Message);
+                Debug.WriteLine("Failed to check existing stats order: " + ex.Message);
+            }
+        }
+
+        void CheckStatsOrderReset()
+        {
+            try
+            {
+                //Clear current stats order
+                vStatsOrderDetails.Clear();
+
+                //Set default stats order
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 0, Identifier = "FrametimeId", Name = "Frame time graph" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 1, Identifier = "TimeId", Name = "Time and Date" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 2, Identifier = "CustomTextId", Name = "Custom text line" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 3, Identifier = "AppId", Name = "Application information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 4, Identifier = "RendererId", Name = "Renderer information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 5, Identifier = "FpsId", Name = "Frames Per Second" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 6, Identifier = "CpuId", Name = "Processor information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 7, Identifier = "GpuId", Name = "Videocard information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 8, Identifier = "MemId", Name = "Memory information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 9, Identifier = "FanId", Name = "Fans information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 10, Identifier = "MonId", Name = "Monitor information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 11, Identifier = "NetId", Name = "Network information" });
+                vStatsOrderDetails.Add(new StatsOrderDetails { Index = 12, Identifier = "BatId", Name = "Battery information" });
+
+                //Save stats order to json file
+                JsonSaveObject(vStatsOrderDetails, @"Profiles\User\FpsStatsOrderDetails.json");
+                Debug.WriteLine("Stats order reset to default.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed to reset stats order: " + ex.Message);
+            }
+        }
+
+        void CheckStatsOrderDouble()
+        {
+            try
+            {
+                //Check if there are double indexes
+                bool doubleIndexes = vStatsOrderDetails.GroupBy(x => x.Index).Any(x => x.Count() > 1);
+
+                //Reset stat order when double found
+                if (doubleIndexes)
+                {
+                    Debug.WriteLine("Found double stat order, resetting stats order.");
+                    CheckStatsOrderReset();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed to check double stats order: " + ex.Message);
             }
         }
     }

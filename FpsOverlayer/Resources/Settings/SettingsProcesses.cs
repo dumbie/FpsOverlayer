@@ -97,6 +97,7 @@ namespace FpsOverlayer
                 combobox_LinkString.SelectedIndex = 0;
 
                 listbox_Apps.ItemsSource = AppVariables.vFpsPositionProcessName;
+                listbox_StatsOrder.ItemsSource = AppVariables.vStatsOrderDetails;
 
                 Debug.WriteLine("Lists bound to interface.");
             }

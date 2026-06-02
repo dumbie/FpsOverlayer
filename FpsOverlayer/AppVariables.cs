@@ -19,7 +19,6 @@ namespace FpsOverlayer
         //Application Variables
         public static AVSettingsConfig vSettings = new AVSettingsConfig("FpsOverlayer.exe.csettings");
         public static bool vManualHiddenFpsOverlay = false;
-        public const int vTotalStatsCount = 12;
 
         //Application Windows
         public static WindowStats vWindowStats = new WindowStats();
@@ -126,8 +125,9 @@ namespace FpsOverlayer
         public static ArnoldVinkSockets vArnoldVinkSockets = null;
 
         //Application Lists
-        public static List<ShortcutTriggerKeyboard> vShortcutTriggers = JsonLoadFile<List<ShortcutTriggerKeyboard>>(@"Profiles\User\FpsShortcutsKeyboard.json");
         public static ObservableCollection<string> vNotesFiles = new ObservableCollection<string>();
+        public static List<ShortcutTriggerKeyboard> vShortcutTriggers = JsonLoadFile<List<ShortcutTriggerKeyboard>>(@"Profiles\User\FpsShortcutsKeyboard.json");
+        public static ObservableCollection<StatsOrderDetails> vStatsOrderDetails = JsonLoadFile<ObservableCollection<StatsOrderDetails>>(@"Profiles\User\FpsStatsOrderDetails.json");
         public static ObservableCollection<ProfileShared> vFpsBrowserLinks = JsonLoadFile<ObservableCollection<ProfileShared>>(@"Profiles\User\FpsBrowserLinks.json");
         public static ObservableCollection<ProfileShared> vFpsPositionProcessName = JsonLoadFile<ObservableCollection<ProfileShared>>(@"Profiles\User\FpsPositionProcessName.json");
     }

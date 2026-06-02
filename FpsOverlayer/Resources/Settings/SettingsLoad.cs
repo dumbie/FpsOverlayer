@@ -222,9 +222,6 @@ namespace FpsOverlayer
                 textblock_BrowserOpacity.Text = textblock_BrowserOpacity.Tag + ": " + vSettings.Load("BrowserOpacity", typeof(string)) + "%";
                 slider_BrowserOpacity.Value = vSettings.Load("BrowserOpacity", typeof(double));
 
-                //Update stats position text
-                UpdateStatsPositionText();
-
                 //Check if application is set to launch on Windows startup
                 cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck(StartupShortcutType.Startup);
 

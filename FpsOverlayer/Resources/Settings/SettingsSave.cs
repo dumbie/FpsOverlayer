@@ -4,8 +4,10 @@ using System;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Media;
+using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVSettings;
 using static FpsOverlayer.AppVariables;
+using static LibraryShared.Classes;
 
 namespace FpsOverlayer
 {
@@ -296,6 +298,24 @@ namespace FpsOverlayer
 
                 //Applications
                 checkbox_AppShowName.Click += (sender, e) => { vSettings.Set("AppShowName", checkbox_AppShowName.IsChecked.ToString()); };
+
+                //Stats Order
+                listbox_StatsOrder.DragDropCompleted += (sender, itemlist) =>
+                {
+                    //Update index number
+                    int indexCount = 0;
+                    foreach (StatsOrderDetails statDetails in itemlist)
+                    {
+                        statDetails.Index = indexCount;
+                        indexCount++;
+                    }
+
+                    //Update stats overlay style
+                    vWindowStats.UpdateFpsOverlayStyle();
+
+                    //Save stats order to json file
+                    JsonSaveObject(vStatsOrderDetails, @"Profiles\User\FpsStatsOrderDetails.json");
+                };
 
                 //Colors
                 colorpicker_ColorSingle.Click += async (sender, e) =>
