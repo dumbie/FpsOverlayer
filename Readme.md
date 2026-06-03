@@ -46,6 +46,10 @@ When you are walking into any problems or a bug you can go to my help page at ht
 If you appreciate my project and want to support me you can make a donation through https://donation.arnoldvink.com
 
 ## Changelog
+v2.8.0.0 (3-June-2026)
+- Added GPU memory temperature reading.
+- Added Renderer settings tab.
+
 v2.7.0.0 (8-May-2026)
 - Added setting to show used 3D renderer names.
 - Added setting to hide stats when app is not using 3D renderer.
