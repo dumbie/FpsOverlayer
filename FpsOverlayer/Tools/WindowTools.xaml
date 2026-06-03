@@ -92,7 +92,7 @@
                 <Grid Grid.Row="0" Name="grid_Browser_LinkHint" Margin="5,5,5,0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Link.png" Height="60"/>
-                        <TextBlock Text="Select link to open below" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockWhite}" FontSize="{DynamicResource TextSizeLarge}"/>
+                        <TextBlock Text="Select or enter link below" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockWhite}" FontSize="{DynamicResource TextSizeLarge}"/>
                         <TextBlock Text="You can manage links in the link menu." HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockGray}" FontSize="{DynamicResource TextSizeInterface}"/>
                         <TextBlock Name="textblock_Browser_Error" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockGray}" FontSize="{DynamicResource TextSizeInterface}"/>
                     </StackPanel>

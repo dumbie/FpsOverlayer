@@ -194,7 +194,7 @@ namespace FpsOverlayer
                 }
                 if (!vStatsOrderDetails.Any(x => x.Identifier == "TimeId"))
                 {
-                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "TimeId", Name = "Time and Date" });
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "TimeId", Name = "Time and date" });
                     highestIndex++;
                     saveNeeded = true;
                 }
@@ -218,7 +218,7 @@ namespace FpsOverlayer
                 }
                 if (!vStatsOrderDetails.Any(x => x.Identifier == "FpsId"))
                 {
-                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "FpsId", Name = "Frames Per Second" });
+                    vStatsOrderDetails.Add(new StatsOrderDetails { Index = highestIndex, Identifier = "FpsId", Name = "Frames per second" });
                     highestIndex++;
                     saveNeeded = true;
                 }

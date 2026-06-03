@@ -300,25 +300,14 @@
                         <Button Name="button_CrosshairShowHide" HorizontalAlignment="Left" Width="440" Margin="0,15,0,15" Content="Hide or show crosshair" Style="{StaticResource ButtonAccentBlack}"/>
                     </StackPanel>
 
-                    <StackPanel Name="stackpanel_Browser" Visibility="Collapsed">
+                    <StackPanel Name="stackpanel_Tools" Visibility="Collapsed">
                         <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Tools Settings"/>
                         <CheckBox Name="checkbox_ToolsLaunch" Content="Show tools on app startup" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will open the tools overlay on application startup." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Browser Settings"/>
-                        <CheckBox Name="checkbox_BrowserUnload" Content="Unload website on close" Style="{StaticResource CheckBoxBlack}"/>
+                        <CheckBox Name="checkbox_BrowserUnload" Content="Unload website when closing" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will unload the website to reduce memory usage." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
-
-                        <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Browser Links"/>
-                        <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="combobox_LinkString" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="300" Style="{StaticResource ComboBoxBlack}"/>
-                            <Button Name="button_Browser_Link_Remove" Margin="10,0,0,0" Width="135" Content="Remove link" HorizontalAlignment="Left" Style="{StaticResource ButtonAccentBlack}"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                            <TextBox Name="textbox_Browser_LinkString" HorizontalAlignment="Left" Width="300" Style="{StaticResource TextBoxBlack}" Text="Link..." AVStyles:TextboxPlaceholder.Placeholder="Link..."/>
-                            <Button Name="button_Browser_Link_Add" Margin="10,0,0,0" Width="135" Content="Add link" HorizontalAlignment="Left" Style="{StaticResource ButtonAccentBlack}"/>
-                        </StackPanel>
 
                         <TextBlock Name="textblock_BrowserOpacity" Text="Browser display transparency" Tag="Browser display transparency" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                         <TextBlock Text="Change the browser displayed transparency." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
@@ -617,7 +606,7 @@
                             <Button Name="button_AddApp" Margin="10,0,0,0" Content="Add process" Style="{StaticResource ButtonAccentBlack}"/>
                         </StackPanel>
 
-                        <ListBox Name="listbox_Apps" SelectionMode="Single" ItemContainerStyle="{StaticResource ListBoxItemBlack}" ItemTemplate="{StaticResource ListBoxItemAppPosition}" Style="{StaticResource ListBoxVerticalNoScroll}"/>
+                        <ListBox Name="listbox_Apps" Margin="0,5,0,0" SelectionMode="Single" ItemContainerStyle="{StaticResource ListBoxItemNoneBlack}" ItemTemplate="{StaticResource ListBoxItemAppPosition}" Style="{StaticResource ListBoxVerticalNoScroll}"/>
                     </StackPanel>
 
                     <StackPanel Name="stackpanel_Order" Visibility="Collapsed">
