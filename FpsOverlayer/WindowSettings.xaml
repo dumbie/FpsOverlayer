@@ -173,6 +173,10 @@
                             <Button Name="colorpicker_ColorNet" Height="25" Width="50" Margin="5,0,0,0" BorderBrush="{DynamicResource ApplicationDimGrayBrush}" Style="{StaticResource ButtonImageTransparentBlackBorder}" ToolTipService.ToolTip="Change the network text color"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBlock Text="Display color for renderer text:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
+                            <Button Name="colorpicker_ColorRenderer" Height="25" Width="50" Margin="5,0,0,0" BorderBrush="{DynamicResource ApplicationDimGrayBrush}" Style="{StaticResource ButtonImageTransparentBlackBorder}" ToolTipService.ToolTip="Change the renderer text color"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Text="Display color for frames per second text:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                             <Button Name="colorpicker_ColorFps" Height="25" Width="50" Margin="5,0,0,0" BorderBrush="{DynamicResource ApplicationDimGrayBrush}" Style="{StaticResource ButtonImageTransparentBlackBorder}" ToolTipService.ToolTip="Change the frames per second text color"/>
                         </StackPanel>
@@ -623,7 +627,7 @@
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Stats order"/>
                         <TextBlock Text="Drag and drop stats below in the order you want them to appear." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
-                        <AVStyles:ListBoxDragDrop Name="listbox_StatsOrder" ItemContainerStyle="{StaticResource ListBoxItemBlack}" ItemTemplate="{StaticResource ListBoxItemStatsOrder}" Style="{StaticResource ListBoxVerticalNoScroll}"/>
+                        <AVStyles:ListBoxReorder Name="listbox_StatsOrder" DragDropColor="{DynamicResource ApplicationAccentLightBrush}" ItemContainerStyle="{StaticResource ListBoxItemBlack}" ItemTemplate="{StaticResource ListBoxItemStatsOrder}" Style="{StaticResource ListBoxVerticalNoScroll}"/>
                     </StackPanel>
 
                     <StackPanel Name="stackpanel_Settings" Visibility="Collapsed">

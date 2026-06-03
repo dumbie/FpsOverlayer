@@ -474,6 +474,18 @@ namespace FpsOverlayer
                     }
                 };
 
+                colorpicker_ColorRenderer.Click += async (sender, e) =>
+                {
+                    Color? newColor = await new ColorPickerPreset().Popup(null);
+                    if (newColor != null)
+                    {
+                        SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
+                        colorpicker_ColorRenderer.Background = newBrush;
+                        vSettings.Set("ColorRenderer", newColor.ToString());
+                        vWindowStats.UpdateFpsOverlayStyle();
+                    }
+                };
+
                 colorpicker_ColorFrametime.Click += async (sender, e) =>
                 {
                     Color? newColor = await new ColorPickerPreset().Popup(null);

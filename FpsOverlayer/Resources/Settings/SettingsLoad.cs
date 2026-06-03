@@ -175,6 +175,9 @@ namespace FpsOverlayer
                 string ColorFps = vSettings.Load("ColorFps", typeof(string));
                 colorpicker_ColorFps.Background = new BrushConverter().ConvertFrom(ColorFps) as SolidColorBrush;
 
+                string ColorRenderer = vSettings.Load("ColorRenderer", typeof(string));
+                colorpicker_ColorRenderer.Background = new BrushConverter().ConvertFrom(ColorRenderer) as SolidColorBrush;
+
                 string ColorFrametime = vSettings.Load("ColorFrametime", typeof(string));
                 colorpicker_ColorFrametime.Background = new BrushConverter().ConvertFrom(ColorFrametime) as SolidColorBrush;
 
