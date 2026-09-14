@@ -1,15 +1,9 @@
-﻿using ArnoldVinkStyles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
-using static ArnoldVinkCode.AVClasses;
-using static ArnoldVinkCode.AVFunctions;
-using static ArnoldVinkCode.AVJsonFunctions;
 using static FpsOverlayer.AppVariables;
 
 namespace FpsOverlayer

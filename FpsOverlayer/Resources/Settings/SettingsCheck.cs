@@ -21,6 +21,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("DisplayMonitor")) { vSettings.Set("DisplayMonitor", "1"); }
 
                 if (!vSettings.Check("DisplayBackground")) { vSettings.Set("DisplayBackground", "False"); }
+                if (!vSettings.Check("DisplayBackgroundOverlay")) { vSettings.Set("DisplayBackgroundOverlay", "False"); }
                 if (!vSettings.Check("DisplayOpacity")) { vSettings.Set("DisplayOpacity", "0,90"); }
                 if (!vSettings.Check("MarginHorizontal")) { vSettings.Set("MarginHorizontal", "5"); }
                 if (!vSettings.Check("MarginVertical")) { vSettings.Set("MarginVertical", "5"); }
@@ -31,6 +32,7 @@ namespace FpsOverlayer
                 if (!vSettings.Check("TextPosition")) { vSettings.Set("TextPosition", "0"); }
                 if (!vSettings.Check("TextDirection")) { vSettings.Set("TextDirection", "1"); }
                 if (!vSettings.Check("TextSize")) { vSettings.Set("TextSize", "18"); }
+                if (!vSettings.Check("TextMargin")) { vSettings.Set("TextMargin", "2"); }
                 if (!vSettings.Check("HardwareUpdateRateMs")) { vSettings.Set("HardwareUpdateRateMs", "1000"); }
 
                 if (!vSettings.Check("TextColorSingle")) { vSettings.Set("TextColorSingle", "False"); }

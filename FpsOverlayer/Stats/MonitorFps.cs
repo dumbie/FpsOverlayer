@@ -218,7 +218,7 @@ namespace FpsOverlayer
 
                     //Add frametime point
                     vPointFrameTimes.Add(new Point(xPoint, yPoint));
-                    stackpanel_CurrentFrametime.ScrollToRightEnd();
+                    scrollviewer_CurrentFrametime.ScrollToRightEnd();
 
                     //Cleanup frametime points (10sec)
                     if (vPointFrameTimes.Count > 1000)

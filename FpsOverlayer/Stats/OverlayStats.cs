@@ -449,8 +449,17 @@ namespace FpsOverlayer
                 int NetId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "NetId").Index;
                 int BatId = vStatsOrderDetails.FirstOrDefault(x => x.Identifier == "BatId").Index;
 
-                //Update the stats text orientation and order
-                if (vSettings.Load("TextDirection", typeof(int)) == 1)
+                //Get text direction setting
+                int textDirection = vSettings.Load("TextDirection", typeof(int));
+
+                //Get text margin setting
+                int textMargin = vSettings.Load("TextMargin", typeof(int));
+
+                //Get overlay position
+                OverlayPosition overlayPosition = GetFpsOverlayPosition(vProcessTarget);
+
+                //Update stats text orientation and order
+                if (textDirection == 1)
                 {
                     //Get total stats count
                     int vTotalStatsCount = vStatsOrderDetails.Count() - 1;
@@ -458,7 +467,6 @@ namespace FpsOverlayer
                     //Reverse stats order when on bottom
                     if (vSettings.Load("StatsFlipBottom", typeof(bool)))
                     {
-                        OverlayPosition overlayPosition = GetFpsOverlayPosition(vProcessTarget);
                         if (overlayPosition == OverlayPosition.BottomLeft || overlayPosition == OverlayPosition.BottomCenter || overlayPosition == OverlayPosition.BottomRight)
                         {
                             FrametimeId = vTotalStatsCount - FrametimeId;
@@ -538,35 +546,102 @@ namespace FpsOverlayer
                     stackpanel_CurrentFan.SetValue(Grid.RowProperty, 0);
                 }
 
-                //Update the stats background
-                SolidColorBrush brushBackground = null;
-                if (vSettings.Load("DisplayBackground", typeof(bool)))
+                //Update stats text margin
+                if (textDirection == 1)
                 {
-                    string colorBackground = vSettings.Load("ColorBackground", typeof(string));
-                    brushBackground = new BrushConverter().ConvertFrom(colorBackground) as SolidColorBrush;
+                    //Vertical text margin
+                    Thickness targetMargin = new Thickness(0, 0, 0, 0);
+                    if (overlayPosition == OverlayPosition.BottomLeft || overlayPosition == OverlayPosition.BottomCenter || overlayPosition == OverlayPosition.BottomRight)
+                    {
+                        targetMargin = new Thickness(0, textMargin, 0, 0);
+                    }
+                    else
+                    {
+                        targetMargin = new Thickness(0, 0, 0, textMargin);
+                    }
+
+                    stackpanel_CurrentTime.Margin = targetMargin;
+                    stackpanel_CustomText.Margin = targetMargin;
+                    stackpanel_CurrentMon.Margin = targetMargin;
+                    stackpanel_CurrentRenderer.Margin = targetMargin;
+                    stackpanel_CurrentApp.Margin = targetMargin;
+                    stackpanel_CurrentFps.Margin = targetMargin;
+                    stackpanel_CurrentFrametime.Margin = targetMargin;
+                    stackpanel_CurrentNet.Margin = targetMargin;
+                    stackpanel_CurrentCpu.Margin = targetMargin;
+                    stackpanel_CurrentGpu.Margin = targetMargin;
+                    stackpanel_CurrentMem.Margin = targetMargin;
+                    stackpanel_CurrentBat.Margin = targetMargin;
+                    stackpanel_CurrentFan.Margin = targetMargin;
                 }
                 else
                 {
-                    brushBackground = new SolidColorBrush(Colors.Transparent);
+                    //Horizontal text margin
+                    Thickness targetMargin = new Thickness(0, 0, 0, 0);
+                    if (overlayPosition == OverlayPosition.TopLeft || overlayPosition == OverlayPosition.MiddleLeft || overlayPosition == OverlayPosition.BottomLeft)
+                    {
+                        targetMargin = new Thickness(0, 0, textMargin, 0);
+                    }
+                    else
+                    {
+                        targetMargin = new Thickness(textMargin, 0, 0, 0);
+                    }
+
+                    stackpanel_CurrentTime.Margin = targetMargin;
+                    stackpanel_CustomText.Margin = targetMargin;
+                    stackpanel_CurrentMon.Margin = targetMargin;
+                    stackpanel_CurrentRenderer.Margin = targetMargin;
+                    stackpanel_CurrentApp.Margin = targetMargin;
+                    stackpanel_CurrentFps.Margin = targetMargin;
+                    stackpanel_CurrentFrametime.Margin = targetMargin;
+                    stackpanel_CurrentNet.Margin = targetMargin;
+                    stackpanel_CurrentCpu.Margin = targetMargin;
+                    stackpanel_CurrentGpu.Margin = targetMargin;
+                    stackpanel_CurrentMem.Margin = targetMargin;
+                    stackpanel_CurrentBat.Margin = targetMargin;
+                    stackpanel_CurrentFan.Margin = targetMargin;
                 }
-                stackpanel_CurrentMem.Background = brushBackground;
-                stackpanel_CurrentGpu.Background = brushBackground;
-                stackpanel_CurrentCpu.Background = brushBackground;
-                stackpanel_CurrentNet.Background = brushBackground;
-                stackpanel_CurrentFps.Background = brushBackground;
-                stackpanel_CurrentFrametime.Background = brushBackground;
-                stackpanel_CurrentRenderer.Background = brushBackground;
-                stackpanel_CurrentApp.Background = brushBackground;
-                stackpanel_CurrentTime.Background = brushBackground;
-                stackpanel_CustomText.Background = brushBackground;
-                stackpanel_CurrentMon.Background = brushBackground;
-                stackpanel_CurrentBat.Background = brushBackground;
-                stackpanel_CurrentFan.Background = brushBackground;
+
+                //Update overlay background
+                if (vSettings.Load("DisplayBackgroundOverlay", typeof(bool)))
+                {
+                    string colorBackground = vSettings.Load("ColorBackground", typeof(string));
+                    grid_StatsOverlayer.Background = new BrushConverter().ConvertFrom(colorBackground) as SolidColorBrush;
+                }
+                else
+                {
+                    grid_StatsOverlayer.Background = new SolidColorBrush(Colors.Transparent);
+                }
+
+                //Update stats text background
+                SolidColorBrush brushBackgroundStatsText = null;
+                if (vSettings.Load("DisplayBackground", typeof(bool)))
+                {
+                    string colorBackground = vSettings.Load("ColorBackground", typeof(string));
+                    brushBackgroundStatsText = new BrushConverter().ConvertFrom(colorBackground) as SolidColorBrush;
+                }
+                else
+                {
+                    brushBackgroundStatsText = new SolidColorBrush(Colors.Transparent);
+                }
+                stackpanel_CurrentMem.Background = brushBackgroundStatsText;
+                stackpanel_CurrentGpu.Background = brushBackgroundStatsText;
+                stackpanel_CurrentCpu.Background = brushBackgroundStatsText;
+                stackpanel_CurrentNet.Background = brushBackgroundStatsText;
+                stackpanel_CurrentFps.Background = brushBackgroundStatsText;
+                stackpanel_CurrentFrametime.Background = brushBackgroundStatsText;
+                stackpanel_CurrentRenderer.Background = brushBackgroundStatsText;
+                stackpanel_CurrentApp.Background = brushBackgroundStatsText;
+                stackpanel_CurrentTime.Background = brushBackgroundStatsText;
+                stackpanel_CustomText.Background = brushBackgroundStatsText;
+                stackpanel_CurrentMon.Background = brushBackgroundStatsText;
+                stackpanel_CurrentBat.Background = brushBackgroundStatsText;
+                stackpanel_CurrentFan.Background = brushBackgroundStatsText;
 
                 //Adjust window font family
                 UpdateWindowFontFamily();
 
-                //Update the stats text size
+                //Update stats text size
                 double targetTextSize = vSettings.Load("TextSize", typeof(double));
                 textblock_CurrentMem.FontSize = targetTextSize;
                 textblock_CurrentMem.LineHeight = targetTextSize;

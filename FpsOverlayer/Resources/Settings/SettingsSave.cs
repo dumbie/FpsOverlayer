@@ -20,12 +20,18 @@ namespace FpsOverlayer
             {
                 cb_SettingsWindowsStartup.Click += (sender, e) =>
                 {
-                    AVSettings.StartupShortcutManage("Launcher.exe", false, StartupShortcutType.Startup);
+                    AVSettings.StartupShortcutManage("FpsOverlayer", "Launcher.exe", StartupShortcutType.Startup);
                 };
 
                 checkbox_DisplayBackground.Click += (sender, e) =>
                 {
                     vSettings.Set("DisplayBackground", checkbox_DisplayBackground.IsChecked.ToString());
+                    vWindowStats.UpdateFpsOverlayStyle();
+                };
+
+                checkbox_DisplayBackgroundOverlay.Click += (sender, e) =>
+                {
+                    vSettings.Set("DisplayBackgroundOverlay", checkbox_DisplayBackgroundOverlay.IsChecked.ToString());
                     vWindowStats.UpdateFpsOverlayStyle();
                 };
 
@@ -98,6 +104,13 @@ namespace FpsOverlayer
                 {
                     textblock_TextSize.Text = textblock_TextSize.Tag + ": " + slider_TextSize.Value.ToString("0") + "px";
                     vSettings.Set("TextSize", slider_TextSize.Value);
+                    vWindowStats.UpdateFpsOverlayStyle();
+                };
+
+                slider_TextMargin.ValueChanged += (sender, e) =>
+                {
+                    textblock_TextMargin.Text = textblock_TextMargin.Tag + ": " + slider_TextMargin.Value.ToString("0") + "px";
+                    vSettings.Set("TextMargin", slider_TextMargin.Value);
                     vWindowStats.UpdateFpsOverlayStyle();
                 };
 

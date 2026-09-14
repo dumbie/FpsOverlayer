@@ -128,6 +128,10 @@
                         <TextBlock Text="Change the font size of the displayed stats text." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
                         <Slider Minimum="8" Maximum="120" HorizontalAlignment="Left" Width="440" Name="slider_TextSize" Style="{StaticResource SliderBlockWhite}"/>
 
+                        <TextBlock Name="textblock_TextMargin" Tag="Text display margin" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
+                        <TextBlock Text="Change the space between stats text." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <Slider Minimum="0" Maximum="20" HorizontalAlignment="Left" Width="440" Name="slider_TextMargin" Style="{StaticResource SliderBlockWhite}"/>
+
                         <TextBlock Margin="0,10,0,0" Text="Text display font" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                         <TextBlock Text="Change the font in which the stats are displayed." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
                         <ComboBox Name="combobox_InterfaceFontStyleName" HorizontalAlignment="Left" Width="440" Style="{StaticResource ComboBoxBlack}"/>
@@ -138,8 +142,11 @@
                         <CheckBox Name="checkbox_TextColorSingle" Content="Show stats in single color" Style="{StaticResource CheckBoxBlack}"/>
                         <TextBlock Text="Enabling this will show the stats only in one single color." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
-                        <CheckBox Margin="0,10,0,0" Name="checkbox_DisplayBackground" Content="Show background behind stats" Style="{StaticResource CheckBoxBlack}"/>
-                        <TextBlock Text="Enabling this will show a background behind the stats." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <CheckBox Margin="0,10,0,0" Name="checkbox_DisplayBackground" Content="Show background behind text" Style="{StaticResource CheckBoxBlack}"/>
+                        <TextBlock Text="Enabling this will show a background behind the stats text." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+
+                        <CheckBox Margin="0,10,0,0" Name="checkbox_DisplayBackgroundOverlay" Content="Show background behind overlay" Style="{StaticResource CheckBoxBlack}"/>
+                        <TextBlock Text="Enabling this will show a background behind the overlay." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="General Colors"/>
                         <StackPanel Orientation="Horizontal">
@@ -251,7 +258,7 @@
                         <TextBlock Text="Automatically adjust the overlay margin to your taskbar visibility when you have taskbar auto hide enabled in Windows." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                         <CheckBox Margin="0,10,0,0" Name="checkbox_HideScreenCapture" Content="Hide stats from screen capture" Style="{StaticResource CheckBoxBlack}"/>
-                        <TextBlock Text="Prevent stats from been screen captured when using ScreenCapy and other apps using WGC." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                        <TextBlock Text="Prevent stats from been screen captured when using ScreenCapy and other capture applications using WGC." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
                     </StackPanel>
 
                     <StackPanel Name="stackpanel_Crosshair" Visibility="Collapsed">

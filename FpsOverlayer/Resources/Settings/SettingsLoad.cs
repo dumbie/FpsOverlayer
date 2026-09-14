@@ -16,6 +16,7 @@ namespace FpsOverlayer
             try
             {
                 checkbox_DisplayBackground.IsChecked = vSettings.Load("DisplayBackground", typeof(bool));
+                checkbox_DisplayBackgroundOverlay.IsChecked = vSettings.Load("DisplayBackgroundOverlay", typeof(bool));
 
                 textblock_DisplayOpacity.Text = textblock_DisplayOpacity.Tag + ": " + vSettings.Load("DisplayOpacity", typeof(string)) + "%";
                 slider_DisplayOpacity.Value = vSettings.Load("DisplayOpacity", typeof(double));
@@ -43,8 +44,13 @@ namespace FpsOverlayer
                 combobox_TextPosition.SelectedIndex = vSettings.Load("TextPosition", typeof(int));
                 combobox_TextDirection.SelectedIndex = vSettings.Load("TextDirection", typeof(int));
 
+                //Text Size
                 textblock_TextSize.Text = textblock_TextSize.Tag + ": " + vSettings.Load("TextSize", typeof(string)) + "px";
                 slider_TextSize.Value = vSettings.Load("TextSize", typeof(double));
+
+                //Text Margin
+                textblock_TextMargin.Text = textblock_TextMargin.Tag + ": " + vSettings.Load("TextMargin", typeof(string)) + "px";
+                slider_TextMargin.Value = vSettings.Load("TextMargin", typeof(double));
 
                 textbox_CustomText.Text = vSettings.Load("CustomTextString", typeof(string));
 
@@ -226,7 +232,7 @@ namespace FpsOverlayer
                 slider_BrowserOpacity.Value = vSettings.Load("BrowserOpacity", typeof(double));
 
                 //Check if application is set to launch on Windows startup
-                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck(StartupShortcutType.Startup);
+                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck("FpsOverlayer", StartupShortcutType.Startup);
 
                 //Display settings
                 int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));
