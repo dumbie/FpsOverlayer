@@ -36,7 +36,7 @@ namespace FpsOverlayer
                 {
                     //Set trace event provider options
                     TraceEventProviderOptions traceEventProviderOptions = new TraceEventProviderOptions();
-                    traceEventProviderOptions.EventIDsToEnable = [(int)vTraceEventIdentifiers.DxgKrnl_Present];
+                    traceEventProviderOptions.EventIDsToEnable = [(int)vTraceEventIdentifiers.DxgKrnl_Present_Stop];
 
                     //Create trace event session
                     vTraceEventSession = new TraceEventSession("FpsOverlayer");
@@ -84,7 +84,7 @@ namespace FpsOverlayer
             try
             {
                 //Check the total available frames and last added frame time
-                if (!vListFrameTimes.Any() || (GetSystemTicksMilli() - vLastFrameTimeUpdate) >= 1000)
+                if (!vListFrameTimes.Any() || (GetSystemTicksMilli() - vLastFrameTimeUpdate) > 1000)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -242,7 +242,7 @@ namespace FpsOverlayer
                 //Debug.WriteLine("Trace event identifier: " + traceEvent.ProcessID + " / " + (vTraceEventIdentifiers)traceEvent.ID + " / " + traceEvent.TimeStampRelativeMSec);
 
                 //Check event identifier
-                if ((int)traceEvent.ID != (int)vTraceEventIdentifiers.DxgKrnl_Present)
+                if ((int)traceEvent.ID != (int)vTraceEventIdentifiers.DxgKrnl_Present_Stop)
                 {
                     //Debug.WriteLine("DxgKrnl skipping invalid frame.");
                     return;

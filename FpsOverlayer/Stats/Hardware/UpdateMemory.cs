@@ -95,11 +95,11 @@ namespace FpsOverlayer
                             //Debug.WriteLine("Mem Load Data: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
                             if (sensor.Identifier.ToString().EndsWith("data/0"))
                             {
-                                RawMemoryUsed = (float)sensor.Value;
+                                RawMemoryUsed = (float)sensor.Value / 1073741824F;
                             }
                             else if (sensor.Identifier.ToString().EndsWith("data/1"))
                             {
-                                RawMemoryFree = (float)sensor.Value;
+                                RawMemoryFree = (float)sensor.Value / 1073741824F;
                             }
                         }
                     }

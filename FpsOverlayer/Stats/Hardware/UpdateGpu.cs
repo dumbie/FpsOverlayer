@@ -111,12 +111,12 @@ namespace FpsOverlayer
                                 GpuTemperatureHotspot = " " + RawGpuTemperatureHotspot.ToString("0") + "°";
                             }
                         }
-                        else if (GpuShowMemoryUsed && sensor.SensorType == SensorType.SmallData)
+                        else if (GpuShowMemoryUsed && sensor.SensorType == SensorType.Data)
                         {
                             //Debug.WriteLine("GPU Mem: " + sensor.Name + "/" + sensor.Identifier + "/" + sensor.Value.ToString());
                             if (sensor.Name == "GPU Memory Used" || sensor.Name.Contains("Dedicated Memory Used"))
                             {
-                                float RawMemoryUsage = (float)sensor.Value;
+                                float RawMemoryUsage = (float)sensor.Value / 1048576F;
                                 if (RawMemoryUsage < 1000)
                                 {
                                     GpuMemoryUsed = " " + RawMemoryUsage.ToString("0") + "MB";
